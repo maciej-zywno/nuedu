@@ -1,0 +1,6 @@
+.row.marketing
+  .col-lg-12
+    %h4 Title: #{video.title}
+    = raw yt_client.my_video(video.yt_id).embed_html
+    %p 
+      #{video.description}

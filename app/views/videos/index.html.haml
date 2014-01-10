@@ -1,0 +1,27 @@
+.content
+  %h2.title
+    = t("web-app-theme.all", :default => "All")
+    Videos
+  .inner
+    %table.table
+      %tr
+        %th.first ID
+        %th
+          = t("activerecord.attributes.video.title", :default => t("activerecord.labels.title", :default => "Title"))
+        %th= t("web-app-theme.created_at", :default => "Created at")
+        %th.last  
+      - @videos.each do |video|
+        %tr{class: cycle("odd", "even")}
+          %td
+            = video.id
+          %td
+            = link_to video.title, video_path(video)
+          %td
+            = video.created_at
+          %td.last
+            = link_to "#{t("web-app-theme.show", :default => "Show")}", video_path(video)
+            |
+            \#{link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_video_path(video)} |
+            \#{link_to "#{t("web-app-theme.delete", :default => "Delete")}", video_path(video), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"}
+    .actions-bar.wat-cf
+      .actions

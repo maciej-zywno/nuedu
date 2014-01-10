@@ -1,0 +1,11 @@
+common: &common
+  dev_key: "AI39si6w4kXPD1mUWzhsz6uRH3-XYFGsXwL-vIOxk3M-klzdcD6Fyu4NcpK3uBQl0wBUudcsnqYWD3dXxCUqNqE2GClsRjSRQQ"
+  username:  "nuedu.test"
+  password:  "nuedutest"
+  
+test:
+  <<: *common
+development:
+  <<: *common
+production:
+  <<: *common

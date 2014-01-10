@@ -4,6 +4,13 @@ Nuedu::Application.routes.draw do
   get "welcome/index"
   root "welcome#index"
 
+  resources :videos do
+    new do
+       post :upload
+       get  :save_video
+     end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

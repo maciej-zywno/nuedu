@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %title Nuedu
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    .container
+      .header
+        %ul.nav.nav-pills.pull-right
+          %li.active
+            %a{href: "/"} Home
+          %li
+            = link_to 'All videos', videos_path
+          %li
+            %a{href: "#"} Contact
+          = render 'menu/registration_items'
+          = render 'menu/login_items'
+        %h3.text-muted Nuedu
+
+      - if notice || alert
+        %p.notice= notice
+        %p.alert= alert
+      = yield
+      .footer
+        %p © Razorbear 2014

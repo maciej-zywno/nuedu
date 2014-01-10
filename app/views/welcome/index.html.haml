@@ -1,0 +1,8 @@
+- videos = Video.complete.recent(4)
+.jumbotron
+  %h1 Video courses
+  %p.lead Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+  %p
+    = link_to "Upload video", new_video_path, {class: 'btn btn-lg btn-success', role: 'button'}
+.row.marketing
+  = render videos
