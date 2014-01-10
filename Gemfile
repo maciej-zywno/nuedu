@@ -55,7 +55,7 @@ group :test, :development do
   gem 'rspec-rails'
 end
 
-# gem 'google-api-client'
+gem 'google-api-client'
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 
