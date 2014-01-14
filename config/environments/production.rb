@@ -77,4 +77,9 @@ Nuedu::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+
+ENV['FACEBOOK_APP_ID'] = "1453577691537649";
+ENV['FACEBOOK_SECRET'] = "3d99a4c3748ca9f0849326286e5d3bb0";
+
 end
