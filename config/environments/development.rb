@@ -26,9 +26,4 @@ Nuedu::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-
-
-ENV['FACEBOOK_APP_ID'] = "790769280940353";
-ENV['FACEBOOK_SECRET'] = "1ba675c983918cff7ee5316f03f4a0b3";
-
 end
