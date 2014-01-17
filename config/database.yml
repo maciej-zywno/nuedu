@@ -13,10 +13,9 @@ test:
   pool: 5
   username: postgres
   password:
+  
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: nuedu_production
+  adapter: sqlite3
+  database: db/production.sqlite3
   pool: 5
-  username: postgres
-  password:
+  timeout: 5000
