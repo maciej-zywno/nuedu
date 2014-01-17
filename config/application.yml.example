@@ -6,3 +6,6 @@ MANDRILL_PASSWORD: fill_me_in_application_yaml
 AWS_BUCKET_NAME: fill_me_in_application_yaml
 AWS_ACCESS_KEY_ID: fill_me_in_application_yaml
 AWS_SECRET_ACCESS_KEY: fill_me_in_application_yaml
+
+FACEBOOK_APP_ID: fill_me_in_application_yaml
+FACEBOOK_SECRET: fill_me_in_application_yaml
