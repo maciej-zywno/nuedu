@@ -1,0 +1,17 @@
+development:
+  FACEBOOK_APP_ID: "790769280940353"
+  FACEBOOK_SECRET: '1ba675c983918cff7ee5316f03f4a0b3'
+production:
+  MANDRILL_ADDRESS: 'smtp.mandrillapp.com'
+  MANDRILL_PORT: 587
+  MANDRILL_USERNAME: 'app21071442@heroku.com'
+  MANDRILL_PASSWORD: 'QHkIWzywZNi76bXH61yL0w'
+  
+  AWS_BUCKET_NAME: fill_me_in_application_yaml
+  AWS_ACCESS_KEY_ID: fill_me_in_application_yaml
+  AWS_SECRET_ACCESS_KEY: fill_me_in_application_yaml
+  FACEBOOK_APP_ID: '1453577691537649'
+  FACEBOOK_SECRET: '3d99a4c3748ca9f0849326286e5d3bb0'
+
+
+

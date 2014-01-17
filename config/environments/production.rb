@@ -1,11 +1,3 @@
-
-  ENV['FACEBOOK_APP_ID'] = "1453577691537649";
-  ENV['FACEBOOK_SECRET'] = "3d99a4c3748ca9f0849326286e5d3bb0";
-  ENV['MANDRILL_APIKEY'] = "QHkIWzywZNi76bXH61yL0w"
-  ENV['MANDRILL_USERNAME'] = "app21071442@heroku.com"
-
-
-
 Nuedu::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -75,8 +67,8 @@ Nuedu::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.mandrillapp.com',
-    port:                 587,
+    address:              ENV['MANDRILL_ADDRESS'],
+    port:                 ENV['MANDRILL_PORT'],
     domain:               'heroku.com',
     user_name:            ENV['MANDRILL_USERNAME'],
     password:             ENV['MANDRILL_APIKEY'],
