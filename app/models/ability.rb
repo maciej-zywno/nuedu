@@ -16,6 +16,7 @@ class Ability
       can :manage, Course if user.has_role?(:manager, Course)
       can :create, Course if user.has_role?(:teacher)
       can :update, Course, :id => Course.with_role(:moderator, user).pluck(:id)
+      can :publish, Course, :id => Course.with_role(:moderator, user).pluck(:id)
     end
 
     # The first argument to `can` is the action you are giving the user

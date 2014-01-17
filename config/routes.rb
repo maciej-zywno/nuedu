@@ -1,6 +1,6 @@
 Nuedu::Application.routes.draw do
-  
-  
+
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   devise_for :users , path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks"}
@@ -19,10 +19,20 @@ Nuedu::Application.routes.draw do
     end
   end
 
-  resources :courses do
-    resource :steps do
+  namespace :teacher do
+    resources :courses do
+      resources :steps
+      member do
+        get 'publish'
+      end
     end
   end
+
+
+  resources :courses do
+    resources :steps
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
