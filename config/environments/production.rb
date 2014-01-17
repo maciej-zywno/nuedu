@@ -1,3 +1,11 @@
+
+  ENV['FACEBOOK_APP_ID'] = "1453577691537649";
+  ENV['FACEBOOK_SECRET'] = "3d99a4c3748ca9f0849326286e5d3bb0";
+  ENV['MANDRILL_APIKEY'] = "QHkIWzywZNi76bXH61yL0w"
+  ENV['MANDRILL_USERNAME'] = "app21071442@heroku.com"
+
+
+
 Nuedu::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -65,6 +73,18 @@ Nuedu::Application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mandrillapp.com',
+    port:                 587,
+    domain:               'heroku.com',
+    user_name:            ENV['MANDRILL_USERNAME'],
+    password:             ENV['MANDRILL_APIKEY'],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
   config.i18n.fallbacks = true
@@ -77,9 +97,5 @@ Nuedu::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-
-
-ENV['FACEBOOK_APP_ID'] = "1453577691537649";
-ENV['FACEBOOK_SECRET'] = "3d99a4c3748ca9f0849326286e5d3bb0";
 
 end

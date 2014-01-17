@@ -1,14 +1,20 @@
 class User < ActiveRecord::Base
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
+  validates :username, presence: true
+
+  after_create :assign_student_role
+
    def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.username = auth.info.nickname
+      user.username = auth.info.name
+      # user.username = auth.info.nickname
       user.email = auth.info.email
     end
   end
@@ -36,5 +42,9 @@ class User < ActiveRecord::Base
     end
   end
 
+
+  def assign_student_role
+    add_role(:student)
+  end
   
 end

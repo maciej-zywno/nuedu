@@ -1,4 +1,6 @@
 class Video < ActiveRecord::Base
+
+  belongs_to :step
   
   scope :complete,   where(complete: true)
   scope :incomplete, where(complete: false)

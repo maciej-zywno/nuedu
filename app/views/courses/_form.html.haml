@@ -1,0 +1,6 @@
+= simple_form_for(@course) do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :description
+  .actions
+    = f.submit t('course.save')

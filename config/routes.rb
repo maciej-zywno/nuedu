@@ -1,15 +1,27 @@
 Nuedu::Application.routes.draw do
+  
+  
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   devise_for :users , path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
-  
+
   get "welcome/index"
   root "welcome#index"
 
+  get 'become/:role' => "roles#add_role", as: "add_role"
+  get 'abandom/:role' => "roles#remove_role", as: "remove_role"
+
   resources :videos do
     new do
-       post :upload
-       get  :save_video
-     end
+      post :upload
+      get  :save_video
+    end
+  end
+
+  resources :courses do
+    resource :steps do
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -63,7 +63,16 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'cancan'
+gem 'rolify', :github => 'badaboda/rolify', :branch => 'master'
 
-gem 'inherited_resources'
+gem 'inherited_resources', :github => 'josevalim/inherited_resources', :branch => 'master'
+gem 'has_scope', :github => 'plataformatec/has_scope', :branch => 'master'
 
 gem 'youtube_it'
+
+gem 'rails_admin'
+
+gem 'simple_form'
+
+gem 'ancestry'

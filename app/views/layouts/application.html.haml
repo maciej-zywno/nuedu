@@ -11,19 +11,38 @@
   %body
     .container
       .header
-        %ul.nav.nav-pills.pull-right
+        %ul.navbar-nav.nav.nav-pills.pull-right
           %li.active
             %a{href: "/"} Home
           %li
-            = link_to 'All videos', videos_path
-          %li
-          = render 'menu/registration_items'
-          = render 'menu/login_items'
+            = link_to 'All courses', courses_path
+          - if user_signed_in?
+            - if teacher?
+              %li= link_to 'Create Course', new_course_path
+            %li.dropdown
+              = link_to "#{current_user.username}", '', 'data-target' => "#", id: 'f-current-user-menu', role: 'button', class: 'dropdown-toggle', 'data-toggle' => 'dropdown'
+              %ul.dropdown-menu{role:'menu', "aria-labelledby" => 'f-current-user-menu'}
+                %li{role:'presentation'}
+                  = link_to 'Edit registration', edit_user_registration_path
+                - if teacher?
+                  %li{role:'presentation'}
+                    = link_to "Remove teacher role", remove_role_path(:teacher)
+                - else
+                  %li{role:'presentation'}
+                    = link_to "Become teacher", add_role_path(:teacher)
+
+                %li.divider{role:'presentation'}
+                %li{role:'presentation'}
+                  = link_to 'Logout', destroy_user_session_path, :method => :delete
+          - else
+            = render 'menu/registration_items'
+            = render 'menu/login_items'
         %h3.text-muted Nuedu
 
-      - if notice || alert
-        %p.notice= notice
-        %p.alert= alert
+      - if notice
+        %p.notice.alert.alert-success= notice
+      - if alert
+        %p.alert.alert.alert-danger= alert
       = yield
       .footer
         %p © Razorbear 2014
