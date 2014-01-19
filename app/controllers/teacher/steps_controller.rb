@@ -16,6 +16,7 @@ module Teacher
   # GET /steps/new
   def new
     @step = Step.new(course_id:params[:course_id])
+    @video = Video.new
   end
 
   # GET /steps/1/edit

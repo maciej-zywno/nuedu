@@ -18,9 +18,10 @@
             = link_to 'All courses', courses_path
           - if user_signed_in?
             - if teacher?
-              %li= link_to 'Create Course', new_teacher_course_path
+              %li= link_to 'My Account', teacher_account_path
             %li.dropdown
-              = link_to "#{current_user.username}", '', 'data-target' => "#", id: 'f-current-user-menu', role: 'button', class: 'dropdown-toggle', 'data-toggle' => 'dropdown'
+              = link_to  '','data-target' => "#", id: 'f-current-user-menu', role: 'button', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+                = raw ("#{current_user.username}" + '<b class="caret"></b>')
               %ul.dropdown-menu{role:'menu', "aria-labelledby" => 'f-current-user-menu'}
                 %li{role:'presentation'}
                   = link_to 'Edit registration', edit_user_registration_path

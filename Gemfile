@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.1.0'
 
@@ -65,7 +66,8 @@ end
 
 gem 'google-api-client'
 
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
+# gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
+gem 'rails-assets-bootstrap'
 
 gem 'devise'
 gem 'omniauth-facebook'
@@ -75,7 +77,7 @@ gem 'rolify', :github => 'badaboda/rolify', :branch => 'master'
 gem 'inherited_resources', :github => 'josevalim/inherited_resources', :branch => 'master'
 gem 'has_scope', :github => 'plataformatec/has_scope', :branch => 'master'
 
-gem 'youtube_it'
+gem 'youtube_it', :github => 'kylejginavan/youtube_it', :branch => 'master'
 
 gem 'rails_admin'
 

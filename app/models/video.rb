@@ -1,21 +1,22 @@
 class Video < ActiveRecord::Base
-
-  belongs_to :step
+  resourcify
   
+  belongs_to :step
+
   scope :complete,   where(complete: true)
   scope :incomplete, where(complete: false)
-  
+
   scope :recent, ->(num) { order('created_at DESC').limit(num) }
-    
+
   def self.yt_session
-    @yt_session ||= YouTubeIt::Client.new(:username => YouTubeITConfig.username , :password => YouTubeITConfig.password , :dev_key => YouTubeITConfig.dev_key)    
+    @yt_session ||= YouTubeIt::Client.new(:username => YouTubeITConfig.username , :password => YouTubeITConfig.password , :dev_key => YouTubeITConfig.dev_key)
   end
 
   def self.delete_video(video)
     yt_session.video_delete(video.yt_video_id)
     video.destroy
-      rescue
-        video.destroy
+  rescue
+    video.destroy
   end
 
   def self.update_video(video, params)
@@ -32,11 +33,11 @@ class Video < ActiveRecord::Base
   end
 
   private
-    def self.video_options(params)
-      opts = {:title => params[:title],
-             :description => params[:description],
-             :category => "People",
-             :keywords => ["test"]}
-      params[:is_unpublished] == "1" ? opts.merge(:private => "true") : opts
-    end
+  def self.video_options(params)
+    opts = {:title => params[:title],
+            :description => params[:description],
+            :category => "People",
+            :keywords => ["test"]}
+    params[:is_unpublished] == "1" ? opts.merge(:private => "true") : opts
+  end
 end

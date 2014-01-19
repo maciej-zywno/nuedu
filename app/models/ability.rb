@@ -17,6 +17,14 @@ class Ability
       can :create, Course if user.has_role?(:teacher)
       can :update, Course, :id => Course.with_role(:moderator, user).pluck(:id)
       can :publish, Course, :id => Course.with_role(:moderator, user).pluck(:id)
+
+      can :read, Video if user.has_role?(:teacher)
+      can :upload, Video if user.has_role?(:teacher)
+      can :create, Video if user.has_role?(:teacher)
+
+      can :save_video, Video, :id => Video.with_role(:moderator, user).pluck(:id)
+      can :update, Video, :id => Video.with_role(:moderator, user).pluck(:id)
+
     end
 
     # The first argument to `can` is the action you are giving the user

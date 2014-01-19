@@ -1,6 +1,7 @@
 = simple_form_for(@step, url: teacher_course_steps_path(@step.course, @step)) do |f|
   = f.error_notification
   = f.input :name
-  
+  = f.input :video, as: :hidden
+  = f.input :test, as: :hidden
   .actions
     = f.submit

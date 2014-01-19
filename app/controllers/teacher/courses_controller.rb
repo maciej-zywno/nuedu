@@ -11,6 +11,7 @@ module Teacher
     # GET /courses.json
     def index
       @courses = Course.with_role(:moderator, current_user)
+      @videos = Video.with_role(:moderator, current_user)
     end
 
     def publish

@@ -12,20 +12,25 @@ Nuedu::Application.routes.draw do
   get 'become/:role' => "roles#add_role", as: "add_role"
   get 'abandom/:role' => "roles#remove_role", as: "remove_role"
 
-  resources :videos do
-    new do
-      post :upload
-      get  :save_video
-    end
-  end
+  get 'account', to: 'account#show', as: 'account'
 
   namespace :teacher do
+    get 'account', to: 'account#show', as: 'account'
+
     resources :courses do
       resources :steps
       member do
         get 'publish'
       end
     end
+
+    resources :videos do
+      new do
+        post :upload
+        get  :save_video
+      end
+    end
+
   end
 
 

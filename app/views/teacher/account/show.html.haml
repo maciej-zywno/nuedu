@@ -1,0 +1,31 @@
+%h1 Your courses
+%table
+  %thead
+    %tr
+      %th Id
+      %th Name
+      %th 
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= course.id
+        %td= course.name
+        %td= link_to 'Show', course
+        %td= link_to 'Edit', edit_teacher_course_path(course)
+        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
+
+%h1 Your videos
+%table
+  %thead
+    %tr
+      %th Id
+      %th youtube id
+  %tbody
+    - @videos.each do |video|
+      %tr
+        %td= video.id
+        %td= video.yt_id
+        %td= link_to 'Show', teacher_video_path(video.id)
+        %td= link_to 'Destroy', teacher_video_path(video.id), method: :delete, data: { confirm: 'Are you sure?' }
+%p
+  = link_to 'Add video', new_teacher_video_path

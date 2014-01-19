@@ -1,10 +1,13 @@
 module Teacher
   class VideosController < InheritedResources::Base
+    load_and_authorize_resource
+
+        skip_load_resource only: [:save_video]
 
     def upload
       @video = Video.create(video_params)
       if @video
-        @upload_info = Video.token_form(params[:video], save_video_new_video_url(:video_id => @video.id))
+        @upload_info = Video.token_form(params[:video], save_video_new_teacher_video_url(:video_id => @video.id))
       else
         respond_to do |format|
           format.html { render "/videos/new" }
@@ -36,7 +39,7 @@ module Teacher
       else
         Video.delete_video(@video)
       end
-      redirect_to videos_path, :notice => "video successfully uploaded"
+      redirect_to teacher_videos_path, :notice => "video successfully uploaded"
     end
 
     def destroy
