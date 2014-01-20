@@ -1,0 +1,31 @@
+.header
+  %ul.navbar-nav.nav.nav-pills.pull-right
+    %li
+      = link_to 'All courses', courses_path
+    - if user_signed_in?
+      %li.dropdown
+        = link_to  '','data-target' => "#", id: 'f-current-user-menu', role: 'button', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+          = raw ("#{current_user.username}" + '<b class="caret"></b>')
+        %ul.dropdown-menu{role:'menu', "aria-labelledby" => 'f-current-user-menu'}
+          %li{role:'presentation'}= link_to 'Profile', teacher? ?  teacher_account_path : account_path
+          %li{role:'presentation'}= link_to 'Settings', edit_user_registration_path
+          %li 
+            =link_to '' do
+              Messages
+              %span.badge.pull-right 
+                3
+          %li.divider{role:'presentation'}
+          - if teacher?
+            %li{role:'presentation'}= link_to "Remove teacher role", remove_role_path(:teacher)
+          - else
+            %li{role:'presentation'}
+              = link_to "Become teacher", add_role_path(:teacher)
+
+          %li.divider{role:'presentation'}
+          %li{role:'presentation'}
+            = link_to 'Logout', destroy_user_session_path, :method => :delete
+    - else
+      %li 
+        = link_to 'Sign in', new_user_session_path
+  %h3.text-muted 
+    = link_to 'Nuedu', root_path

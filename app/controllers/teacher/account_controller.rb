@@ -3,8 +3,7 @@ module Teacher
 
     def show
       @courses = Course.with_role(:moderator, current_user)
-      # @videos = Video.with_role(:moderator, current_user)
-      @videos = Video.all
+      @videos = Video.with_role(:moderator, current_user)
     end
 
   end

@@ -2,7 +2,8 @@ module Teacher
   class VideosController < InheritedResources::Base
     load_and_authorize_resource
 
-        skip_load_resource only: [:save_video]
+    skip_load_resource only: [:save_video]
+    after_action :add_moderator_role, only: [:upload]
 
     def upload
       @video = Video.create(video_params)
@@ -62,6 +63,12 @@ module Teacher
     def video_params
       params.require(:video).permit(:title, :description)
     end
+
+
+    def add_moderator_role
+      current_user.add_role(:moderator, @video) if @video.persisted?
+    end
+
 
   end
 end
