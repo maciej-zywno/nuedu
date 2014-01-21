@@ -24,6 +24,8 @@
           %li.divider{role:'presentation'}
           %li{role:'presentation'}
             = link_to 'Logout', destroy_user_session_path, :method => :delete
+      -if admin?
+        %li= link_to 'Admin Area', "/admin"
     - else
       %li 
         = link_to 'Sign in', new_user_session_path
