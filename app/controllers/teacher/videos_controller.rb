@@ -2,12 +2,12 @@ module Teacher
   class VideosController < InheritedResources::Base
     load_and_authorize_resource
 
-    skip_load_resource only: [:save_video, :index]
+    skip_load_resource only: [:save_video]
     after_action :add_moderator_role, only: [:upload]
 
-    def index
-      @videos = Video.with_role(:moderator, current_user)
-    end
+    # def index
+    #   @videos = Video.with_role(:moderator, current_user)
+    # end
 
     def upload
       @video = Video.create(video_params)
