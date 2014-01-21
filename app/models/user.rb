@@ -47,6 +47,8 @@ class User < ActiveRecord::Base
   private
   def assign_student_role
     add_role(:student)
+    add_role(:teacher)
+
   end
 
   def send_welcome_email
