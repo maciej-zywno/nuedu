@@ -1,7 +1,10 @@
 class Video < ActiveRecord::Base
   resourcify
   
-  belongs_to :step
+  belongs_to :step, :inverse_of => :video
+
+  validates :title, presence: true
+
 
   scope :complete,   where(complete: true)
   scope :incomplete, where(complete: false)
@@ -35,8 +38,8 @@ class Video < ActiveRecord::Base
   private
   def self.video_options(params)
     opts = {:title => params[:title],
-            :description => params[:description],
-            :category => "People",
+            :description => 'nu test video',
+            :category => "Education",
             :keywords => ["test"]}
     params[:is_unpublished] == "1" ? opts.merge(:private => "true") : opts
   end

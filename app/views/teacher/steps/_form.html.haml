@@ -1,7 +1,24 @@
-= simple_form_for(@step, url: teacher_course_steps_path(@step.course, @step)) do |f|
-  = f.error_notification
-  = f.input :name
-  = f.input :video, as: :hidden
-  = f.input :test, as: :hidden
-  .actions
-    = f.submit
+= form_for([:teacher,@step.course, @step], :html => { :class => :form }) do |f|
+  -if @step.errors.any?
+    %ul
+      - @step.errors.full_messages.each do |msg|
+        %li= msg 
+  .form-group
+    = f.label :name, t("activerecord.attributes.video.name", :default => "Name")
+    = f.text_field :name, :class => 'form-control'
+  .form-group
+    = f.label :description, t("activerecord.attributes.video.description", :default => "Description")
+    = f.text_area :description, :class => 'form-control'
+
+  .form-group
+    = f.label :video, "Video"
+    = select_tag(:video_id, options_from_collection_for_select(@videos, :id, :title) )
+
+
+  .group.navform
+  - if @step.new_record?
+    %button.btn.btn-default{type: "submit"}
+      Create
+  - else
+    %button.btn.btn-default{type: "submit"}
+      Save

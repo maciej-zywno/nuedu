@@ -35,8 +35,6 @@ module Teacher
     # POST /courses
     # POST /courses.json
     def create
-      puts "_______________________aaaaaaa"
-
       @course = Course.new(course_params)
       respond_to do |format|
         if @course.save
@@ -77,7 +75,6 @@ module Teacher
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      puts "--------------course_params"
       params.require(:course).permit(:name, :description, :category_id)
     end
 

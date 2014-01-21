@@ -1,10 +1,11 @@
+-if @video.errors.any?
+  %ul
+    - @video.errors.full_messages.each do |msg|
+      %li= msg 
 .form-group
   = f.label :title, t("activerecord.attributes.video.title", :default => "Title")
   = f.text_field :title, :class => 'form-control'
-.form-group
-  = f.label :description, t("activerecord.attributes.video.description", :default => "Description")
-  = f.text_area :description, :class => 'form-control'
-.group.navform.wat-cf
+.group.navform
   - if @video.new_record?
     %button.btn.btn-default{type: "submit"}
       Go to Step 2

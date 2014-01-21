@@ -1,4 +1,5 @@
 %ul.nav.nav-pills
+  %li= link_to 'Show course', teacher_course_path(@course)
   %li= link_to 'Add step', new_teacher_course_step_path(@course)
   %li= link_to 'Publish', publish_teacher_course_path(@course)
 

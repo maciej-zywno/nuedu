@@ -1,0 +1,21 @@
+%ul.nav.nav-pills
+  %li= link_to 'My Videos', teacher_videos_path
+  %li= link_to 'Add video', new_teacher_video_path
+  %li= link_to 'New Course', new_teacher_course_path
+%h1 Listing courses
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= course.name
+        %td= link_to 'Show', [:teacher, course]
+        %td= link_to 'Show course in user view', course_path(course)
+        %td= link_to 'Edit', edit_course_path(course)
+        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+

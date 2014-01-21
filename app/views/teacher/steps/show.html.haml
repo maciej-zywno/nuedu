@@ -1,0 +1,20 @@
+%ul.nav.nav-pills
+  %li= link_to 'My courses', teacher_courses_path
+  %li= link_to 'My Videos', teacher_videos_path
+  %li= link_to 'Add video', new_teacher_video_path(step_id: @step.id)
+  %li= link_to 'Edit Step', edit_teacher_course_step_path(@step.course,@step)
+
+%h1 Step
+.row
+  .col-md-12
+    %h3 Summary
+    .form
+      .form-group
+        %label Name
+        %p=@step.name
+      .form-group
+        %label Description
+        %p= @step.description
+      .form-group
+        %p
+          = raw yt_client.my_video(@step.video.yt_id).embed_html if @step.video

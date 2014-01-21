@@ -2,16 +2,20 @@ module Teacher
   class VideosController < InheritedResources::Base
     load_and_authorize_resource
 
-    skip_load_resource only: [:save_video]
+    skip_load_resource only: [:save_video, :index]
     after_action :add_moderator_role, only: [:upload]
+
+    def index
+      @videos = Video.with_role(:moderator, current_user)
+    end
 
     def upload
       @video = Video.create(video_params)
-      if @video
+      if @video.valid?
         @upload_info = Video.token_form(params[:video], save_video_new_teacher_video_url(:video_id => @video.id))
       else
         respond_to do |format|
-          format.html { render "/videos/new" }
+          format.html { render "teacher/videos/new" }
         end
       end
     end
@@ -61,6 +65,8 @@ module Teacher
 
     private
     def video_params
+      puts "________________"
+      puts params.inspect
       params.require(:video).permit(:title, :description)
     end
 

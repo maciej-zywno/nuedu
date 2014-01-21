@@ -22,7 +22,12 @@
             %li{role:'presentation'}= link_to "Remove teacher role", remove_role_path(:teacher)
           - else
             %li{role:'presentation'}
-              = link_to "Become teacher", add_role_path(:teacher)
+              = link_to "Add teacher role", add_role_path(:teacher)
+          - if admin?
+            %li{role:'presentation'}= link_to "Remove admin role", remove_role_path(:admin)
+          - else
+            %li{role:'presentation'}
+              = link_to "Add admin role", add_role_path(:admin)              
 
           %li.divider{role:'presentation'}
           %li{role:'presentation'}
