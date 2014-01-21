@@ -12,3 +12,7 @@
  *= require bootstrap
  *= require_tree .
  */
+
+a.btn {
+  font-size: 12px;
+}

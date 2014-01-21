@@ -1,7 +1,14 @@
-= simple_form_for([:teacher,@course]) do |f|
-  = f.error_notification
-  = f.input :name
-  = f.input :description
-  = f.association :category
-  .actions
-    = f.submit t('course.save')
+= form_for([:teacher,@course], :html => { :class => :form }) do |f|
+  .form-group
+    = f.label :name, "Name"
+    = f.text_field :name, :class => 'form-control'
+  .form-group
+    = f.label :description,  "Description"
+    = f.text_area :description, :class => 'form-control'
+  .group.navform
+    - if @course.new_record?
+      %button.btn.btn-primary.btn-block{type: "submit"}
+        Create
+    - else
+      %button.btn.btn-primary{type: "submit"}
+        Save

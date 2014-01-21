@@ -68,6 +68,8 @@ gem 'google-api-client'
 
 # gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 gem 'rails-assets-bootstrap'
+gem 'rails-assets-holderjs'
+
 
 gem 'devise'
 gem 'omniauth-facebook'

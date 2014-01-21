@@ -13,5 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require holderjs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).bind('page:change', function() {
+  return Holder.run();
+});

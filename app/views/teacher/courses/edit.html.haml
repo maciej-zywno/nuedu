@@ -1,5 +1,22 @@
+%ul.nav.nav-pills
+  %li= link_to 'Add step', new_teacher_course_step_path(@course)
+  %li= link_to 'Publish', publish_teacher_course_path(@course)
+
 %h1 Course
-= render 'form'
-= link_to 'Back', courses_path
-= link_to 'Add step', new_teacher_course_step_path(@course)
-= link_to 'Publish', publish_teacher_course_path(@course)
+.row
+  .col-md-6
+    %h3 Summary
+    = render 'form'
+  .col-md-6
+    %h3 Course Steps
+    #accordion.panel-group
+      -@course.steps.each_with_index do |step,idx|
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title
+              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapseOne"}
+                = "Step #{idx+1} #{step.name}"
+          #collapseOne.panel-collapse.collapse.in
+            .panel-body
+              = raw yt_client.my_video(step.video.yt_id).embed_html if step.video
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. 
