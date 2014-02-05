@@ -1,0 +1,22 @@
+<%
+  prefix = "course-#{@course.id}/"
+  prefix += "step-#{@step.id}/" if @step
+  callback_url =  @step ? teacher_course_step_attachments_url(@course, @step) : teacher_course_attachments_url(@course)
+%>
+
+<%= s3_uploader_form callback_url: callback_url, 
+                     key: "#{prefix}/{unique_id}-#{SecureRandom.hex}/${filename}", 
+                     key_starts_with: prefix, 
+                     acl: "public-read", 
+                     max_file_size: 50.megabytes, 
+                     id: "s3-uploader",
+                    class: "upload-form"   do %>
+  <%= file_field_tag :file, multiple: true, title: "Add Attachment" , class:'f-attachment'%>
+<% end %>
+
+<script id="template-upload" type="text/x-tmpl">
+<div id="file-{%=o.unique_id%}" class="upload">
+  {%=o.name%}
+  <div class="progress progress-striped active"><div class="progress-bar bar progress-bar-success" style="width: 0%"></div></div>
+</div>
+</script>

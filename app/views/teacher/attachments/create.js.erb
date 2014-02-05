@@ -1,0 +1,5 @@
+<% if @attachment.new_record? %>
+  alert('Failed to add attachment');
+<% else %>
+  $('.f-attachments').append('<li class="list-group-item" id="<%=@attachment.id%>"><%=link_to @attachment.file_file_name.truncate(40), @attachment.url%><%=link_to "Delete", [:teacher,@course,@attachment], method: :delete, remote: true, class: "btn btn-danger"%></li>');
+<% end %>

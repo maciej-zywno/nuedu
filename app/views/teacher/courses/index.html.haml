@@ -1,21 +1,16 @@
 %ul.nav.nav-pills
-  %li= link_to 'My Videos', teacher_videos_path
-  %li= link_to 'Add video', new_teacher_video_path
   %li= link_to 'New Course', new_teacher_course_path
 %h1 Listing courses
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-  %tbody
-    - @courses.each do |course|
-      %tr
-        %td= course.name
-        %td= link_to 'Show', [:teacher, course]
-        %td= link_to 'Show course in user view', course_path(course)
-        %td= link_to 'Edit', edit_course_path(course)
-        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-
+- @courses.in_groups_of(3, false) do |group| 
+  .row
+    - group.each do |course|
+      .col-sm-6.col-md-4
+        .thumbnail
+          %img{alt: "...", "data-src" => "holder.js/200x150"}/
+          .caption
+            %h3=course.name
+            %p=course.description
+            %p
+              = link_to 'Show', course, class: 'btn btn-primary'
+              = link_to 'Edit', edit_teacher_course_path(course), class: 'btn btn-default'
+              = link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

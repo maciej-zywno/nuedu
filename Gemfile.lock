@@ -39,6 +39,17 @@ GIT
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
 
+GIT
+  remote: git://github.com/waynehoover/s3_direct_upload.git
+  revision: 2d1958fd398daa9d8690db96dfe5d121f3736f0f
+  branch: master
+  specs:
+    s3_direct_upload (0.1.6)
+      coffee-rails (>= 3.1)
+      jquery-fileupload-rails (~> 0.4.1)
+      rails (>= 3.1)
+      sass-rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -76,6 +87,10 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
+    aws-sdk (1.33.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -143,6 +158,9 @@ GEM
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -222,6 +240,8 @@ GEM
       rails-assets-jquery (>= 1.9.0)
     rails-assets-holderjs (2.3.0)
     rails-assets-jquery (2.0.3)
+    rails-assets-jquery-form (3.46.0)
+      rails-assets-jquery (>= 1.5)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -321,6 +341,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  aws-sdk
   better_errors
   binding_of_caller
   cancan
@@ -332,6 +353,7 @@ DEPENDENCIES
   has_scope!
   inherited_resources!
   jbuilder (~> 1.2)
+  jquery-fileupload-rails
   jquery-rails
   less-rails
   meta_request
@@ -342,10 +364,12 @@ DEPENDENCIES
   rails (= 4.0.2)
   rails-assets-bootstrap
   rails-assets-holderjs
+  rails-assets-jquery-form
   rails_12factor
   rails_admin
   rolify!
   rspec-rails
+  s3_direct_upload!
   sdoc
   simple_form
   sqlite3

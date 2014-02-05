@@ -10,11 +10,6 @@
     = f.label :description, t("activerecord.attributes.video.description", :default => "Description")
     = f.text_area :description, :class => 'form-control'
 
-  .form-group
-    = f.label :video, "Video"
-    = select_tag(:video_id, options_from_collection_for_select(@videos, :id, :title) )
-
-
   .group.navform
   - if @step.new_record?
     %button.btn.btn-default{type: "submit"}

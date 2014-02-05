@@ -2,8 +2,6 @@
   %li= link_to 'Create course', new_teacher_course_path
   %li= link_to 'My courses', teacher_courses_path
   
-  %li= link_to 'Add video', new_teacher_video_path
-
 %h1 Your courses
 - @courses.in_groups_of(3, false) do |group| 
   .row
@@ -18,17 +16,3 @@
               = link_to 'Show', course, class: 'btn btn-primary'
               = link_to 'Edit', edit_teacher_course_path(course), class: 'btn btn-default'
               = link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-%h1 Your videos
-- @videos.in_groups_of(3, false) do |group| 
-  .row
-    - group.each do |video|
-      .col-sm-6.col-md-4
-        .thumbnail
-          %img{alt: "...", "data-src" => "holder.js/200x150"}/
-          .caption
-            %h3=video.title
-            %p= "Youtube ID: #{video.yt_id}"
-            %p
-              = link_to 'Show',  teacher_video_path(video.id), class: 'btn btn-primary'
-              = link_to 'Edit', edit_teacher_video_path(video), class: 'btn btn-default'
-              = link_to 'Delete',  teacher_video_path(video.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

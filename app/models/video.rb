@@ -3,9 +3,6 @@ class Video < ActiveRecord::Base
   
   belongs_to :step, :inverse_of => :video
 
-  validates :title, presence: true
-
-
   scope :complete,   where(complete: true)
   scope :incomplete, where(complete: false)
 
@@ -27,8 +24,8 @@ class Video < ActiveRecord::Base
     video.update_attributes(params)
   end
 
-  def self.token_form(params, nexturl)
-    yt_session.upload_token(video_options(params), nexturl)
+  def self.token_form(title, nexturl)
+    yt_session.upload_token(video_options(title), nexturl)
   end
 
   def self.delete_incomplete_videos
@@ -36,11 +33,11 @@ class Video < ActiveRecord::Base
   end
 
   private
-  def self.video_options(params)
-    opts = {:title => params[:title],
+  def self.video_options(title)
+    opts = { title: title,
             :description => 'nu test video',
             :category => "Education",
-            :keywords => ["test"]}
-    params[:is_unpublished] == "1" ? opts.merge(:private => "true") : opts
+            :keywords => ["test"],
+            :private => "true" }
   end
 end

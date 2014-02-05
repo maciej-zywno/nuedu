@@ -1,10 +1,17 @@
 %ul.nav.nav-pills
   %li= link_to 'My courses', teacher_courses_path
-  %li= link_to 'Add video', new_teacher_video_path(step_id: @step.id)
-  %li= link_to 'Edit Step', edit_teacher_course_step_path(@step.course,@step)
-  %li= link_to 'Show', teacher_course_step_path(@step.course,@step)
-  %li= link_to 'Back to course', teacher_course_path(@step.course)
+  %li= link_to 'Back to course', edit_teacher_course_path(@step.course)
 
-%h1 Editing step
-= render  'form'
+
+%h1 Step
+.row
+  .col-md-6
+    %h3 Summary
+    = render 'form'
+    %h3 Attachments
+    = render 'teacher/attachments/form'
+    = render 'teacher/attachments/list'
+  .col-md-6
+    %h3 Video
+    = render 'video'
 

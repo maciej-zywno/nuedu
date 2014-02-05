@@ -32,7 +32,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Answer', 'Course', 'Question', 'Role', 'Step', 'Test', 'User', 'Video']
 
   # Include specific models (exclude the others):
-  config.included_models = ['Answer', 'Course', 'Question', 'Step', 'Test', 'User', 'Video']
+  config.included_models = ['Answer', 'Course', 'Question', 'Step', 'Exam', 'User', 'Video', 'Attachment']
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
@@ -147,48 +147,48 @@ RailsAdmin.config do |config|
 
   ###  Question  ###
 
-  config.model 'Question' do
+  # config.model 'Question' do
 
-    # You can copy this to a 'rails_admin do ... end' block inside your question.rb model definition
+  #   # You can copy this to a 'rails_admin do ... end' block inside your question.rb model definition
 
-    # Found associations:
+  #   # Found associations:
 
-      # configure :test, :belongs_to_association 
-      # configure :answers, :has_many_association 
+  #     # configure :test, :belongs_to_association 
+  #     # configure :answers, :has_many_association 
 
-    # Found columns:
+  #   # Found columns:
 
-      configure :id, :integer 
-      configure :kind, :string 
-      configure :question, :string 
-      configure :test_id, :integer         # Hidden 
-      configure :created_at, :datetime 
-      configure :updated_at, :datetime 
+  #     configure :id, :integer 
+  #     configure :kind, :string 
+  #     configure :question, :string 
+  #     configure :test_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
 
-    # Cross-section configuration:
+  #   # Cross-section configuration:
 
-      # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
-      # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
-      # label_plural 'My models'      # Same, plural
-      # weight 0                      # Navigation priority. Bigger is higher.
-      # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
-      # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
 
-    # Section specific configuration:
+  #   # Section specific configuration:
 
-      list do
-        # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
-        # items_per_page 100    # Override default_items_per_page
-        # sort_by :id           # Sort column (default is primary key)
-        # sort_reverse true     # Sort direction (default is true for primary key, last created first)
-      end
-      show do; end
-      edit do; end
-      export do; end
-      # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
-      # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
-      # using `field` instead of `configure` will exclude all other fields and force the ordering
-  end
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
 
 
   ###  Role  ###

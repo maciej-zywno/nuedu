@@ -1,0 +1,7 @@
+#accordion.panel-group
+  = link_to 'Add step', new_teacher_course_step_path(@course)
+  -@course.steps.each_with_index do |step,idx|
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          = link_to step.name, edit_teacher_course_step_path(@course, step)

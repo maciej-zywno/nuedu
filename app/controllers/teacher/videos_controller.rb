@@ -1,50 +1,30 @@
 module Teacher
-  class VideosController < InheritedResources::Base
+  class VideosController < ApplicationController
     load_and_authorize_resource
-
-    skip_load_resource only: [:save_video]
+    
+    skip_load_resource only: [:save]
+    
+    before_action :set_variables, only: [:save, :destroy]
     after_action :add_moderator_role, only: [:upload]
 
     # def index
     #   @videos = Video.with_role(:moderator, current_user)
     # end
 
-    def upload
-      @video = Video.create(video_params)
-      if @video.valid?
-        @upload_info = Video.token_form(params[:video], save_video_new_teacher_video_url(:video_id => @video.id))
-      else
-        respond_to do |format|
-          format.html { render "teacher/videos/new" }
-        end
-      end
+    def new
     end
 
-    def update
-      @video     = Video.find(params[:id])
-      @result    = Video.update_video(@video, params[:video])
-      respond_to do |format|
-        format.html do
-          if @result
-            redirect_to @video, :notice => "video successfully updated"
-          else
-            respond_to do |format|
-              format.html { render "/videos/_edit" }
-            end
-          end
-        end
-      end
-    end
 
-    def save_video
-      @video = Video.find(params[:video_id])
+    def save
       if params[:status].to_i == 200
-        @video.update_attributes(:yt_id => params[:id].to_s, :complete => true)
-        Video.delete_incomplete_videos
-      else
-        Video.delete_video(@video)
+        @video = Video.new
+        @video.step = @step
+        @video.yt_id = params[:id].to_s
+        @video.complete  = true
+        @video.save
       end
-      redirect_to teacher_videos_path, :notice => "video successfully uploaded"
+
+      redirect_to edit_teacher_course_step_path(@course, @step), :notice => "video successfully uploaded"
     end
 
     def destroy
@@ -54,7 +34,7 @@ module Teacher
       else
         flash[:error] = "video unsuccessfully deleted"
       end
-      redirect_to videos_path
+      redirect_to :back, status: :see_other
     end
 
 
@@ -65,7 +45,6 @@ module Teacher
 
     private
     def video_params
-      puts "________________"
       puts params.inspect
       params.require(:video).permit(:title, :description)
     end
@@ -75,6 +54,10 @@ module Teacher
       current_user.add_role(:moderator, @video) if @video.persisted?
     end
 
+    def set_variables
+      @course = Course.find(params[:course_id])
+      @step = Step.find(params[:step_id])
+    end
 
   end
 end

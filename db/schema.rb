@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121153401) do
+ActiveRecord::Schema.define(version: 20140205142603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,23 @@ ActiveRecord::Schema.define(version: 20140121153401) do
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "attachments", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "unique_id"
+    t.string   "s3_filepath"
+    t.text     "description"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.boolean  "processed",         default: false, null: false
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -43,19 +60,31 @@ ActiveRecord::Schema.define(version: 20140121153401) do
     t.datetime "updated_at"
     t.string   "status"
     t.integer  "category_id"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
   end
 
   add_index "courses", ["category_id"], name: "index_courses_on_category_id", using: :btree
+  add_index "courses", ["status"], name: "index_courses_on_status", using: :btree
 
-  create_table "questions", force: true do |t|
-    t.string   "kind"
-    t.string   "question"
-    t.integer  "test_id"
+  create_table "exams", force: true do |t|
+    t.string   "name"
+    t.integer  "step_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "questions", ["test_id"], name: "index_questions_on_test_id", using: :btree
+  add_index "exams", ["step_id"], name: "index_exams_on_step_id", using: :btree
+
+  create_table "questions", force: true do |t|
+    t.string   "kind"
+    t.string   "question"
+    t.integer  "exam_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["exam_id"], name: "index_questions_on_exam_id", using: :btree
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -87,18 +116,11 @@ ActiveRecord::Schema.define(version: 20140121153401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
   end
 
   add_index "steps", ["course_id"], name: "index_steps_on_course_id", using: :btree
-
-  create_table "tests", force: true do |t|
-    t.string   "name"
-    t.integer  "step_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tests", ["step_id"], name: "index_tests_on_step_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

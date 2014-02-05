@@ -1,18 +1,8 @@
-= form_for @video, :url => upload_new_teacher_video_path, :html => { :class => :form } do |f|
-  .group
-    = f.label :title, t("activerecord.attributes.video.title", :default => "Title"), :class => :label
-    = f.text_field :title, :class => 'text_field'
-    %span.description Ex: add title video
-  .group
-    = f.label :description, t("activerecord.attributes.video.description", :default => "Description"), :class => :label
-    = f.text_field :description, :class => 'text_field'
-    %span.description Ex: add description video
-  .group.navform
-    - if @video.new_record?
-      %button.button{type: "submit"}
-        = image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
-        = t("web-app-theme.save", :default => "Step 2")
-    - else
-      %button.button{type: "submit"}
-        = image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
-        = t("web-app-theme.save", :default => "Save")
+- @upload_info = new_upload_video_info(@step)
+= form_tag @upload_info[:url], :multipart => true, class:'f-video-upload' do
+  .form-group
+    = hidden_field_tag :token, @upload_info[:token]
+    = label_tag :file
+    = file_field_tag :file, class: 'form_control'
+  = submit_tag "Upload video", class: 'btn btn-default'
+

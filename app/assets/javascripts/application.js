@@ -15,6 +15,8 @@
 //= require bootstrap
 //= require holderjs
 //= require turbolinks
+//= require s3_direct_upload
+//= require bootstrap.file-input
 //= require_tree .
 
 

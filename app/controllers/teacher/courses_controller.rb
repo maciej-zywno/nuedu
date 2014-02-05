@@ -15,7 +15,15 @@ module Teacher
     end
 
     def publish
+      @course.status = "PUBLISHED"
+      @course.save
+      redirect_to edit_teacher_course_path(@course), notice: 'Course was successfully published.'
+    end
 
+    def draft
+      @course.status = "DRAFT"
+      @course.save
+      redirect_to edit_teacher_course_path(@course), notice: 'Course was successfully unpublished.'
     end
 
     # GET /courses/1

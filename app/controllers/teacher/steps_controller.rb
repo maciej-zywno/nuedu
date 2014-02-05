@@ -16,14 +16,10 @@ module Teacher
     # GET /steps/new
     def new
       @step = Step.new(course_id:params[:course_id])
-      # @videos = Video.all
-      @videos = Video.with_role(:moderator, current_user)
     end
 
     # GET /steps/1/edit
     def edit
-      @videos = Video.with_role(:moderator, current_user)
-      # @videos = Video.all
     end
 
     # POST /steps
@@ -34,11 +30,9 @@ module Teacher
 
       respond_to do |format|
         if @step.save
-          format.html { redirect_to [:teacher, @step.course, @step], notice: 'Step was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @step }
+          format.html { redirect_to edit_teacher_course_step_path(@step.course, @step), notice: 'Step was successfully created.' }
         else
           format.html { render action: 'new' }
-          format.json { render json: @step.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -48,11 +42,9 @@ module Teacher
     def update
       respond_to do |format|
         if @step.update(step_params)
-          format.html { redirect_to [:teacher, @step.course, @step], notice: 'Step was successfully updated.' }
-          format.json { head :no_content }
+          format.html { redirect_to edit_teacher_course_step_path(@step.course, @step), notice: 'Step was successfully updated.' }
         else
           format.html { render action: 'edit' }
-          format.json { render json: @step.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -71,6 +63,7 @@ module Teacher
     # Use callbacks to share common setup or constraints between actions.
     def set_step
       @step = Step.find(params[:id])
+      @course = @step.course
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

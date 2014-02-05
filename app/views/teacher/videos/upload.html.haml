@@ -1,7 +1,0 @@
-%h2 Step 2: upload a new video.
-= form_tag @upload_info[:url], :multipart => true do
-  .form-group
-    = hidden_field_tag :token, @upload_info[:token]
-    = label_tag :file
-    = file_field_tag :file, class: 'form_control'
-  = submit_tag "Upload video", class: 'btn btn-default'

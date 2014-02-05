@@ -22,7 +22,7 @@ class Ability
       can :upload, Video if user.has_role?(:teacher)
       can :create, Video if user.has_role?(:teacher)
 
-      can :save_video, Video, :id => Video.with_role(:moderator, user).pluck(:id)
+      can :save, Video, :id => Video.with_role(:moderator, user).pluck(:id)
       can :update, Video, :id => Video.with_role(:moderator, user).pluck(:id)
 
     end

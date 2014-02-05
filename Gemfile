@@ -31,8 +31,12 @@ gem 'jbuilder', '~> 1.2'
 # app configuration
 gem 'figaro'
 
-# Easy file attachment management for ActiveRecord
-gem 'paperclip'
+gem 'aws-sdk' # S3 API
+gem 'paperclip' # file attachment syntax and callbacks
+gem 'jquery-fileupload-rails'
+gem 's3_direct_upload' , :github => 'waynehoover/s3_direct_upload', :branch => 'master'# direct upload form helper and assets
+
+# gem 'rails-assets-jquery-file-upload'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -69,7 +73,6 @@ gem 'google-api-client'
 # gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 gem 'rails-assets-bootstrap'
 gem 'rails-assets-holderjs'
-
 
 gem 'devise'
 gem 'omniauth-facebook'

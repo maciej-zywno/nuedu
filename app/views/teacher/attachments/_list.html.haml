@@ -1,0 +1,5 @@
+%ul.list-group.f-attachments
+  - (@step ? @step : @course).attachments.each do |attachment|
+    %li.list-group-item{id:attachment.id}
+      =link_to attachment.file_file_name.truncate(40), attachment.url
+      =link_to 'Delete', [:teacher,@course,attachment], method: :delete, remote: true, class: 'btn btn-danger'
