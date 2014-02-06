@@ -1,0 +1,7 @@
+%p
+  -if @step.exam
+    =link_to 'Edit', edit_teacher_course_step_exam_path(@step.course,@step,@step.exam), remote:true , class: 'btn btn-primary'
+    =link_to 'Delete', [:teacher,@step.course,@step,@step.exam], method: :delete, remote:true , class: 'btn btn-danger'
+
+  -else  
+    =link_to "Add Exam", new_teacher_course_step_exam_path(@step.course, @step), remote:true, class: 'btn btn-success'

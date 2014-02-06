@@ -17,6 +17,11 @@ Nuedu::Application.routes.draw do
     resources :courses do
       resources :attachments
       resources :steps do
+        resources :exams do
+          resources :questions
+            resources :answers
+        end
+        
         resources :attachments
         resources :videos do
           new do
@@ -24,7 +29,7 @@ Nuedu::Application.routes.draw do
           end
         end
       end
-      
+
       member do
         get 'publish'
         get 'draft'

@@ -1,0 +1,5 @@
+- @exam.questions.each do |question|
+  %h4=question.question
+  -question.answers.each do |answer|
+    %ul.list-group
+      %li.list-group-item=answer.answer
