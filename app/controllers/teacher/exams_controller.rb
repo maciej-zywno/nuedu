@@ -22,7 +22,7 @@ module Teacher
     def create
       if current_user.has_role(:moderator, @course)
         @exam = Exam.new(exam_params)
-        @exam.step = @step
+        @exam.examable = @video
         @exam.save
       else
 
@@ -55,6 +55,7 @@ module Teacher
     def set_variables
       @course = Course.find(params[:course_id])
       @step = Step.find(params[:step_id]) if params[:step_id]
+      @video = Video.find(params[:video_id]) if params[:video_id]
     end
 
     def exam_params

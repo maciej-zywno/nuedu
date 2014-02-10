@@ -1,10 +1,16 @@
-%fieldset
-  = f.label :question, "Question"
-  %br/
-  = f.text_area :question
-  %br/
-  = f.check_box :_destroy
-  = f.label :_destroy, "Remove Question"
-  = f.fields_for :answers do |builder|
-    = render 'answer_fields', f: builder
-  = link_to_add_fields "Add Answer", f, :answers
+.row
+  %fieldset
+    .col-md-5
+      .form-group 
+        = f.label :question, "Question"
+        = f.text_area :question, class: 'form-control'
+      .form-group 
+        = f.check_box :_destroy
+        = f.label :_destroy, "Remove Question"
+      
+    .col-md-7
+      %label Answers
+      =f.fields_for :answers do |builder|
+        = render 'answer_fields', f: builder
+      %p
+        = link_to_add_fields "Add Answer", f, :answers

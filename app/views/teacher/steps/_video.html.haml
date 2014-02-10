@@ -1,7 +1,0 @@
-%p
-  -if @step.video
-    = raw yt_client.my_video(@step.video.yt_id).embed_html 
-    =link_to 'Delete', [:teacher,@step.course,@step,@step.video], method: :delete, class: 'btn btn-danger'
-
-  -else  
-    = render 'new_video'

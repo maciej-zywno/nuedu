@@ -1,0 +1,16 @@
+#accordion.panel-group
+  -@step.videos.each_with_index do |video,idx|
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse#{idx}"}
+            = "Video #{idx+1}"
+      .panel-collapse.collapse{id:"collapse#{idx}", class: "#{'in' if idx == 0 }" }
+        .panel-body
+          = raw yt_client.my_video(video.yt_id).embed_html 
+          =link_to 'Delete', [:teacher,@step.course,@step,video], method: :delete, class: 'btn btn-danger'
+          %p
+            %h3 Exam
+            %div{class: "f-exam-#{video.id}"}
+              =render 'teacher/steps/exam', video: video     
+= render 'new_video'

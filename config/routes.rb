@@ -17,15 +17,14 @@ Nuedu::Application.routes.draw do
     resources :courses do
       resources :attachments
       resources :steps do
-        resources :exams do
-          resources :questions
-            resources :answers
-        end
-        
         resources :attachments
         resources :videos do
           new do
             get  :save
+          end
+          resources :exams do
+            resources :questions
+            resources :answers
           end
         end
       end

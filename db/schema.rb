@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205142603) do
+ActiveRecord::Schema.define(version: 20140209133740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,8 +60,6 @@ ActiveRecord::Schema.define(version: 20140205142603) do
     t.datetime "updated_at"
     t.string   "status"
     t.integer  "category_id"
-    t.integer  "attachable_id"
-    t.string   "attachable_type"
   end
 
   add_index "courses", ["category_id"], name: "index_courses_on_category_id", using: :btree
@@ -69,12 +67,11 @@ ActiveRecord::Schema.define(version: 20140205142603) do
 
   create_table "exams", force: true do |t|
     t.string   "name"
-    t.integer  "step_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "examable_id"
+    t.string   "examable_type"
   end
-
-  add_index "exams", ["step_id"], name: "index_exams_on_step_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "kind"
@@ -116,8 +113,6 @@ ActiveRecord::Schema.define(version: 20140205142603) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
-    t.integer  "attachable_id"
-    t.string   "attachable_type"
   end
 
   add_index "steps", ["course_id"], name: "index_steps_on_course_id", using: :btree

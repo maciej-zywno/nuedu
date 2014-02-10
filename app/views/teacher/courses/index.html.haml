@@ -9,7 +9,7 @@
           %img{alt: "...", "data-src" => "holder.js/200x150"}/
           .caption
             %h3=course.name
-            %p=course.description
+            %p=course.description.html_safe
             %p
               = link_to 'Show', course, class: 'btn btn-primary'
               = link_to 'Edit', edit_teacher_course_path(course), class: 'btn btn-default'

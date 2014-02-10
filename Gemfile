@@ -71,7 +71,7 @@ end
 gem 'google-api-client'
 
 # gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
-gem 'rails-assets-bootstrap'
+gem 'rails-assets-bootstrap', '3.1.0'
 gem 'rails-assets-holderjs'
 
 gem 'devise'
@@ -84,6 +84,8 @@ gem 'has_scope', :github => 'plataformatec/has_scope', :branch => 'master'
 
 gem 'youtube_it', :github => 'kylejginavan/youtube_it', :branch => 'master'
 
+gem 'tinymce-rails', github: 'spohlenz/tinymce-rails', branch: 'tinymce-4'
+gem 'tinymce-rails-langs'
 gem 'rails_admin'
 
 gem 'simple_form'

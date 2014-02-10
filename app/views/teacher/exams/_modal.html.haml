@@ -5,7 +5,4 @@
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
         %h4#myModalLabel.modal-title EXAM
-      .modal-body
-        = render 'form'
-      .modal-footer
-        %button.btn.btn-primary{"data-dismiss" => "modal", type: "button"} Close
+      =render 'form'

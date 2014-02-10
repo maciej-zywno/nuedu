@@ -1,7 +1,7 @@
 %h2 Summary
 = "Name: #{@course.name}"
 %p
-  = "Description #{@course.description}"
+  = "Description #{@course.description.html_safe}"
 
 %h3 Course Steps
 #accordion.panel-group
@@ -15,4 +15,4 @@
         .panel-body
           = raw yt_client.my_video(step.video.yt_id).embed_html if step.video
 
-          %p=step.description
+          %p=step.description.html_safe

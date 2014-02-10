@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require s3_direct_upload
 //= require bootstrap.file-input
+//= require tinymce-jquery
 //= require_tree .
 
 

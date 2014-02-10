@@ -1,18 +1,20 @@
-= form_for [:teacher,@course, @step,@exam], remote: true do |f|
-  - if @exam.errors.any?
-    .error_messages
-      %h2
-        = pluralize(@exam.errors.count, "error")
-        prohibited this exam from being saved:
-      %ul
-        - @exam.errors.full_messages.each do |msg|
-          %li= msg
-  .field
-    = f.label :name
-    %br/
-    = f.text_field :name
-  = f.fields_for :questions do |builder|
-    = render 'question_fields', f: builder
-  = link_to_add_fields "Add Question", f, :questions
-  .actions
-    = f.submit
+= form_for [:teacher,@course, @step,@video,@exam], remote: true do |f|
+  .modal-body
+    - if @exam.errors.any?
+      .error_messages
+        %h2
+          = pluralize(@exam.errors.count, "error")
+          prohibited this exam from being saved:
+        %ul
+          - @exam.errors.full_messages.each do |msg|
+            %li= msg
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+
+    = f.fields_for :questions do |builder|
+      = render 'question_fields', f: builder
+    = link_to_add_fields "Add Question", f, :questions
+  .modal-footer
+    .actions
+      = f.submit class: 'btn btn-primary'

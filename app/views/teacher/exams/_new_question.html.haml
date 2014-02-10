@@ -1,7 +1,0 @@
-= form_for([:teacher,@exam.step.course, @exam.step, @exam, Question.new ], :html => { :class => :form }) do |f|
-  .form-group
-    = f.label :question, t("activerecord.attributes.video.name", :default => "Question")
-    = f.text_field :question, :class => 'form-control'
-  .group.navform
-  %button.btn.btn-default{type: "submit"}
-    Create

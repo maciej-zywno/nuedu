@@ -1,13 +1,15 @@
 class Course < ActiveRecord::Base
   resourcify
-  has_many :steps
 
   belongs_to :category
 
+  has_many :steps
+  has_many :attachments, as: :attachable
+  has_one :exam, as: :examable
+
+
   validates :name, presence: true
   validates :description, presence: true
-
-  has_many :attachments, as: :attachable
 
   def published?
     status == 'PUBLISHED'

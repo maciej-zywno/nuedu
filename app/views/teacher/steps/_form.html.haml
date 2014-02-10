@@ -8,7 +8,7 @@
     = f.text_field :name, :class => 'form-control'
   .form-group
     = f.label :description, t("activerecord.attributes.video.description", :default => "Description")
-    = f.text_area :description, :class => 'form-control'
+    = f.text_area :description, :class => 'form-control tinymce'
 
   .group.navform
   - if @step.new_record?
@@ -17,3 +17,4 @@
   - else
     %button.btn.btn-default{type: "submit"}
       Save
+= tinymce 

@@ -1,7 +1,15 @@
 #accordion.panel-group
-  = link_to 'Add step', new_teacher_course_step_path(@course)
   -@course.steps.each_with_index do |step,idx|
     .panel.panel-default
       .panel-heading
         %h4.panel-title
-          = link_to step.name, edit_teacher_course_step_path(@course, step)
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse#{idx}"}
+            = step.name
+          = link_to 'edit', edit_teacher_course_step_path(@course, step), class: 'edit-link'
+      .panel-collapse.collapse{id:"collapse#{idx}", class: "#{'in' if idx == 0 }" }
+        .panel-body
+          =step.description.html_safe
+          =link_to 'Delete', [:teacher,@course,step], method: :delete, class: 'btn btn-danger'
+
+= link_to 'Add step', new_teacher_course_step_path(@course)
+

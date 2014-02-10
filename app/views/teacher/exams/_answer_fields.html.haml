@@ -1,5 +1,11 @@
-%fieldset
-  = f.label :answer, "Answer"
-  = f.text_field :answer
-  = f.hidden_field :_destroy
-  = link_to "remove", '#', class: "remove_fields"
+%fieldset.form-inline.answer-form
+  .form-group.answer-form__group
+    = f.text_field :answer, class: 'form-control answer-form__text'
+  .form-group.answer-form__group
+    .checkbox
+      =f.label :correct, "Correct" do
+        =f.check_box :correct
+        Correct
+  .form-group
+    = f.hidden_field :_destroy
+    = link_to "remove", '#', class: "remove_fields btn btn-danger"

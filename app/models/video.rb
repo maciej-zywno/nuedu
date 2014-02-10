@@ -1,7 +1,9 @@
 class Video < ActiveRecord::Base
   resourcify
   
-  belongs_to :step, :inverse_of => :video
+  belongs_to :step, :inverse_of => :videos
+  has_one :exam, as: :examable
+
 
   scope :complete,   where(complete: true)
   scope :incomplete, where(complete: false)

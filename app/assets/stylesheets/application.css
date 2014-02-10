@@ -16,3 +16,9 @@
 a.btn {
   font-size: 12px;
 }
+.container a.edit-link {
+  color: #428bca;
+  font-weight: normal;
+  font-size: 12px;
+  
+}

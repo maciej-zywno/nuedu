@@ -58,15 +58,10 @@ module Teacher
     # PATCH/PUT /courses/1
     # PATCH/PUT /courses/1.json
     def update
-      respond_to do |format|
-        if @course.update(course_params)
-          format.html { redirect_to [:teacher, @course], notice: 'Course was successfully updated.' }
-          format.json { head :no_content }
-        else
-          format.html { render action: 'edit' }
-          format.json { render json: @course.errors, status: :unprocessable_entity }
-        end
+      if @course.update(course_params)
+      else
       end
+      render action: 'edit'
     end
 
     # DELETE /courses/1

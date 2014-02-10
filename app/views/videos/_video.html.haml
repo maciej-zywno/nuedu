@@ -3,4 +3,4 @@
     %h4 Title: #{video.title}
     = raw yt_client.my_video(video.yt_id).embed_html
     %p 
-      #{video.description}
+      #{video.description.html_safe}
