@@ -32,6 +32,8 @@ Nuedu::Application.routes.draw do
       member do
         get 'publish'
         get 'draft'
+        patch 'categories'
+        get 'select_categories'
       end
     end
   end

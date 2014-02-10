@@ -47,10 +47,8 @@ module Teacher
       respond_to do |format|
         if @course.save
           format.html { redirect_to edit_teacher_course_path(@course), notice: 'Course was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @course }
         else
           format.html { render action: 'new' }
-          format.json { render json: @course.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -62,6 +60,25 @@ module Teacher
       else
       end
       render action: 'edit'
+    end
+
+    # PATCH/PUT /courses/1
+    # PATCH/PUT /courses/1.json
+    def categories
+      if params['course'] && params['course']['categories']
+        new_categories = []
+        params['course']['categories'].each do |id|
+          new_categories << Category.find(id)
+        end
+        @course.categories.delete_all
+        @course.categories = new_categories
+      else
+      end
+      render action: 'edit'
+    end
+
+    def select_categories
+      
     end
 
     # DELETE /courses/1

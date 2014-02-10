@@ -86,11 +86,12 @@ gem 'youtube_it', :github => 'kylejginavan/youtube_it', :branch => 'master'
 
 gem 'tinymce-rails', github: 'spohlenz/tinymce-rails', branch: 'tinymce-4'
 gem 'tinymce-rails-langs'
+
 gem 'rails_admin'
-
-gem 'simple_form'
-
 gem 'ancestry'
+gem 'rails_admin_nestable'
+
+gem "font-awesome-rails", '3.2.1'
 
 group :development do
   gem 'better_errors'

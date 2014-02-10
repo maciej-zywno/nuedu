@@ -1,0 +1,5 @@
+%ul
+  - @course.categories.each do |category|
+    %li=category.name 
+.f-categories
+= link_to 'Edit', select_categories_teacher_course_path(@course), remote:true

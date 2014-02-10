@@ -24,6 +24,7 @@ class Ability
 
       can :save, Video, :id => Video.with_role(:moderator, user).pluck(:id)
       can :update, Video, :id => Video.with_role(:moderator, user).pluck(:id)
+      can :destroy, Video, :id => Video.with_role(:moderator, user).pluck(:id)
 
     end
 

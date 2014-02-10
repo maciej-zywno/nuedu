@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
   resourcify
 
-  belongs_to :category
+  has_and_belongs_to_many :categories
 
   has_many :steps
   has_many :attachments, as: :attachable

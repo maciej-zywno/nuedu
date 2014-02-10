@@ -2,7 +2,25 @@
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
+  config.actions do
+    # root actions
+    dashboard                     # mandatory
+    # collection actions
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
 
+    # Add the nestable action for configured models
+    nestable
+  end
 
   ################  Global configuration  ################
 
@@ -32,7 +50,21 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Answer', 'Course', 'Question', 'Role', 'Step', 'Test', 'User', 'Video']
 
   # Include specific models (exclude the others):
-  config.included_models = ['Answer', 'Course', 'Question', 'Step', 'Exam', 'User', 'Video', 'Attachment']
+  config.included_models = ['Answer', 'Course', 'Question', 'Step', 'Exam', 'User', 'Video', 'Attachment', 'Category']
+
+  config.model Category do
+    field :name
+    field :parent_id, :enum do
+      enum_method do
+        :parent_enum
+      end
+    end
+    nestable_tree({
+                    position_field: :position,
+                    max_depth: 3
+    })
+    nestable_list true
+  end
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
@@ -66,12 +98,12 @@ RailsAdmin.config do |config|
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :correct, :boolean 
-  #     configure :answer, :string 
-  #     configure :question_id, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :correct, :boolean
+  #     configure :answer, :string
+  #     configure :question_id, :integer
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -107,17 +139,17 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :roles, :has_many_association 
-  #     configure :steps, :has_many_association 
+  #     configure :roles, :has_many_association
+  #     configure :steps, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :description, :text 
-  #     configure :user_id, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :description, :text
+  #     configure :user_id, :integer
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -153,17 +185,17 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     # configure :test, :belongs_to_association 
-  #     # configure :answers, :has_many_association 
+  #     # configure :test, :belongs_to_association
+  #     # configure :answers, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :kind, :string 
-  #     configure :question, :string 
-  #     configure :test_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :kind, :string
+  #     configure :question, :string
+  #     configure :test_id, :integer         # Hidden
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -199,17 +231,17 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :resource, :polymorphic_association 
-  #     configure :users, :has_and_belongs_to_many_association 
+  #     configure :resource, :polymorphic_association
+  #     configure :users, :has_and_belongs_to_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :resource_id, :integer         # Hidden 
-  #     configure :resource_type, :string         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :resource_id, :integer         # Hidden
+  #     configure :resource_type, :string         # Hidden
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -245,17 +277,17 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :course, :belongs_to_association 
-  #     configure :test, :has_one_association 
-  #     configure :video, :has_one_association 
+  #     configure :course, :belongs_to_association
+  #     configure :test, :has_one_association
+  #     configure :video, :has_one_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :course_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :course_id, :integer         # Hidden
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -291,16 +323,16 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :step, :belongs_to_association 
-  #     configure :questions, :has_many_association 
+  #     configure :step, :belongs_to_association
+  #     configure :questions, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :step_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :step_id, :integer         # Hidden
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -336,27 +368,27 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :roles, :has_and_belongs_to_many_association 
+  #     configure :roles, :has_and_belongs_to_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :email, :string 
-  #     configure :password, :password         # Hidden 
-  #     configure :password_confirmation, :password         # Hidden 
-  #     configure :reset_password_token, :string         # Hidden 
-  #     configure :reset_password_sent_at, :datetime 
-  #     configure :remember_created_at, :datetime 
-  #     configure :sign_in_count, :integer 
-  #     configure :current_sign_in_at, :datetime 
-  #     configure :last_sign_in_at, :datetime 
-  #     configure :current_sign_in_ip, :string 
-  #     configure :last_sign_in_ip, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :provider, :string 
-  #     configure :uid, :string 
-  #     configure :username, :string 
+  #     configure :id, :integer
+  #     configure :email, :string
+  #     configure :password, :password         # Hidden
+  #     configure :password_confirmation, :password         # Hidden
+  #     configure :reset_password_token, :string         # Hidden
+  #     configure :reset_password_sent_at, :datetime
+  #     configure :remember_created_at, :datetime
+  #     configure :sign_in_count, :integer
+  #     configure :current_sign_in_at, :datetime
+  #     configure :last_sign_in_at, :datetime
+  #     configure :current_sign_in_ip, :string
+  #     configure :last_sign_in_ip, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :provider, :string
+  #     configure :uid, :string
+  #     configure :username, :string
 
   #   # Cross-section configuration:
 
@@ -392,18 +424,18 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :step, :belongs_to_association 
+  #     configure :step, :belongs_to_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :title, :string 
-  #     configure :description, :string 
-  #     configure :yt_id, :string 
-  #     configure :complete, :boolean 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :step_id, :integer         # Hidden 
+  #     configure :id, :integer
+  #     configure :title, :string
+  #     configure :description, :string
+  #     configure :yt_id, :string
+  #     configure :complete, :boolean
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :step_id, :integer         # Hidden
 
   #   # Cross-section configuration:
 

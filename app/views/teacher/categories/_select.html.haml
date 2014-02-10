@@ -1,0 +1,30 @@
+/ Modal
+.f-categories-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        %h4#myModalLabel.modal-title categories
+      =form_for @course, url: categories_teacher_course_path(@course) do |f|
+        .modal-body
+          .canine.row
+            %ul.span4
+            - Category.roots.each do |category|
+              %li.parent-list
+                %input.canine.parent{id: "", name: "", type: "checkbox"}/
+                =category.name
+                - if category.has_children?
+                  %i.icon-caret-down
+                  %ul
+                    -category.children.each do |subcategory|
+                      %li
+                        - if @course.categories.include? subcategory
+                          = check_box_tag 'course[categories][]', subcategory.id, params[:categories] && params[:categories].include?(subcategory.name), :id => subcategory.name, class: "canine", checked: "checked"
+                        - else
+                          = check_box_tag 'course[categories][]', subcategory.id, params[:categories] && params[:categories].include?(subcategory.name), :id => subcategory.name, class: "canine"
+                        =subcategory.name
+        .modal-footer
+          .actions
+            = f.submit class: 'btn btn-primary'
+
+            
