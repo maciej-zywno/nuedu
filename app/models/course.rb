@@ -7,6 +7,9 @@ class Course < ActiveRecord::Base
   has_many :attachments, as: :attachable
   has_one :exam, as: :examable
 
+  has_many :participations
+  has_many :participants, through: :participations, source: :user
+
 
   validates :name, presence: true
   validates :description, presence: true

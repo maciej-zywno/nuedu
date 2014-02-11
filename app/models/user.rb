@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   after_create :assign_student_role
   after_create :send_welcome_email
 
-
+  has_many :participations
+  has_many :courses,  through: :participations
+  
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider

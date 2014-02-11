@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211121919) do
+ActiveRecord::Schema.define(version: 20140211141639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,17 @@ ActiveRecord::Schema.define(version: 20140211121919) do
     t.integer  "examable_id"
     t.string   "examable_type"
   end
+
+  create_table "participations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "participations", ["course_id"], name: "index_participations_on_course_id", using: :btree
+  add_index "participations", ["user_id"], name: "index_participations_on_user_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "kind"

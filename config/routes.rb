@@ -11,6 +11,13 @@ Nuedu::Application.routes.draw do
 
   get 'account', to: 'account#show', as: 'account'
 
+  resources :courses, only: [:index, :show] do
+    member do
+      get 'enroll'
+    end
+    resources :steps , only: [:index, :show]
+  end
+
   namespace :teacher do
     get 'account', to: 'account#show', as: 'account'
 
@@ -38,9 +45,6 @@ Nuedu::Application.routes.draw do
     end
   end
 
-  resources :courses, only: [:index, :show] do
-    resources :steps , only: [:index, :show]
-  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

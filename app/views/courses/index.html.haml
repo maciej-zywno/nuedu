@@ -9,4 +9,4 @@
             %h3=course.name
             %p
               = link_to 'Show more', course, class: 'btn btn-primary'
-              = link_to 'Enroll', course, class: 'btn btn-default'
+              = link_to 'Enroll', enroll_course_path(course), class: 'btn btn-default'
