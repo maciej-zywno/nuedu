@@ -18,7 +18,10 @@
 //= require s3_direct_upload
 //= require bootstrap.file-input
 //= require tinymce-jquery
-//= require_tree .
+//= require attachments
+//= require category
+//= require exam
+//= require omniauth_callbacks
 
 
 $(document).bind('page:change', function() {

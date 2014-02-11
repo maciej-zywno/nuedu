@@ -1,0 +1,9 @@
+.thumbnail
+  = image_tag course.logo.url(:medium) 
+  .caption
+    %h3=course.name
+    %p
+      = link_to 'Show more', course, class: 'btn btn-primary'
+      = link_to 'Enroll', enroll_course_path(course), class: 'btn btn-default' unless teacher?
+      = link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' if moderator?(course)
+

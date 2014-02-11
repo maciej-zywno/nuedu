@@ -40,6 +40,7 @@ class Video < ActiveRecord::Base
             :description => 'nu test video',
             :category => "Education",
             :keywords => ["test"],
-            :private => "true" }
+            :private => "false",
+            :list => 'denied' }
   end
 end
