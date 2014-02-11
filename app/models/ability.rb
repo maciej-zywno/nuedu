@@ -17,6 +17,9 @@ class Ability
       can :create, Course if user.has_role?(:teacher)
       can :update, Course, :id => Course.with_role(:moderator, user).pluck(:id)
       can :publish, Course, :id => Course.with_role(:moderator, user).pluck(:id)
+      can :draft, Course, :id => Course.with_role(:moderator, user).pluck(:id)
+      can :select_categories, Course, :id => Course.with_role(:moderator, user).pluck(:id)
+      can :categories, Course, :id => Course.with_role(:moderator, user).pluck(:id)
 
       can :read, Video if user.has_role?(:teacher)
       can :upload, Video if user.has_role?(:teacher)
