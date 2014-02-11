@@ -73,6 +73,7 @@ module Teacher
         @course.categories.delete_all
         @course.categories = new_categories
       else
+         @course.categories.delete_all
       end
       render action: 'edit'
     end
@@ -95,7 +96,7 @@ module Teacher
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :category_id)
+      params.require(:course).permit(:name, :description, :category_id, :logo)
     end
 
     # Use callbacks to share common setup or constraints between actions.

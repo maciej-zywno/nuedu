@@ -1,0 +1,9 @@
+= form_for([:teacher,@course], :html => { :class => :form }) do |f|
+  .form-group
+    =f.label :logo, "Logo"
+    .media
+      .media-object= image_tag @course.logo.url(:small) 
+      = f.file_field :logo, :class => 'caption form-control'
+  .group.navform
+    %button.btn.btn-primary{type: "submit"}
+      Upload

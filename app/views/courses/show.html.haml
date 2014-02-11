@@ -1,18 +1,18 @@
-%h2 Summary
-= "Name: #{@course.name}"
-%p
-  = "Description #{@course.description.html_safe}"
-
-%h3 Course Steps
-#accordion.panel-group
-  -@course.steps.each_with_index do |step, idx|
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse#{idx}"}
-            = step.name
-      .panel-collapse.collapse{id:"collapse#{idx}"}
-        .panel-body
-          = raw yt_client.my_video(step.video.yt_id).embed_html if step.video
-
-          %p=step.description.html_safe
+.row
+  .col-md-8
+    %h2 Summary
+    = "Name: #{@course.name}"
+    %p= "Description #{@course.description.html_safe}".html_safe
+  .col-md-4
+    %h3 Course Steps
+    #accordion.panel-group
+      -@course.steps.each_with_index do |step, idx|
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title
+              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse#{idx}"}
+                = step.name
+          .panel-collapse.collapse{id:"collapse#{idx}"}
+            .panel-body
+              = raw yt_client.my_video(step.videos.first.yt_id).embed_html if step.videos.first
+              %p=step.description.html_safe
