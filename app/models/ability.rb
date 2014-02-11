@@ -13,7 +13,9 @@ class Ability
       can :dashboard              # grant access to the dashboard
     else
       can :enroll, Course
-      can :read, Course
+      can :intro, Course
+      can :read, Course, :id => Course.with_role(:participant, user).pluck(:id)
+
       can :manage, Course if user.has_role?(:manager, Course)
       can :create, Course if user.has_role?(:teacher)
       can :update, Course, :id => Course.with_role(:moderator, user).pluck(:id)

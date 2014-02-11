@@ -4,6 +4,10 @@ module ApplicationHelper
     current_user.has_role? :teacher
   end
 
+  def enrolled?(course)
+    course.participants.include? current_user
+  end
+
   def moderator?(course)
     current_user.has_role? :moderator, course
   end
