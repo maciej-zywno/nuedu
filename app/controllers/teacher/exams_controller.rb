@@ -20,7 +20,7 @@ module Teacher
     end
 
     def create
-      if current_user.has_role(:moderator, @course)
+      if current_user.has_role?(:moderator, @course)
         @exam = Exam.new(exam_params)
         @exam.examable = @video
         @exam.save

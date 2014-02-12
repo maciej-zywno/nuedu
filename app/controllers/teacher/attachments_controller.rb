@@ -27,7 +27,7 @@ module Teacher
     # POST /attachments.json
     def create
 
-      if current_user.has_role(:moderator, @course)
+      if current_user.has_role?(:moderator, @course)
         @attachment = Attachment.new
         @attachment.url = params[:url]
         @attachment.file_file_name = params[:filename]
