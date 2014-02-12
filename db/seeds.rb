@@ -63,9 +63,28 @@ Course.all.each_with_index do |course,idx|
 
   teacher.add_role :moderator, course
   5.times.each do |idx|
-    Step.create!(course:course, name: "Week #{idx}", description: step_description)
-  end 
+    step = Step.create!(course:course, name: "Week #{idx}", description: step_description)
+
+    exam = Exam.create!(examable: step, name: "step #{idx}")
+    (2..5).to_a.sample.times.each do |idx1|
+      question = Question.create!(question: 'Knowing Leon Battista Alberti and his architectures in Rimini, Florence and Mantua', exam:exam)
+      (2..4).to_a.sample.times.each do |idx2|
+        Answer.create!(answer:"Rimini, Tempio Malate#{idx2}", question:question, correct: [true,false].sample)
+      end
+    end
+
+
+    (1..5).to_a.sample.times.each do |idx|
+      video = Video.create!(title: "Sample #{idx}", yt_id:'iINR7d2cYJQ', step:step, complete:true)
+      exam = Exam.create!(examable: video, name: video.title)
+      (2..5).to_a.sample.times.each do |idx1|
+        question = Question.create!(question: 'Knowing Leon Battista Alberti and his architectures in Rimini, Florence and Mantua', exam:exam)
+        (2..4).to_a.sample.times.each do |idx2|
+          Answer.create!(answer:"Rimini, Tempio Malate#{idx2}", question:question, correct: [true,false].sample)
+        end
+      end
+    end
+  end
 end
 
 puts  "Courses created: #{Course.all.count}"
-

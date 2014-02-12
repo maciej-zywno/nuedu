@@ -4,9 +4,8 @@
   .caption
     %h3=course.name
     %p
-      -if enrolled? course
-        = link_to 'Go to class', course, class: 'btn btn-success'
-      -else
-        = link_to 'Enroll', enroll_course_path(course), class: 'btn btn-primary'
-        / = link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' if moderator?(course)
-
+      -if student?
+        -if enrolled? course
+          = link_to 'Go to class', course, class: 'btn btn-success'
+        -else
+          = link_to 'Enroll', enroll_course_path(course), class: 'btn btn-primary'

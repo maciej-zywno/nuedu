@@ -35,6 +35,10 @@ Nuedu::Application.routes.draw do
             resources :answers
           end
         end
+        resources :exams do
+          resources :questions
+          resources :answers
+        end
       end
 
       member do

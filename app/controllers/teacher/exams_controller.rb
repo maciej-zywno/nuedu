@@ -22,7 +22,14 @@ module Teacher
     def create
       if current_user.has_role?(:moderator, @course)
         @exam = Exam.new(exam_params)
-        @exam.examable = @video
+        if @video
+          @exam.examable = @video
+          render 'create_video'
+        else
+          @exam.examable = @step
+          @step.exam = @exam
+          render 'create_step'
+        end
         @exam.save
       else
 
@@ -44,6 +51,11 @@ module Teacher
     # DELETE /exams/1.json
     def destroy
       @exam.destroy
+      if @video
+          render 'destroy_video'
+        else
+          render 'destroy_step'
+        end
     end
 
     private

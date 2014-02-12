@@ -4,6 +4,14 @@ module ApplicationHelper
     current_user.has_role? :teacher
   end
 
+  def student?
+    if current_user
+      current_user.has_role? :student
+    else
+      false
+    end
+  end
+
   def enrolled?(course)
     course.participants.include? current_user
   end
