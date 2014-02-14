@@ -1,0 +1,30 @@
+/ Modal
+.f-exam-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-body
+        .f-play-exam
+          #carousel-questions.carousel.slide{"data-ride" => "carousel"}
+            / Indicators
+            %ol.carousel-indicators
+              -exam.questions.each_with_index do |question, idx|
+                %li{"data-slide-to" => idx, "data-target" => "#carousel-questions", class: (idx == 0 ? 'active' : '')}
+              / %li.active{"data-slide-to" => "0", "data-target" => "#carousel-questions"}
+              / %li{"data-slide-to" => "1", "data-target" => "#carousel-questions"}
+              / %li{"data-slide-to" => "2", "data-target" => "#carousel-questions"}
+            / Wrapper for slides
+            .carousel-inner
+              -exam.questions.each_with_index do |question, idx|
+                .item.exam__area{class:(idx == 0 ? 'active' : '')}
+                  .carousel-caption
+                    .question
+                      =question.question
+                    .answers
+                      -question.answers.each_with_index do |answer,idx|
+                        .answers__answer 
+                          =answer.answer
+            / Controls
+            %a.left.carousel-control{"data-slide" => "prev", href: "#carousel-questions"}
+              %span.glyphicon.glyphicon-chevron-left
+            %a.right.carousel-control{"data-slide" => "next", href: "#carousel-questions"}
+              %span.glyphicon.glyphicon-chevron-right

@@ -16,8 +16,16 @@ Nuedu::Application.routes.draw do
       get 'enroll'
       get 'intro'
     end
-    resources :steps , only: [:index, :show]
+    resources :steps , only: [:index, :show] do
+      resources :videos do
+        member do
+          get :play
+          get :finish
+        end
+      end
+    end
   end
+
 
   namespace :teacher do
     get 'account', to: 'account#show', as: 'account'

@@ -1,0 +1,7 @@
+/ Modal
+.f-player-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog.modal-lg
+    .modal-content.video__modal
+      .modal-body.video__modal__body
+        .f-player.player{"data-step_id" => step.id, "data-video_id" => video.id, "data-course_id" => course.id}
+          #videoDiv Loading...

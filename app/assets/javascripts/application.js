@@ -22,6 +22,7 @@
 //= require category
 //= require exam
 //= require omniauth_callbacks
+//= require video
 
 
 $(document).bind('page:change', function() {

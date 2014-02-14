@@ -4,6 +4,7 @@
     = "Name: #{@course.name}"
     %br
     - if @course.steps.first && @course.steps.first.videos.first
+      =link_to 'Play', play_course_step_video_path(@course, @course.steps.first, @course.steps.first.videos.first), class: 'btn btn-default', remote: true
       %button.btn.btn-success{"data-toggle" => 'modal', 'data-target' => ".modal0"} 
         Play first video
     %p= "Description #{@course.description.html_safe}".html_safe
@@ -27,3 +28,8 @@
             .modal-content
               .modal-body
                 = raw yt_client.my_video(step.videos.first.yt_id).embed_html_with_width(850) if idx ==0 && step.videos.first
+.f-player-container
+.f-exam-container
+%script{src: "//www.google.com/jsapi", type: "text/javascript"}
+:javascript
+  google.load("swfobject", "2.1");
