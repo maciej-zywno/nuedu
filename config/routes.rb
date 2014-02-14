@@ -17,10 +17,23 @@ Nuedu::Application.routes.draw do
       get 'intro'
     end
     resources :steps , only: [:index, :show] do
+      resources :exams do
+        member do
+          post :finish
+        end
+
+      end
+
       resources :videos do
         member do
           get :play
           get :finish
+        end
+        resources :exams do
+          member do
+            post :finish
+          end
+
         end
       end
     end
