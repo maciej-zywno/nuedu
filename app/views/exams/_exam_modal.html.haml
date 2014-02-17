@@ -3,7 +3,7 @@
   .modal-dialog.modal-lg
     .modal-content
       .modal-body
-        .f-play-exam
+        .f-play-exam.f-exam-results{"data-step_id" => @step.id, "data-video_id" => (@video ? @video.id : ''), "data-course_id" => @course.id, 'data-exam' => exam.id}
           #carousel-questions.carousel.slide{"data-ride" => "carousel"}
             / Indicators
             %ol.carousel-indicators
@@ -13,7 +13,7 @@
             .carousel-inner
               -exam.questions.each_with_index do |question, idx|
                 .item.exam__area{class:(idx == 0 ? 'active' : '')}
-                  .carousel-caption
+                  .carousel-caption.f-question{'data-question' => question.id}
                     .question
                       %h3
                         ="Question #{idx+1}"
@@ -23,10 +23,10 @@
                         .answers__answer 
                           .checkbox
                             %label
-                              %input{type:'checkbox'}
+                              %input.f-answer{type:'checkbox', 'data-answer' => answer.id}
                                 =answer.answer
             .exam__upload
-              =link_to 'Finish', "#", class: 'btn btn-primary f-exam-upload'
+              =link_to 'Finish', "#", class: 'btn btn-primary f-exam-upload-button'
             / Controls
             %a.left.carousel-control{"data-slide" => "prev", href: "#carousel-questions"}
               %span.glyphicon.glyphicon-chevron-left

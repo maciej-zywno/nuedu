@@ -1,6 +1,9 @@
 class ExamProgress < ActiveRecord::Base
   belongs_to :exam
   belongs_to :step_progress
+  
+  delegate :user, to: :step_progress
+  delegate :course, to: :step_progress
 
   has_many :question_results
 

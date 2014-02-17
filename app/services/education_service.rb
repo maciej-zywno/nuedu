@@ -5,4 +5,7 @@ class EducationService
 
   def self.next
   end
+
+  def self.exam_taken(exam_progress)
+  end
 end
