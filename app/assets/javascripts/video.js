@@ -48,10 +48,11 @@
                            "videoDiv", "860", "600", "9", null, null, params, atts);
       }
 
-      try{
-        swfobject
-      }catch(e){
-        google.load("swfobject", "2.1");
-      }
+      // try{
+      //   swfobject
+      // }catch(e){
+      //   google.load("swfobject", "2.1", {callback: ''});
+      //   // google.load("swfobject", "2.1");
+      // }
 
 
