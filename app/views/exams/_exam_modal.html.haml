@@ -3,7 +3,7 @@
   .modal-dialog.modal-lg
     .modal-content
       .modal-body
-        .f-play-exam.f-exam-results{"data-step_id" => @step.id, "data-video_id" => (@video ? @video.id : ''), "data-course_id" => @course.id, 'data-exam' => exam.id}
+        .f-play-exam.f-exam-results{'data-exam' => exam.id}
           #carousel-questions.carousel.slide{"data-ride" => "carousel"}
             / Indicators
             %ol.carousel-indicators

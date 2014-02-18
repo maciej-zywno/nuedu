@@ -4,14 +4,21 @@ class VideosController < ApplicationController
   def play
   end
 
-  def finish
-    EducationService.video_watched(@video)
-    EducationService.next
-
-    if @video.exam
+  def watched
+    case EducationService.video_watched(@video, current_user)
+    when :video_related_exam
       @exam = @video.exam
       render '/exams/show'
-    else
+    when :video
+      @video = @video.step.next_video_after_exam(@exam)
+      render '/videos/play'
+    when :step_exam
+
+    when :next_step
+
+    when :finished
+
+
     end
   end
 
@@ -19,8 +26,6 @@ class VideosController < ApplicationController
 
   def set_variables
     @video = Video.find(params[:id]);
-    @step = Step.find(params[:step_id]);
-    @course = Course.find(params[:course_id]);
   end
 
 end

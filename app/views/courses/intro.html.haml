@@ -3,8 +3,6 @@
     %h2 Summary
     = "Name: #{@course.name}"
     %br
-    - if @course.steps.first && @course.steps.first.videos.first
-      =link_to 'Play', play_course_step_video_path(@course, @course.steps.first, @course.steps.first.videos.first), class: 'btn btn-default', remote: true
     %p= "Description #{@course.description.html_safe}".html_safe
   .col-md-4
     %h3 Course Steps
@@ -19,5 +17,4 @@
             .panel-body
               %p=step.description.html_safe
 .f-player-container
-.f-exam-container
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217134424) do
+ActiveRecord::Schema.define(version: 20140218103353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,11 +190,11 @@ ActiveRecord::Schema.define(version: 20140217134424) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
-    t.integer  "positon"
+    t.integer  "position"
   end
 
   add_index "steps", ["course_id"], name: "index_steps_on_course_id", using: :btree
-  add_index "steps", ["positon"], name: "index_steps_on_positon", using: :btree
+  add_index "steps", ["position"], name: "index_steps_on_position", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -231,10 +231,17 @@ ActiveRecord::Schema.define(version: 20140217134424) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "step_id"
-    t.integer  "postion"
+    t.integer  "position"
   end
 
-  add_index "videos", ["postion"], name: "index_videos_on_postion", unique: true, using: :btree
+  add_index "videos", ["position"], name: "index_videos_on_position", unique: true, using: :btree
   add_index "videos", ["step_id"], name: "index_videos_on_step_id", using: :btree
+
+  create_table "videos_step_progresses", force: true do |t|
+    t.integer "video_id"
+    t.integer "step_progress_id"
+  end
+
+  add_index "videos_step_progresses", ["step_progress_id", "video_id"], name: "s_p_v_index", using: :btree
 
 end

@@ -31,12 +31,7 @@ jQuery ->
           form['questions'][question_id].push answer_id
 
     data = "data='"+JSON.stringify(form)+"'"
-
-    url = ""
-    if video_id is ""
-      url = "/courses/" + course_id + "/steps/" + step_id + "/exams/" + exam_id + "/finish"
-    else
-      url = "/courses/" + course_id + "/steps/" + step_id + "/videos/" + video_id + "/exams/" + exam_id + "/finish"
+    url = "/exams/" + exam_id + "/finish"
 
     $.ajax(
       type: "POST"

@@ -7,12 +7,9 @@
       function onPlayerStateChange(newState) {
         if(newState == 0){
           var video_id = $('.f-player').data('video_id');
-          var step_id = $('.f-player').data('step_id');
-          var course_id = $('.f-player').data('course_id');
-
           $.ajax({
             type: "GET",
-            url: "/courses/"+course_id+"/steps/"+step_id+"/videos/"+video_id+"/finish",
+            url: "/videos/"+video_id+"/watched",
             dataType: "script"
           }).done(function() {
             // alert( "success" );

@@ -1,7 +1,8 @@
 class Video < ActiveRecord::Base
   resourcify
   
-  belongs_to :step, :inverse_of => :videos
+  belongs_to :step
+  delegate :course, to: :step
   has_one :exam, as: :examable
 
 

@@ -1,4 +1,4 @@
 $('.f-player-modal').hide();
-$('.f-player-container').html("<%= j render 'player_modal', video:@video, step: @video.step, course: @video.step.course  %>");
+$('.f-player-container').html("<%= j render 'player_modal', video:@video %>");
  loadPlayer("<%=@video.yt_id%>");
 $('.f-player-modal').modal({});

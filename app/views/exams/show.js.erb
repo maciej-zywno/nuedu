@@ -1,4 +1,4 @@
-$('.f-exam-container').html("<%= j render '/exams/exam_modal', video:@video, step: @video.step, course: @video.step.course, exam: @exam  %>");
+$('.f-exam-container').html("<%= j render '/exams/exam_modal', exam: @exam  %>");
 $('.f-exam-modal').modal({});
 $('.f-exam-modal').on('shown.bs.modal', function (e) {
   $('.f-player-modal').modal('hide')

@@ -11,30 +11,20 @@ Nuedu::Application.routes.draw do
 
   get 'account', to: 'account#show', as: 'account'
 
+  get 'videos/:id/play', to:'videos#play', as: 'play_video'
+  get 'videos/:id/watched', to: 'videos#watched'
+  post 'exams/:id/finish', to: 'exams#finish', as: 'finish_exam'
+
   resources :courses, only: [:index, :show] do
     member do
       get 'enroll'
       get 'intro'
     end
     resources :steps , only: [:index, :show] do
-      resources :exams do
-        member do
-          post :finish
-        end
-
-      end
+      resources :exams
 
       resources :videos do
-        member do
-          get :play
-          get :finish
-        end
-        resources :exams do
-          member do
-            post :finish
-          end
-
-        end
+        resources :exams
       end
     end
   end
