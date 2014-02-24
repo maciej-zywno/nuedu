@@ -9,6 +9,10 @@
   into Bootstrap buttons
   <a class="btn">Browse</a>
 
+  data parameters:
+  data-title
+  data-attach-filename - if true selected filename presented next to button 
+
 */
 $(function() {
 
@@ -45,7 +49,7 @@ $.fn.bootstrapFileInput = function() {
 
     // Now we're going to replace that input field with a Bootstrap button.
     // The input will actually still be there, it will just be float above and transparent (done with the CSS).
-    $elem.replaceWith('<a class="file-input-wrapper btn btn-success' + className + '">'+buttonWord+input+'</a>');
+    $elem.replaceWith('<a class="file-input-wrapper btn btn-primary' + className + '">'+buttonWord+input+'</a>');
   })
 
   // After we have found all of the file inputs let's apply a listener for tracking the mouse movement.
@@ -97,6 +101,7 @@ $.fn.bootstrapFileInput = function() {
 
       // Remove any previous file names
       $(this).parent().next('.file-input-name').remove();
+
       if (!!$(this).prop('files') && $(this).prop('files').length > 1) {
         fileName = $(this)[0].files.length+' files';
         //$(this).parent().after('<span class="file-input-name">'+$(this)[0].files.length+' files</span>');
@@ -106,8 +111,10 @@ $.fn.bootstrapFileInput = function() {
         // fileName = $(this).val().replace('C:\\fakepath\\','');
         fileName = fileName.substring(fileName.lastIndexOf('\\')+1,fileName.length);
       }
+      if($(this).data('attach-filename') == true ){
+        $(this).parent().after('<span class="file-input-name">'+fileName+'</span>');
+      }
 
-      // $(this).parent().after('<span class="file-input-name">'+fileName+'</span>');
     });
 
   });

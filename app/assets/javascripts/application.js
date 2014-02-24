@@ -23,6 +23,7 @@
 //= require exam
 //= require omniauth_callbacks
 //= require video
+//= require teacher/video
 
 
 $(document).bind('page:change', function() {
