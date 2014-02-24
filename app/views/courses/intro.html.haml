@@ -1,10 +1,19 @@
 .row
+  .col-md-12
+    INTRODUCTION PAGE
+.row
   .col-md-8
-    %h2 Summary
-    = "Name: #{@course.name}"
+    %h2
+      = "#{@course.name}"
     %br
-    %p= "Description #{@course.description.html_safe}".html_safe
+    %p= "#{@course.description}".html_safe
   .col-md-4
+    %rp
+      -if student?
+        -if enrolled? @course
+          = link_to 'Go to class', @course, class: 'btn btn-success'
+        -else
+          = link_to 'Enroll', enroll_course_path(@course), class: 'btn btn-primary'
     %h3 Course Steps
     #accordion.panel-group
       -@course.steps.each_with_index do |step, idx|
@@ -17,4 +26,3 @@
             .panel-body
               %p=step.description.html_safe
 .f-player-container
-

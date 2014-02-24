@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
 
   has_and_belongs_to_many :categories
 
-  has_many :steps
+  has_many :steps, -> { order('position asc')}
   has_many :attachments, as: :attachable
   has_one :exam, as: :examable
 

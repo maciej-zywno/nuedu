@@ -1,23 +1,14 @@
 .row
+  .col-md-2
+    =render 'courses/show/menu_sidebar', course: @course
   .col-md-8
-    %h2 Summary
-    = "Name: #{@course.name}"
+    %h2
+    = "#{@course.name}"
     %br
     - if @course.steps.first && @course.steps.first.videos.first
       =link_to 'Play', play_video_path(@course.steps.first.videos.first), class: 'btn btn-default', remote: true
-    %p= "Description #{@course.description.html_safe}".html_safe
-  .col-md-4
-    %h3 Course Steps
-    #accordion.panel-group
-      -@course.steps.each_with_index do |step, idx|
-        .panel.panel-default
-          .panel-heading
-            %h4.panel-title
-              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse#{idx}"}
-                = step.name
-          .panel-collapse.collapse{id:"collapse#{idx}"}
-            .panel-body
-              %p=step.description.html_safe
+  .col-md-2
+
 .f-player-container
 .f-exam-container
 

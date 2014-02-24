@@ -1,0 +1,30 @@
+= image_tag course.logo.url(:thumb) 
+
+%ul.list-group
+  %li.list-group-item
+    %h3 COURSE
+  %li.list-group-item
+    = link_to 'Annoucements', announcements_course_path(course)
+  %li.list-group-item
+    = link_to 'Syllabus & Grading Policy',''
+  %li.list-group-item
+    = link_to 'Course Checklist',''
+
+  %li.list-group-item
+    %h3 WEEKLY CONTENT
+  -@course.steps.each_with_index do |step|
+    %li.list-group-item
+      = link_to step.name, course_step_path(course,step)
+
+  %li.list-group-item
+    %h3 EXERCISES AND SURVEYS
+  %li.list-group-item
+    = link_to 'Quizes',''
+  %li.list-group-item
+    = link_to 'Peer Assesments',''
+  
+  %li.list-group-item
+    %h3 COMMUNITY
+  %li.list-group-item
+    = link_to 'Discussion Forums',''
+

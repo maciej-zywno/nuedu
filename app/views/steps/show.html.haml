@@ -1,0 +1,16 @@
+.row
+  .col-md-2
+  .col-md-8
+    %h2
+      = "#{@step.name}"
+    %p
+      = @step.description.html_safe
+
+    %br
+    - if @step.videos.first
+      =link_to 'Play', play_video_path(@step.videos.first), class: 'btn btn-default', remote: true
+  .col-md-2
+
+.f-player-container
+.f-exam-container
+

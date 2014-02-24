@@ -19,6 +19,7 @@ Nuedu::Application.routes.draw do
     member do
       get 'enroll'
       get 'intro'
+      get 'announcements'
     end
     resources :steps , only: [:index, :show] do
       resources :exams
