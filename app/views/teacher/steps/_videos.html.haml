@@ -8,7 +8,7 @@
       .panel-collapse.collapse{id:"collapse#{idx}", class: "#{'in' if idx == 0 }" }
         .panel-body
           = raw yt_client.my_video(video.yt_id).embed_html 
-          =link_to 'Delete', [:teacher,@step.course,@step,video], method: :delete, class: 'btn btn-danger'
+          =link_to 'Delete', [:teacher,@step.course,@step,video], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
           %p
             %h3 Exam
             %div{class: "f-exam-#{video.id}"}

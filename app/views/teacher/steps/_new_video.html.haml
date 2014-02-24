@@ -3,6 +3,6 @@
   .form-group
     = hidden_field_tag :token, @upload_info[:token]
     = label_tag :file
-    = file_field_tag :file, class: 'form_control'
-  = submit_tag "Upload video", class: 'btn btn-success'
+    = file_field_tag :file, class: 'form_control f-attachment', data: {'attach-filename' => true }
+  = submit_tag "Upload video", class: 'btn btn-success f-video-upload-button'
 

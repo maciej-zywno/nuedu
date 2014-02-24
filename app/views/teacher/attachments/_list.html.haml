@@ -2,4 +2,4 @@
   - (@step ? @step : @course).attachments.each do |attachment|
     %li.list-group-item{id:attachment.id}
       =link_to attachment.file_file_name.truncate(70), attachment.url
-      =link_to 'Delete', [:teacher,@course,attachment], method: :delete, remote: true, class: 'btn btn-danger'
+      =link_to 'Delete', [:teacher,@course,attachment], method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
