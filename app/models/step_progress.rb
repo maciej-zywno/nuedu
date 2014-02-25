@@ -1,4 +1,7 @@
 class StepProgress < ActiveRecord::Base
+
+  scope :completed, -> { where(complete: true)}
+  scope :incompleted, -> { where(complete: false)}
   belongs_to :step  
   belongs_to :course_progress
 

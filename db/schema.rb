@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218103353) do
+ActiveRecord::Schema.define(version: 20140224223205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 20140218103353) do
     t.boolean  "last_watched_video_exam"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "complete",                default: false
   end
 
   add_index "step_progresses", ["course_progress_id"], name: "index_step_progresses_on_course_progress_id", using: :btree
@@ -234,7 +235,7 @@ ActiveRecord::Schema.define(version: 20140218103353) do
     t.integer  "position"
   end
 
-  add_index "videos", ["position"], name: "index_videos_on_position", unique: true, using: :btree
+  add_index "videos", ["step_id","position"], name: "index_videos_on_position_and_step", unique: true, using: :btree
   add_index "videos", ["step_id"], name: "index_videos_on_step_id", using: :btree
 
   create_table "videos_step_progresses", force: true do |t|

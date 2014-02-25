@@ -1,3 +1,3 @@
-class ExamsController < InheritedResources::Base
+class ExamProgressesController < InheritedResources::Base
  
 end

@@ -8,6 +8,7 @@
     - if @course.steps.first && @course.steps.first.videos.first
       =link_to 'Play', play_video_path(@course.steps.first.videos.first), class: 'btn btn-default', remote: true
   .col-md-2
+    =render 'courses/show/progress_box', course: @course
 
 .f-player-container
 .f-exam-container

@@ -1,0 +1,8 @@
+%p 
+  %h3 Progress Box
+  -step_progress = step_progress(step)
+  ="#{step_progress.watched_videos.size}/#{step.videos.size} videos watched."
+  -if step_progress.watched_videos.size == 0
+    =link_to 'Play first video', '', class: 'btn btn-warning'
+  -else
+    =link_to 'Play next video', '', class: 'btn btn-warning'

@@ -12,6 +12,27 @@ module ApplicationHelper
     end
   end
 
+  def course_progress(course)
+    @course_progress ||= CourseProgress.where(user:current_user, course: course).first
+  end
+
+  def step_progress(step)
+    StepProgress.find_or_create_by(course_progress_id:course_progress(step.course).id, step_id: step.id)
+  end
+  
+  def next_step_path(course)
+    step_progress =  course_progress(course).step_progresses.incompleted.first
+    if step_progress
+      step = step_progress.step
+    else
+      # when there is no step progress yet
+      step = course.steps.first
+    end
+
+    course_step_path(course,step)
+
+  end
+
   def enrolled?(course)
     course.participants.include? current_user
   end
@@ -36,4 +57,7 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+
+  private
 end

@@ -63,7 +63,7 @@ Course.all.each_with_index do |course,idx|
 
   teacher.add_role :moderator, course
   5.times.each do |idx|
-    step = Step.create!(course:course, name: "Week #{idx}", description: step_description)
+    step = Step.create!(course:course, name: "Week #{idx}", description: step_description, position: idx)
 
     exam = Exam.create!(examable: step, name: "step #{idx}")
     (2..5).to_a.sample.times.each do |idx1|
@@ -75,7 +75,7 @@ Course.all.each_with_index do |course,idx|
 
 
     (1..5).to_a.sample.times.each do |idx|
-      video = Video.create!(title: "Sample #{idx}", yt_id:'iINR7d2cYJQ', step:step, complete:true)
+      video = Video.create!(title: "Sample #{idx}", yt_id:'iINR7d2cYJQ', step:step, complete:true, position: idx)
       exam = Exam.create!(examable: video, name: video.title)
       (2..5).to_a.sample.times.each do |idx1|
         question = Question.create!(question: 'Knowing Leon Battista Alberti and his architectures in Rimini, Florence and Mantua', exam:exam)

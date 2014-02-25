@@ -1,0 +1,8 @@
+%p 
+  %h3 Progress Box
+  -course_progress = course_progress(course)
+  ="#{course_progress.step_progresses.completed.size}/#{course.steps.size} completed steps."
+  -if course_progress.step_progresses.completed.size == 0
+    =link_to 'Start first week', next_step_path(course), class: 'btn btn-warning'
+  -else
+    =link_to 'Continue Course', next_step_path(course), class: 'btn btn-warning'
