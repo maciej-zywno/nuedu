@@ -1,6 +1,10 @@
-%h1 Listing courses
-- @courses.in_groups_of(3, false) do |group| 
-  .row
-    - group.each do |course|
-      .col-sm-6.col-md-4
-        =render 'course_tile', course: course
+.row
+  .col-md-3
+    =render 'courses/index/categories'
+  .col-md-9
+    %h1 Listing courses
+    - @courses.in_groups_of(3, false) do |group| 
+      .row
+        - group.each do |course|
+          .col-sm-6.col-md-4
+            =render 'course_tile', course: course
