@@ -3,6 +3,6 @@
   -step_progress = step_progress(step)
   ="#{step_progress.watched_videos.size}/#{step.videos.size} videos watched."
   -if step_progress.watched_videos.size == 0
-    =link_to 'Play first video', '', class: 'btn btn-warning'
+    =link_to 'Play first video',play_video_path(step.videos.first) , class: 'btn btn-warning', remote: true
   -else
-    =link_to 'Play next video', '', class: 'btn btn-warning'
+    =link_to 'Play next video', next_video_path(step_progress), class: 'btn btn-warning', remote: true

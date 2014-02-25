@@ -19,7 +19,11 @@ module ApplicationHelper
   def step_progress(step)
     StepProgress.find_or_create_by(course_progress_id:course_progress(step.course).id, step_id: step.id)
   end
-  
+
+  def next_video_path(step_progress)
+    play_video_path(step_progress.step.next_video(step_progress.watched_videos.last))
+  end
+
   def next_step_path(course)
     step_progress =  course_progress(course).step_progresses.incompleted.first
     if step_progress
