@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def next_video_path(step_progress)
-    play_video_path(step_progress.step.next_video(step_progress.watched_videos.last))
+    play_video_path(step_progress.step.next_video(step_progress.watched_videos.last)) if step_progress.step.next_video(step_progress.watched_videos.last)
   end
 
   def next_step_path(course)

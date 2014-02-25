@@ -3,7 +3,7 @@ class EducationService
   def self.video_watched(video, user)
     course_progress = CourseProgress.where(user:user, course:video.course).first
     @step_progress = StepProgress.find_or_create_by(course_progress_id:course_progress.id, step_id: video.step.id)
-    @step_progress.watched_videos << video
+    @step_progress.watched_videos << video unless @step_progress.watched_videos.include? video
 
     if video.exam
       :video_related_exam
@@ -12,8 +12,10 @@ class EducationService
     elsif video.step.exam
       :step_exam
     elsif video.course.next_step(video.step)
+      complete_step
       :next_step
     else
+      complete_step
       :finished
     end
   end
@@ -40,12 +42,19 @@ class EducationService
     elsif exam.step.exam
       :step_exam
     elsif exam.course.next_step(exam.step)
+      complete_step
       :next_step
     else
+      complete_step
       :finished
     end
 
-    # course_progress = CourseProgress.find(user:user, course:exam_progress.exam.course)
 
+  end
+
+  private
+  def complete_step
+    @step_progress.complete = true
+    @step_progress.save!
   end
 end

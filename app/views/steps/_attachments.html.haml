@@ -1,0 +1,5 @@
+%h3 Attachments
+%ul.list-group
+  - (step).attachments.each do |attachment|
+    %li.list-group-item
+      =link_to attachment.file_file_name.truncate(70), attachment.url
