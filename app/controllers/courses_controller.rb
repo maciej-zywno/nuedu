@@ -6,6 +6,10 @@ class CoursesController < InheritedResources::Base
   def intro
   end
 
+  def index
+    @courses = Category.where(id: params[:category]).first.courses if params[:category]
+  end
+
   def enroll
     if @course.participants.include? current_user
       redirect_to @course, notice: 'You are already enrolled!'

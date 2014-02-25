@@ -2,12 +2,7 @@
 - categories = Category.roots
 .row
   .col-md-3
-    %h3 Categories
-    %ul.list-group
-      - categories.each do |category|
-        %li.list-group-item
-          =link_to category.name, courses_path(category: category.name)
-
+    =render 'welcome/categories'
   .col-md-9
     .jumbotron
       %h1 Video courses

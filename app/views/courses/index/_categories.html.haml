@@ -1,6 +1,8 @@
 - categories = Category.roots
 %h3 Categories
 %ul.list-group
+  %li.list-group-item
+    =link_to 'All', courses_path
   - categories.each do |category|
     %li.list-group-item
-      =link_to category.name, courses_path(category: category.name)
+      =link_to category.name, courses_path(category: category.id)
