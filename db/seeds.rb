@@ -80,7 +80,7 @@ Course.all.each_with_index do |course,idx|
 
   teacher.add_role :moderator, course
   teacher2.add_role :moderator, course if idx < 8
-  
+
   5.times.each do |idx|
     step = Step.create!(course:course, name: "Week #{idx}", description: step_description, position: idx)
 
@@ -113,5 +113,11 @@ Review.create!(user:student3, course:c3, status:'approved', content:"Best course
 Review.create!(user:student4, course:c3, status:'approved', content:"School teaches web technologies in the comfort of your browser with video lessons, coding challenges, and screencasts. We strive to help you learn by doing")
 Review.create!(user:student5, course:c3, status:'approved', content:"Lots of great info here. Clearing up some of the confusion I had about various parts of mobile design. Thanks again guys!")
 Review.create!(user:student5, course:c6, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
+Review.create!(user:student5, course:c2, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
+Review.create!(user:student5, course:c4, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
+Review.create!(user:student5, course:c7, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
+Review.create!(user:student5, course:c8, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
+Review.create!(user:student5, course:c9, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
+Review.create!(user:student5, course:c10, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
 
 puts  "Courses created: #{Course.all.count}"
