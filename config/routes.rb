@@ -1,5 +1,4 @@
 Nuedu::Application.routes.draw do
-  resources :reviews
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -31,6 +30,7 @@ Nuedu::Application.routes.draw do
       end
     end
   end
+  resources :reviews
 
 
   namespace :teacher do

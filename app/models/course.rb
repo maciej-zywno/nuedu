@@ -1,6 +1,8 @@
 class Course < ActiveRecord::Base
-  resourcify
+ extend FriendlyId
+  friendly_id :name, :use => :slugged
 
+  resourcify
   has_and_belongs_to_many :categories
 
   has_many :steps, -> { order('position asc')}
