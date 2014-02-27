@@ -60,7 +60,8 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'haml'
+# gem 'haml'
+gem "haml-rails"
 
 group :test, :development do
   gem 'sqlite3'

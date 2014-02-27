@@ -1,5 +1,5 @@
 .row
-  .col-md-12
+  .col-md-3
     INTRODUCTION PAGE
 .row
   .col-md-8
@@ -26,3 +26,5 @@
             .panel-body
               %p=step.description.html_safe
 .f-player-container
+=render 'courses/intro/reviews', course: @course
+

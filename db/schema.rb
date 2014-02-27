@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224223205) do
+ActiveRecord::Schema.define(version: 20140227111140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,19 @@ ActiveRecord::Schema.define(version: 20140224223205) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
+  create_table "reviews", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "stars"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["course_id"], name: "index_reviews_on_course_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
   create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -213,6 +226,10 @@ ActiveRecord::Schema.define(version: 20140224223205) do
     t.string   "provider"
     t.string   "uid"
     t.string   "username"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -235,7 +252,7 @@ ActiveRecord::Schema.define(version: 20140224223205) do
     t.integer  "position"
   end
 
-  add_index "videos", ["step_id","position"], name: "index_videos_on_position_and_step", unique: true, using: :btree
+  add_index "videos", ["step_id", "position"], name: "index_videos_on_position_and_step", unique: true, using: :btree
   add_index "videos", ["step_id"], name: "index_videos_on_step_id", using: :btree
 
   create_table "videos_step_progresses", force: true do |t|

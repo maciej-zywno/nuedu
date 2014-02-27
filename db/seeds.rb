@@ -8,12 +8,27 @@
 teacher = User.create(email:'teacher@nu.edu.pl', password: 'teacher', password_confirmation:'teacher', username:'teacher')
 teacher.add_role :teacher
 
+student1 = User.create(email:'student1@email.com', password: 'password', password_confirmation:'password', username:'jeremywilles')
+student2 = User.create(email:'student2@email.com', password: 'password', password_confirmation:'password', username:'a2')
+student3 = User.create(email:'student3@email.com', password: 'password', password_confirmation:'password', username:'igmarinee')
+student4 = User.create(email:'student4@email.com', password: 'password', password_confirmation:'password', username:'rosandlin ahemaki')
+student5 = User.create(email:'student5@email.com', password: 'password', password_confirmation:'password', username:'TryGit')
+
+User.all.each_with_index do |user,idx|
+  user.avatar = File.open("db/seed/images/faces/#{idx+1}.jpeg")
+  user.save!
+end
+
+
+
 Category.create([{name:'Arts'},{name:'Biology'},{name:'Business & Managment'},{name:'Chemistry'},{name:'Computer Science'},{name:'Economics & Finance'},{name:'Education'},{name:'Food'},{name:'Law'},{name:'Mathematics'},{name:'Medicine'},{name:'Social Sciences'},{name:'Data Analysis'},{name:'Earth Science'}])
 Category.create([{name: 'CS: Artificial Intelligence'},{name: 'CS: Software Engineering'},{name: 'CS: Systems & Security'},{name: 'CS: Theory'}])
 # Category.create({name: 'CS: Artificial Intelligence', parent: cs},{name: 'CS: Software Engineering', parent: cs},{name: 'CS: Systems & Security', parent: cs},{name: 'CS: Theory', parent: cs})
 medicine = Category.where(name: 'Medicine').first
 business = Category.where(name: 'Business & Managment').first
 education = Category.where(name: 'Education').first
+chemistry = Category.where(name: 'Chemistry').first
+biology = Category.where(name: 'Biology').first
 cs = Category.where(name: 'Computer Science').first
 
 description = '<h2 class="coursera-course-heading" style="box-sizing: border-box; margin: 10.5px 0px; font-family: sofiapro-light, Arial, sans-serif; font-weight: normal; line-height: 32px; color: #333333; text-rendering: optimizelegibility; font-size: 24px;" data-msg="coursera-course-about">About the Course</h2>
@@ -34,18 +49,18 @@ For further information about the coursework, please see the&nbsp;<a style="box-
 <li style="box-sizing: border-box;">Doctorow &mdash;&nbsp;<em style="box-sizing: border-box;">Little Brother</em></li>
 </ol></div>'
 
-c1 = Course.create!(name:'Health for All Through Primary Health Care', description: description, categories: [medicine], status:'PUBLISHED')
+c1 = Course.create!(name:'Health for All Through Primary Health Care', description: description, categories: [medicine,biology], status:'PUBLISHED')
 c2 = Course.create!(name:'Model Thinking', description: description, categories: [education], status:'DRAFT')
-c3 = Course.create!(name:'Instructional Methods in Health Education', description: description, categories: [medicine], status:'PUBLISHED')
+c3 = Course.create!(name:'Instructional Methods in Health Education', description: description, categories: [medicine,biology,chemistry], status:'PUBLISHED')
 c4 = Course.create!(name:'Introduction to Finance', description: description, categories: [business], status:'PUBLISHED')
 c5 = Course.create!(name:'Property and Liability', description: description, categories: [business], status:'PUBLISHED')
 c6 = Course.create!(name:'Introduction to Mathematical Thinking', description: description, categories: [cs], status:'PUBLISHED')
 c7 = Course.create!(name:'Statistical Mechanics: Algorithms and Computations', description: description, categories: [cs], status:'PUBLISHED')
 c8 = Course.create!(name:'Advanced Chemistry', description: description, categories: [medicine], status:'DRAFT')
-c9 = Course.create!(name:'Beginning Game Programing C#', description: description, categories: [cs], status:'PUBLISHED')
-c10 = Course.create!(name:'Preparing for AP Statistics Exam', description: description, categories: [cs], status:'PUBLISHED')
-c11 = Course.create!(name:'Imagining Other Worlds', description: description, categories: [education], status:'PUBLISHED')
-c12 = Course.create!(name:'Globalization of Business Enterprise', description: description, categories: [business], status:'PUBLISHED')
+c9 = Course.create!(name:'Beginning Game Programing C#', description: description, categories: [cs,biology], status:'PUBLISHED')
+c10 = Course.create!(name:'Preparing for AP Statistics Exam', description: description, categories: [cs,chemistry], status:'PUBLISHED')
+c11 = Course.create!(name:'Imagining Other Worlds', description: description, categories: [education,biology], status:'PUBLISHED')
+c12 = Course.create!(name:'Globalization of Business Enterprise', description: description, categories: [business,chemistry], status:'PUBLISHED')
 
 
 step_description = '<p><span style="color: #333333; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;">Leon Battista Alberti (1404-1472):&nbsp; Knowing Leon Battista Alberti and his architectures in Rimini, Florence and Mantua.</span></p>
@@ -57,7 +72,7 @@ step_description = '<p><span style="color: #333333; font-family: Helvetica, Aria
 </ul>'
 
 Course.all.each_with_index do |course,idx|
-
+puts 'uploading photo'
   course.logo = File.exists?("db/seed/images/#{idx}.png") ? File.open("db/seed/images/#{idx}.png") :  File.open("db/seed/images/#{idx}.jpg")
   course.save!
 
@@ -86,5 +101,13 @@ Course.all.each_with_index do |course,idx|
     end
   end
 end
+
+Review.create!(user:student1, course:c1, status:'approved', content: "This is my favorite course yet. The topic is increasingly relevant and soon to be essential knowledge for most front end developers. And a great topic is just the first thing the course gets right. Each screencast is professionally produced, informative yet not excessive, and builds incrementally. Alternating lectures with exercises is a proven learning technique that absolutely works. Despite an already awkwardly long and glowing review, I feel compelled to point out that these courses are technically outstanding! They sport an in-browser code editor (with syntax highlighting) that can compile and check your work in real-time. Oh, and it has a polished theme. Code School, you need to know: I want to have all your code babies. Is it a little embarrassing to be publicly admitting this in my review? I mean, yes. It is. But I'm just being honest. Honest feedback - that's what you wanted, right? We can work this out. Call me.")
+Review.create!(user:student1, course:c1, status:'approved', content:"Lots of great info here. Clearing up some of the confusion I had about various parts of mobile design. Thanks again guys!")
+Review.create!(user:student2, course:c1, status:'approved', content:"I have been studying, learning and implementing mobile and responsive techniques over the past year. I loved this course as it teaches sound principles for creating sites. You'll learn some specific techniques, but more importantly you'll learn the 'why' behind the approach")
+Review.create!(user:student3, course:c3, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
+Review.create!(user:student4, course:c3, status:'approved', content:"School teaches web technologies in the comfort of your browser with video lessons, coding challenges, and screencasts. We strive to help you learn by doing")
+Review.create!(user:student5, course:c3, status:'approved', content:"Lots of great info here. Clearing up some of the confusion I had about various parts of mobile design. Thanks again guys!")
+Review.create!(user:student5, course:c6, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
 
 puts  "Courses created: #{Course.all.count}"

@@ -366,7 +366,7 @@ DEPENDENCIES
   figaro
   font-awesome-rails (= 3.2.1)
   google-api-client
-  haml
+  haml-rails
   has_scope!
   inherited_resources!
   jbuilder (~> 1.2)

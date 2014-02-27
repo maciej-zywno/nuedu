@@ -6,6 +6,7 @@ class Course < ActiveRecord::Base
   has_many :steps, -> { order('position asc')}
   has_many :attachments, as: :attachable
   has_one :exam, as: :examable
+  has_many :reviews
 
   has_many :participations
   has_many :participants, through: :participations, source: :user
