@@ -25,6 +25,9 @@
           .panel-collapse.collapse{id:"collapse#{idx}"}
             .panel-body
               %p=step.description.html_safe
+    %h3 Profesors
+    - User.with_role(:moderator, @course).each do |teacher|
+      = render "shared/teacher_box", user: teacher
 .f-player-container
 =render 'courses/intro/reviews', course: @course
 

@@ -7,6 +7,11 @@
     %br
     - if @course.steps.first && @course.steps.first.videos.first
       =link_to 'Play', play_video_path(@course.steps.first.videos.first), class: 'btn btn-default', remote: true
+    %h3 Annoucements
+    %p
+    %h3 Profesors
+    - User.with_role(:moderator, @course).each do |teacher|
+      = render "shared/teacher_box", user: teacher
   .col-md-2
     =render 'courses/show/progress_box', course: @course
     =render 'courses/show/attachments', course: @course

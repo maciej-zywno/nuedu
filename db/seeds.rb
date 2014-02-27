@@ -5,8 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-teacher = User.create(email:'teacher@nu.edu.pl', password: 'teacher', password_confirmation:'teacher', username:'teacher')
+teacher = User.create(email:'teacher@nu.edu.pl', password: 'teacher', password_confirmation:'teacher', username:'Jame Frankies')
+teacher2 = User.create(email:'teacher2@nu.edu.pl', password: 'password', password_confirmation:'password', username:'Tobby Novella')
 teacher.add_role :teacher
+teacher2.add_role :teacher
 
 student1 = User.create(email:'student1@email.com', password: 'password', password_confirmation:'password', username:'jeremywilles')
 student2 = User.create(email:'student2@email.com', password: 'password', password_confirmation:'password', username:'a2')
@@ -72,11 +74,13 @@ step_description = '<p><span style="color: #333333; font-family: Helvetica, Aria
 </ul>'
 
 Course.all.each_with_index do |course,idx|
-puts 'uploading photo'
+  puts 'uploading photo'
   course.logo = File.exists?("db/seed/images/#{idx}.png") ? File.open("db/seed/images/#{idx}.png") :  File.open("db/seed/images/#{idx}.jpg")
   course.save!
 
   teacher.add_role :moderator, course
+  teacher2.add_role :moderator, course if idx < 8
+  
   5.times.each do |idx|
     step = Step.create!(course:course, name: "Week #{idx}", description: step_description, position: idx)
 
