@@ -14,6 +14,8 @@
           = link_to 'Go to class', @course, class: 'btn btn-success'
         -else
           = link_to 'Enroll', enroll_course_path(@course), class: 'btn btn-primary'
+      -else
+        Sing in to entroll
     %h3 Course Steps
     #accordion.panel-group
       -@course.steps.each_with_index do |step, idx|

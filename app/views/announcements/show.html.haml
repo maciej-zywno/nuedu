@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Course:
+  = @announcement.course
+%p
+  %b User:
+  = @announcement.user
+%p
+  %b Title:
+  = @announcement.title
+%p
+  %b Content:
+  = @announcement.content
+
+= link_to 'Edit', edit_announcement_path(@announcement)
+\|
+= link_to 'Back', announcements_path

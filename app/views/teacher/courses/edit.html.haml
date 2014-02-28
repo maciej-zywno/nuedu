@@ -1,9 +1,12 @@
 %h1 Course
--if @course.published?
-  = link_to 'Unpublish', draft_teacher_course_path(@course)
--else
-  = link_to 'Publish', publish_teacher_course_path(@course)
+= link_to 'Show course', @course, class: 'btn btn-primary'
 
+-if @course.published?
+  = link_to 'Unpublish', draft_teacher_course_path(@course), class: 'btn btn-warning'
+-else
+  = link_to 'Publish', publish_teacher_course_path(@course), class: 'btn btn-success'
+
+= link_to "Show Announcements", teacher_course_announcements_path(@course), class: 'btn btn-primary'
 .row
   .col-md-6
     = render 'form'
