@@ -1,0 +1,6 @@
+- course_progresses = current_user.course_progresses
+%h3 Started courses
+%ul.list-group
+  - course_progresses.each do |course_progress|
+    %li.list-group-item
+      =link_to "#{course_progress.course.name} - Go!", course_progress.course

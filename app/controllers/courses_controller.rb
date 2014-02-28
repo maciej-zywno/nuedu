@@ -21,6 +21,10 @@ class CoursesController < InheritedResources::Base
     end
   end
 
+  def announcements
+
+  end
+
   private
   def set_course
     @course = Course.find(params[:id])

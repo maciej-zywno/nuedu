@@ -2,6 +2,7 @@
 - categories = Category.roots
 .row
   .col-md-3
+    =render 'shared/started_courses' if student?
     =render 'welcome/categories'
   .col-md-9
     .jumbotron
