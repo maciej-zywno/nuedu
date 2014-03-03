@@ -8,8 +8,7 @@
       = @step.description.html_safe
 
     %br
-    - if @step.videos.first
-      =link_to 'Play', play_video_path(@step.videos.first), class: 'btn btn-default', remote: true
+    =render 'steps/videos_list', step: @step
   .col-md-2
     =render 'steps/progress_box', step: @step
     =render 'steps/attachments', step: @step

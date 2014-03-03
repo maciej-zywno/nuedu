@@ -1,0 +1,19 @@
+%h3 All Videos
+%ul.list-group
+  -step.videos.each do |video|
+    %li.list-group-item
+      =link_to video.title, play_video_path(video), class: '', remote: true
+      -
+      -if watched = @step_progress.watched_videos.where(id: video.id).first
+        %span.badge
+          =link_to 'Replay', play_video_path(video), class: '', remote: true
+        -if watched.exam
+          -if exam_progress = @step_progress.exam_progresses.where(exam_id: watched.exam.id).first
+            Check results
+          -else
+            =link_to 'Take exam', show_exam_path(watched.exam), class: 'btn btn-warning', remote: true
+            
+
+      -else
+        %span.badge
+          =link_to 'Play', play_video_path(video), class: '', remote: true

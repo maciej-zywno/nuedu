@@ -17,6 +17,7 @@ Nuedu::Application.routes.draw do
   get 'videos/:id/play', to:'videos#play', as: 'play_video'
   get 'videos/:id/watched', to: 'videos#watched'
   post 'exams/:id/finish', to: 'exams#finish', as: 'finish_exam'
+  get 'exams/:id/show', to: 'exams#show', as: 'show_exam'
 
   resources :courses, only: [:index, :show] do
     member do
