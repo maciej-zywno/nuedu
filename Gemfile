@@ -20,7 +20,7 @@ gem 'less-rails'
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 3.1.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -95,6 +95,13 @@ gem 'rails_admin_nestable'
 gem "font-awesome-rails", '3.2.1'
 
 gem "friendly_id", '~> 5.0.0'
+
+gem 'comfortable_mexican_sofa', github: 'comfy/comfortable-mexican-sofa', branch: 'master'
+# gem 'refinerycms', :branch => 'rails-4-1'
+
+
+gem 'seed_dump'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

@@ -1,14 +1,40 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+puts "Creating cms pages"
+
+
+
+site = Cms::Site.create!(
+  {label: "en", identifier: "en", hostname: ENV['HOSTNAME'], path: "about", locale: "en", is_mirrored: false}
+)
+layout = Cms::Layout.create!(
+  {site_id: site.id, app_layout: "application", label: "default", identifier: "default", content: "{{ cms:page:content:rich_text }}", css: "", js: "", is_shared: false}
+)
+
+parent_page = Cms::Page.create!(site_id: site.id, layout_id: layout.id, target_page_id: 11, label: "About", full_path: "/", position: 0, children_count: 2, is_published: true, is_shared: false)
+content_cache =  "<h1 style=\"box-sizing: border-box; margin: 10.5px 0px 60px; font-family: sofiapro-light, Arial, sans-serif; font-weight: normal; line-height: 1.2em; color: #333333; text-rendering: optimizelegibility; font-size: 36px; text-align: center;\" data-section=\"ourMission\">Our Mission</h1>\r\n<hr class=\"header-after\" style=\"box-sizing: border-box; margin: 21px 0px 72px; border-right-width: 0px; border-left-width: 0px; border-top-style: solid; border-top-color: #cccccc; border-bottom-style: solid; border-bottom-color: #ffffff; width: 940px; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;\" />\r\n<div class=\"coursera-mission-statement\" style=\"box-sizing: border-box; margin-bottom: 72px; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;\">\r\n<p class=\"large-copy\" style=\"box-sizing: border-box; margin: 10px auto; font-size: 18px; line-height: 32px; font-family: sofiapro-light, Arial, sans-serif; text-align: center; max-width: 37em;\">Coursera is an education platform that partners with top universities and organizations worldwide, to offer courses online for anyone to take, for free.</p>\r\n<p class=\"large-copy\" style=\"box-sizing: border-box; margin: 10px auto; font-size: 18px; line-height: 32px; font-family: sofiapro-light, Arial, sans-serif; text-align: center; max-width: 37em;\">We envision a future where everyone has access to a world-class education. We aim to empower people with education that will improve their lives, the lives of their families, and the communities they live in.</p>\r\n</div>"
+parent_page.blocks_attributes = {"0"=>{"content"=>content_cache, "identifier"=>"content"}}
+parent_page.save!
+
+p = Cms::Page.create!(site_id: site.id, layout_id: layout.id, parent_id: parent_page.id, label: "How it works", slug: "how-it-works", full_path: "/how-it-works", position: 0, is_published: true, is_shared: false)
+content_cache = "<h1 style=\"box-sizing: border-box; margin: 10.5px 0px 60px; font-family: sofiapro-light, Arial, sans-serif; font-weight: normal; line-height: 1.2em; color: #333333; text-rendering: optimizelegibility; font-size: 36px; text-align: center;\">How It Works</h1>\r\n<hr class=\"header-after\" style=\"box-sizing: border-box; margin: 21px 0px 72px; border-right-width: 0px; border-left-width: 0px; border-top-style: solid; border-top-color: #cccccc; border-bottom-style: solid; border-bottom-color: #ffffff; width: 1100px; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;\" />\r\n<div class=\"row coursera-photo-row\" style=\"box-sizing: border-box; margin-left: 0px; margin-bottom: 96px; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;\">\r\n<div class=\"span6 coursera-about-photo\" style=\"box-sizing: border-box; float: left; min-height: 30px; margin-left: 0px; width: 560px;\"><img style=\"box-sizing: border-box; max-width: 100%; height: auto; vertical-align: middle; border: 0px; width: 570px; background-color: #cccccc;\" src=\"https://coursera_assets.s3.amazonaws.com/about/overview/about_discover_a_course_youre_interested_in.jpg\" alt=\"\" /></div>\r\n<div class=\"span6 text\" style=\"box-sizing: border-box; float: left; min-height: 30px; margin-left: 20px; width: 560px; padding: 0px 0px 0px 55px;\">\r\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; font-family: sofiapro-light, Arial, sans-serif; font-weight: normal; line-height: 1.2em; color: inherit; text-rendering: optimizelegibility; font-size: 24px; width: auto;\">Discover a course and sign up today</h2>\r\n<p class=\"byline\" style=\"box-sizing: border-box; margin: 0px 0px 10.5px; font-family: 'Helvetica Neue'; color: #777777;\">Choose from 400+ courses created by the world&rsquo;s top educational institutions.<a class=\"learn-more\" style=\"box-sizing: border-box; color: #0367b0; text-decoration: none; cursor: pointer; display: block; margin-top: 6px; font-family: sofiapro-light, Arial, sans-serif;\" href=\"https://www.coursera.org/courses\">View courses&nbsp;</a></p>\r\n</div>\r\n</div>\r\n<div class=\"row coursera-photo-row\" style=\"box-sizing: border-box; margin-left: 0px; margin-bottom: 96px; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;\">\r\n<div class=\"span6 text\" style=\"box-sizing: border-box; float: left; min-height: 30px; margin-left: 0px; width: 560px; padding: 0px 30px 0px 20px;\">\r\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; font-family: sofiapro-light, Arial, sans-serif; font-weight: normal; line-height: 1.2em; color: inherit; text-rendering: optimizelegibility; font-size: 24px; width: auto;\">Learn on your own schedule</h2>\r\n<p class=\"byline\" style=\"box-sizing: border-box; margin: 0px 0px 10.5px; font-family: 'Helvetica Neue'; color: #777777;\">Watch short video lectures, take interactive quizzes, complete peer graded assessments, and connect with classmates and teachers.</p>\r\n</div>\r\n<div class=\"span6 coursera-about-photo\" style=\"box-sizing: border-box; float: left; min-height: 30px; margin-left: 20px; width: 560px;\"><img style=\"box-sizing: border-box; max-width: 100%; height: auto; vertical-align: middle; border: 0px; width: 570px; background-color: #cccccc;\" src=\"https://coursera_assets.s3.amazonaws.com/about/overview/about_your_schedule.jpg\" alt=\"\" /></div>\r\n</div>\r\n<div class=\"row coursera-photo-row\" style=\"box-sizing: border-box; margin-left: 0px; margin-bottom: 96px; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;\">\r\n<div class=\"span6 coursera-about-photo\" style=\"box-sizing: border-box; float: left; min-height: 30px; margin-left: 0px; width: 460px;\"><img style=\"box-sizing: border-box; max-width: 100%; height: auto; vertical-align: middle; border: 0px; width: 470px; background-color: #cccccc;\" src=\"https://coursera_assets.s3.amazonaws.com/about/overview/about_achieve_your_goals.jpg\" alt=\"\" /></div>\r\n<div class=\"span6 text\" style=\"box-sizing: border-box; float: left; min-height: 30px; margin-left: 20px; width: 560px; padding: 0px 0px 0px 55px;\">\r\n<h2 style=\"box-sizing: border-box; margin: 0px 0px 15px; font-family: sofiapro-light, Arial, sans-serif; font-weight: normal; line-height: 1.2em; color: inherit; text-rendering: optimizelegibility; font-size: 24px; width: auto;\">Achieve your goals</h2>\r\n<p class=\"byline\" style=\"box-sizing: border-box; margin: 0px 0px 10.5px; font-family: 'Helvetica Neue'; color: #777777;\">Finish your class and receive recognition for your accomplishment.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>"
+p.blocks_attributes = {"0"=>{"content"=>content_cache, "identifier"=>"content"}}
+p.save!
+p = Cms::Page.create!(site_id: site.id, layout_id: layout.id, parent_id: parent_page.id, label: "Our mission", slug: "our-mission", full_path: "/our-mission", position: 1, is_published: true, is_shared: false)
+content_cache = "<div class=\"row\">\r\n<div class=\"col-md-12\">\r\n<h1 style=\"box-sizing: border-box; margin: 10.5px 0px 60px; font-family: sofiapro-light, Arial, sans-serif; font-weight: normal; line-height: 1.2em; color: #333333; text-rendering: optimizelegibility; font-size: 36px; text-align: center;\" data-section=\"ourMission\">Our Mission</h1>\r\n<hr class=\"header-after\" style=\"box-sizing: border-box; margin: 21px 0px 72px; border-right-width: 0px; border-left-width: 0px; border-top-style: solid; border-top-color: #cccccc; border-bottom-style: solid; border-bottom-color: #ffffff; width: 1100px; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;\" />\r\n<div class=\"coursera-mission-statement\" style=\"box-sizing: border-box; margin-bottom: 72px; color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 21px;\">\r\n<p class=\"large-copy\" style=\"box-sizing: border-box; margin: 10px auto; font-size: 18px; line-height: 32px; font-family: sofiapro-light, Arial, sans-serif; text-align: center; max-width: 37em;\">Coursera is an education platform that partners with top universities and organizations worldwide, to offer courses online for anyone to take, for free.</p>\r\n<p class=\"large-copy\" style=\"box-sizing: border-box; margin: 10px auto; font-size: 18px; line-height: 32px; font-family: sofiapro-light, Arial, sans-serif; text-align: center; max-width: 37em;\">We envision a future where everyone has access to a world-class education. We aim to empower people with education that will improve their lives, the lives of their families, and the communities they live in.</p>\r\n</div>\r\n</div>\r\n</div>"
+p.blocks_attributes = {"0"=>{"content"=>content_cache, "identifier"=>"content"}}
+p.save!
+
+
+puts "Creating Users"
 teacher = User.create(email:'teacher@nu.edu.pl', password: 'teacher', password_confirmation:'teacher', username:'Jame Frankies')
 teacher2 = User.create(email:'teacher2@nu.edu.pl', password: 'password', password_confirmation:'password', username:'Tobby Novella')
 teacher.add_role :teacher
+teacher.add_role :cms_admin
 teacher2.add_role :teacher
+teacher2.add_role :cms_admin
+
 
 student1 = User.create(email:'student1@email.com', password: 'password', password_confirmation:'password', username:'jeremywilles')
 student2 = User.create(email:'student2@email.com', password: 'password', password_confirmation:'password', username:'a2')
@@ -22,6 +48,7 @@ User.all.each_with_index do |user,idx|
 end
 
 
+puts "Creating categories"
 
 Category.create([{name:'Arts'},{name:'Biology'},{name:'Business & Managment'},{name:'Chemistry'},{name:'Computer Science'},{name:'Economics & Finance'},{name:'Education'},{name:'Food'},{name:'Law'},{name:'Mathematics'},{name:'Medicine'},{name:'Social Sciences'},{name:'Data Analysis'},{name:'Earth Science'}])
 Category.create([{name: 'CS: Artificial Intelligence'},{name: 'CS: Software Engineering'},{name: 'CS: Systems & Security'},{name: 'CS: Theory'}])
@@ -73,6 +100,7 @@ step_description = '<p><span style="color: #333333; font-family: Helvetica, Aria
 <li style="box-sizing: border-box;"><strong style="box-sizing: border-box;">Lecture #2.4 -&nbsp;</strong><strong style="box-sizing: border-box;">Mantua, the churches of S. Sebastiano and S. Andrea)</strong></li>
 </ul>'
 
+puts "Creating courses"
 Course.all.each_with_index do |course,idx|
   puts 'uploading photo'
   course.logo = File.exists?("db/seed/images/#{idx}.png") ? File.open("db/seed/images/#{idx}.png") :  File.open("db/seed/images/#{idx}.jpg")
@@ -105,7 +133,9 @@ Course.all.each_with_index do |course,idx|
     end
   end
 end
+puts  "Courses created: #{Course.all.count}"
 
+puts "Creating reviews"
 Review.create!(user:student1, course:c1, status:'approved', content: "This is my favorite course yet. The topic is increasingly relevant and soon to be essential knowledge for most front end developers. And a great topic is just the first thing the course gets right. Each screencast is professionally produced, informative yet not excessive, and builds incrementally. Alternating lectures with exercises is a proven learning technique that absolutely works. Despite an already awkwardly long and glowing review, I feel compelled to point out that these courses are technically outstanding! They sport an in-browser code editor (with syntax highlighting) that can compile and check your work in real-time. Oh, and it has a polished theme. Code School, you need to know: I want to have all your code babies. Is it a little embarrassing to be publicly admitting this in my review? I mean, yes. It is. But I'm just being honest. Honest feedback - that's what you wanted, right? We can work this out. Call me.")
 Review.create!(user:student1, course:c1, status:'approved', content:"Lots of great info here. Clearing up some of the confusion I had about various parts of mobile design. Thanks again guys!")
 Review.create!(user:student2, course:c1, status:'approved', content:"I have been studying, learning and implementing mobile and responsive techniques over the past year. I loved this course as it teaches sound principles for creating sites. You'll learn some specific techniques, but more importantly you'll learn the 'why' behind the approach")
@@ -120,4 +150,6 @@ Review.create!(user:student5, course:c8, status:'approved', content:"Best course
 Review.create!(user:student5, course:c9, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
 Review.create!(user:student5, course:c10, status:'approved', content:"Best course yet in terms of the exercises UX and I've taken them all. I really liked the render tab so I could see how the code I wrote affected the site.")
 
-puts  "Courses created: #{Course.all.count}"
+
+
+

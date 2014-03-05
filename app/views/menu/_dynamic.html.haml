@@ -1,0 +1,9 @@
+-if page.children.empty?
+  %li= link_to page.label, page.url
+-else
+  %li.dropdown
+    = link_to  '','data-target' => "#", id:"f-dynamic-#{page.slug}", role: 'button', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+      = raw ("#{page.label}" + '<b class="caret"></b>')
+    %ul.dropdown-menu{role:'menu', "aria-labelledby" => "f-dynamic-#{page.slug}"}
+      -page.children.each do |subpage|
+        %li{role:'presentation'}= link_to subpage.label, subpage.url

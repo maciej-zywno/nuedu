@@ -2,6 +2,8 @@
   %ul.navbar-nav.nav.nav-pills.pull-right
     %li
       = link_to 'All courses', courses_path
+    - Cms::Page.roots.published.each do |page|
+      =render 'menu/dynamic', page: page
     - if user_signed_in?
       %li.dropdown
         = link_to  '','data-target' => "#", id: 'f-current-user-menu', role: 'button', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
@@ -24,13 +26,20 @@
             %li{role:'presentation'}= link_to "Remove admin role", remove_role_path(:admin)
           - else
             %li{role:'presentation'}
-              = link_to "Add admin role", add_role_path(:admin)              
+              = link_to "Add admin role", add_role_path(:admin)  
+          - if cms_admin?
+            %li{role:'presentation'}= link_to "Remove cms admin role", remove_role_path(:cms_admin)
+          - else
+            %li{role:'presentation'}
+              = link_to "Add cms admin role", add_role_path(:cms_admin) 
 
           %li.divider{role:'presentation'}
           %li{role:'presentation'}
             = link_to 'Logout', destroy_user_session_path, :method => :delete
       -if admin?
         %li= link_to 'Admin Area', "/admin"
+      -if cms_admin?
+        %li= link_to 'CMS Area', "/cms_admin"
       -if teacher?
         %li= link_to 'Teacher Area', teacher_account_path
     - else
