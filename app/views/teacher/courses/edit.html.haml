@@ -7,6 +7,8 @@
   = link_to 'Publish', publish_teacher_course_path(@course), class: 'btn btn-success'
 
 = link_to "Show Announcements", teacher_course_announcements_path(@course), class: 'btn btn-primary'
+
+= link_to "Show Forum", teacher_forum(@course), class: 'btn btn-primary'
 .row
   .col-md-6
     = render 'form'

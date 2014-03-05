@@ -1,5 +1,9 @@
 Nuedu::Application.routes.draw do
 
+  get "posts/create"
+  get "topics/index"
+  get "topics/show"
+  get "topics/create"
   comfy_route :cms_admin, :path => '/cms_admin'
 
   resources :announcements
@@ -40,7 +44,13 @@ Nuedu::Application.routes.draw do
   namespace :teacher do
     get 'account', to: 'account#show', as: 'account'
 
+
     resources :courses do
+      resources :forums do
+        resources :topics do
+          resources :posts
+        end
+      end
       resources :announcements
       resources :attachments
       resources :steps do
