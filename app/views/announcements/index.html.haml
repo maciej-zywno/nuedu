@@ -1,22 +1,10 @@
 %h1 Listing announcements
 
-%table
-  %tr
-    %th Course
-    %th User
-    %th Title
-    %th Content
-    %th
-    %th
-    %th
-
   - @announcements.each do |announcement|
-    %tr
-      %td= announcement.course
+    .well
+      %h3= announcement.title
+      %p= announcement.content
       %td= announcement.user
-      %td= announcement.title
-      %td= announcement.content
-      %td= link_to 'Show', announcement
       %td= link_to 'Edit', edit_announcement_path(announcement)
       %td= link_to 'Destroy', announcement, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

@@ -26,10 +26,6 @@ module Teacher
       redirect_to edit_teacher_course_path(@course), notice: 'Course was successfully unpublished.'
     end
 
-    # GET /courses/1
-    # GET /courses/1.json
-    def show
-    end
 
     # GET /courses/new
     def new

@@ -3,11 +3,11 @@
     =render 'courses/show/menu_sidebar', course: @course
   .col-md-8
     %h2
-    = "#{@course.name}"
-    %br
+      = "#{@course.name}"
+      
     - if @course.steps.first && @course.steps.first.videos.first
       =link_to 'Play', play_video_path(@course.steps.first.videos.first), class: 'btn btn-default', remote: true
-    %h3 Annoucements
+    =render 'courses/show/announcements'
     %p
     %h3 Profesors
     - User.with_role(:moderator, @course).each do |teacher|

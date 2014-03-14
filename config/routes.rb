@@ -1,12 +1,8 @@
 Nuedu::Application.routes.draw do
 
-  get "posts/create"
-  get "topics/index"
-  get "topics/show"
-  get "topics/create"
+  # mount RailsEmailPreview::Engine, at: 'emails'
   comfy_route :cms_admin, :path => '/cms_admin'
 
-  resources :announcements
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -26,10 +22,17 @@ Nuedu::Application.routes.draw do
   get 'exams/:id/show', to: 'exams#show', as: 'show_exam'
 
   resources :courses, only: [:index, :show] do
+    resources :forums, only: [] do
+        resources :topics do
+          resources :posts
+        end
+    end
+
     member do
       get 'enroll'
       get 'intro'
       get 'announcements'
+      get 'forum'
     end
     resources :steps , only: [:index, :show] do
       resources :exams
@@ -45,8 +48,12 @@ Nuedu::Application.routes.draw do
     get 'account', to: 'account#show', as: 'account'
 
 
-    resources :courses do
-      resources :forums do
+    resources :courses, except: [:show] do
+      resources :forums, only: [:show] do
+          new do
+            get  :attach
+          end
+
         resources :topics do
           resources :posts
         end

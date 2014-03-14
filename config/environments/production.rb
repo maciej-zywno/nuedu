@@ -71,7 +71,7 @@ Nuedu::Application.configure do
     port:                 ENV['MANDRILL_PORT'],
     domain:               'heroku.com',
     user_name:            ENV['MANDRILL_USERNAME'],
-    password:             ENV['MANDRILL_APIKEY'],
+    password:             ENV['MANDRILL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true
   }

@@ -1,0 +1,35 @@
+.row
+  .col-md-2
+    =render 'courses/show/menu_sidebar', course: @course
+  .col-md-8
+    %h2
+      = "#{@course.name}"
+    
+    %h3 Forum
+    .links
+      =link_to 'New Topic', new_course_forum_topic_path(@course, @course.forum), class: 'btn btn-default'
+
+    %table
+      %tr.smaller
+        %th{align: "left", colspan: "2"} Topic
+        %th Replies
+      - @course.forum.topics.each do |topic|
+        %tr
+          %td.description
+            = link_to topic.title, course_forum_topic_path(@course, @course.forum, topic)
+            %br/
+            %span.smaller
+              by #{topic.user.username}
+          %td.counts.smaller= topic.posts.size - 1
+          %td.last_post.smaller
+            = topic.posts.last.created_at
+            %br/
+            by #{topic.posts.last.user.username}
+
+  .col-md-2
+    =render 'courses/show/progress_box', course: @course
+    =render 'courses/show/attachments', course: @course
+
+.f-player-container
+.f-exam-container
+

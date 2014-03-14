@@ -14,6 +14,7 @@ class Course < ActiveRecord::Base
   has_many :participants, through: :participations, source: :user
 
   has_many :announcements
+  has_one :forum
 
   validates :name, presence: true
   validates :description, presence: true

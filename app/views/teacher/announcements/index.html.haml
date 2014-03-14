@@ -1,21 +1,19 @@
 %h1 Listing announcements
+.row
+  .col-md-8
+    = link_to 'New Announcement', new_teacher_course_announcement_path(@course), class: 'btn btn-default'
+    = link_to 'Back', edit_teacher_course_path(@course), class: 'btn btn-info'
+    %p
+    - @announcements.each do |announcement|
+      .panel.panel-default
+        .panel-heading
+          .panel-title.pull-right= announcement.created_at
+          .panel-title.pull-left
+            = announcement.title
+          .clearfix
+        .panel-body
+          = announcement.content
+          .text-right
+            = link_to 'Edit', edit_teacher_course_announcement_path(@course,announcement), class: 'btn btn-default'
+            = link_to 'Destroy', [:teacher, @course, announcement], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-warning'
 
-%table
-  %tr
-    %th Title
-    %th Content
-    %th
-    %th
-    %th
-
-  - @announcements.each do |announcement|
-    %tr
-      %td= announcement.title
-      %td= announcement.content
-      %td= link_to 'Show', announcement
-      %td= link_to 'Edit', edit_announcement_path(announcement)
-      %td= link_to 'Destroy', announcement, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Announcement', new_teacher_course_announcement_path(@course)

@@ -5,7 +5,8 @@ module Teacher
     # GET /announcements
     # GET /announcements.json
     def index
-      @announcements = Announcement.where(course_id: params[:course_id])
+
+      @announcements = @course.announcements
 
     end
 
@@ -27,11 +28,10 @@ module Teacher
     # POST /announcements.json
     def create
       @announcement = Announcement.new(announcement_params)
-      @announcement.course_id = params[:course_id]
-
       respond_to do |format|
         if @announcement.save
-          format.html { redirect_to edit_teacher_course_path(@course), notice: 'announcement was successfully created.' }
+          @course.announcements << @announcement
+          format.html { redirect_to teacher_course_announcements_path(@course), notice: 'announcement was successfully created.' }
         else
           format.html { render action: 'new' }
         end
@@ -43,7 +43,7 @@ module Teacher
     def update
       respond_to do |format|
         if @announcement.update(announcement_params)
-          format.html { redirect_to edit_teacher_course_path(@course), notice: 'announcement was successfully updated.' }
+          format.html { redirect_to teacher_course_announcements_path(@course), notice: 'announcement was successfully updated.' }
         else
           format.html { render action: 'edit' }
         end
@@ -54,7 +54,7 @@ module Teacher
     # DELETE /announcements/1.json
     def destroy
       @announcement.destroy
-      redirect_to edit_teacher_course_announcement_path(@course)
+      redirect_to teacher_course_announcements_path(@course)
     end
 
     private

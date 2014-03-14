@@ -2,7 +2,7 @@ class CoursesController < InheritedResources::Base
   load_and_authorize_resource
 
   before_action :set_course, only: [ :enroll]
-  before_action :set_course_progress, only: [:show ]
+  before_action :set_course_progress, only: [:show, :announcements, :forum]
   def intro
   end
 
@@ -22,7 +22,9 @@ class CoursesController < InheritedResources::Base
   end
 
   def announcements
+  end
 
+  def forum
   end
 
   private

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-ruby '2.1.0'
+ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -98,6 +98,9 @@ gem "friendly_id", '~> 5.0.0'
 
 gem 'comfortable_mexican_sofa', github: 'comfy/comfortable-mexican-sofa', branch: 'master'
 # gem 'refinerycms', :branch => 'rails-4-1'
+
+# gem 'rails_email_preview', :path => '../rails_email_preview'
+# gem 'rails_email_preview', :github => 'wzywno/rails_email_preview', :branch => 'master'
 
 
 gem 'seed_dump'

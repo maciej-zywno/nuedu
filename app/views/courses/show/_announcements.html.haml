@@ -1,0 +1,10 @@
+%h3 Announcements
+- @course.announcements.limit(3).each do |announcement|
+  .panel.panel-default
+    .panel-heading
+      .panel-title.pull-right= announcement.created_at
+      .panel-title.pull-left
+        = announcement.title
+      .clearfix
+    .panel-body
+      = announcement.content

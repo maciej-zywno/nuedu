@@ -1,4 +1,6 @@
-class TopicsController < ApplicationController
+module Teacher
+  class TopicsController < ApplicationController
+
     before_action :set_variables
     before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
@@ -15,14 +17,14 @@ class TopicsController < ApplicationController
     def update
       if @topic.update_attributes(topic_params)
         flash[:notice] = "Topic was updated successfully."
-        redirect_to course_forum_topic_url(@course, @forum, @topic)
+        redirect_to teacher_course_forum_topic_url(@course, @forum, @topic)
       end
     end
 
     def destroy
       if @topic.destroy
         flash[:notice] = "Topic was deleted successfully."
-        redirect_to coruse_forum_url(@course, @forum)
+        redirect_to teacher_coruse_forum_url(@course, @forum)
       end
     end
 
@@ -33,7 +35,7 @@ class TopicsController < ApplicationController
 
       if @topic.save
         flash[:notice] = "Topic was successfully created."
-        redirect_to course_forum_topic_url(@course, @forum, @topic)
+        redirect_to teacher_course_forum_topic_url(@course, @forum, @topic)
       else
         render :action => 'new'
       end
@@ -42,7 +44,7 @@ class TopicsController < ApplicationController
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :body)
+      params.require(:topic).permit(:title, :body, :sticky, :locked)
     end
 
     def set_variables
@@ -53,4 +55,6 @@ class TopicsController < ApplicationController
     def set_topic
       @topic = Topic.find(params[:id])
     end
+
+  end
 end

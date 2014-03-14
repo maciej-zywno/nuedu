@@ -1,0 +1,20 @@
+.links
+  =link_to 'New Topic', new_teacher_course_forum_topic_path(@course, @forum), class: 'btn btn-default'
+  = link_to 'Back', edit_teacher_course_path(@course), class: 'btn btn-warning'
+
+%table
+  %tr.smaller
+    %th{align: "left", colspan: "2"} Topic
+    %th Replies
+  - @forum.topics.each do |topic|
+    %tr
+      %td.description
+        = link_to topic.title, teacher_course_forum_topic_path(@course, @forum, topic)
+        %br/
+        %span.smaller
+          by #{topic.user.username}
+      %td.counts.smaller= topic.posts.size - 1
+      %td.last_post.smaller
+        = topic.posts.last.created_at
+        %br/
+        by #{topic.posts.last.user.username}

@@ -1,7 +1,7 @@
 module Teacher
   class StepsController < ApplicationController
     before_action :set_step, only: [:show, :edit, :update, :destroy]
-
+    before_action :set_course
     # GET /steps
     # GET /steps.json
     def index
@@ -15,7 +15,7 @@ module Teacher
 
     # GET /steps/new
     def new
-      @step = Step.new(course_id:params[:course_id])
+      @step = Step.new(course_id:@course.id)
     end
 
     # GET /steps/1/edit
@@ -26,11 +26,11 @@ module Teacher
     # POST /steps.json
     def create
       @step = Step.new(step_params)
-      @step.course_id = params[:course_id]
+      @step.course = @course
 
       respond_to do |format|
         if @step.save
-          format.html { redirect_to edit_teacher_course_step_path(@step.course, @step), notice: 'Step was successfully created.' }
+          format.html { redirect_to edit_teacher_course_step_path(@course, @step), notice: 'Step was successfully created.' }
         else
           format.html { render action: 'new' }
         end
@@ -42,7 +42,7 @@ module Teacher
     def update
       respond_to do |format|
         if @step.update(step_params)
-          format.html { redirect_to edit_teacher_course_step_path(@step.course, @step), notice: 'Step was successfully updated.' }
+          format.html { redirect_to edit_teacher_course_step_path(@course, @step), notice: 'Step was successfully updated.' }
         else
           format.html { render action: 'edit' }
         end
@@ -60,7 +60,10 @@ module Teacher
     # Use callbacks to share common setup or constraints between actions.
     def set_step
       @step = Step.find(params[:id])
-      @course = @step.course
+    end
+
+    def set_course
+      @course = Course.find(params[:course_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

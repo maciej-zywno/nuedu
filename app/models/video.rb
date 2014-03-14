@@ -6,8 +6,8 @@ class Video < ActiveRecord::Base
   has_one :exam, as: :examable
 
 
-  scope :complete,   where(complete: true)
-  scope :incomplete, where(complete: false)
+  scope :complete,   -> { where(complete: true) }
+  scope :incomplete, -> { where(complete: false) }
 
   scope :recent, ->(num) { order('created_at DESC').limit(num) }
 
