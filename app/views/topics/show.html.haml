@@ -1,29 +1,37 @@
-.right.controls= link_to "Back to Forum", forum_course_path(@course)
-.module
-  .module_header
-    = @topic.title
-    %span.right.controls
-  %div
-    %table
-      - @topic.posts.each do |post|
-        %tr
-          %td.post_author{rowspan: "2"}
-            %span.name= post.user.username
-            %span.avatar
-              / This space reserved for Avatar
-            %span.info.smaller
-              / Posts #{post.user.posts.size}
-              %br/
-              Registered #{post.user.created_at.to_s(:joined)}
-              %br/
-          %td.post_header
-            %span.left.post_date.smaller
-              Posted #{post.created_at}
-            %span.right.controls
-              = link_to "Reply", new_course_forum_topic_post_path(@course, @forum, @topic)
-              / = link_to "Quote", new_topic_post_path(@topic, :quote => post)
-              = link_to "Edit", edit_course_forum_topic_post_path(@course, @forum, @topic, post)
-              = link_to "Delete", [:teacher, @course, @forum, @topic, post], :confirm => "Are you sure?", :method => :delete
-        %tr
-          %td.post_body
-            = simple_format(post.body)
+.row
+  .col-md-2
+    =render 'courses/show/menu_sidebar', course: @course
+  .col-md-8
+    .right.controls= link_to "Back to Forum", forum_course_path(@course)
+    .module
+      .module_header
+        = @topic.title
+        %span.right.controls
+      %div
+        %table
+          - @topic.posts.each do |post|
+            %tr
+              %td.post_author{rowspan: "2"}
+                %span.name= post.user.username
+                %span.avatar
+                  / This space reserved for Avatar
+                %span.info.smaller
+                  / Posts #{post.user.posts.size}
+                  %br/
+                  Registered #{post.user.created_at.to_s(:joined)}
+                  %br/
+              %td.post_header
+                %span.left.post_date.smaller
+                  Posted #{post.created_at}
+                %span.right.controls
+                  = link_to "Reply", new_course_forum_topic_post_path(@course, @forum, @topic)
+                  = link_to "Edit", edit_course_forum_topic_post_path(@course, @forum, @topic, post)
+                  = link_to "Delete", [:teacher, @course, @forum, @topic, post], :confirm => "Are you sure?", :method => :delete
+            %tr
+              %td.post_body
+                = simple_format(post.body)
+
+  .col-md-2
+
+
+

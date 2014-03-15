@@ -28,6 +28,7 @@ Nuedu::Application.routes.draw do
         end
     end
 
+
     member do
       get 'enroll'
       get 'intro'

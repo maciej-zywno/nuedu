@@ -25,7 +25,6 @@
               Posted #{post.created_at}
             %span.right.controls
               = link_to "Reply", new_teacher_course_forum_topic_post_path(@course, @forum, @topic)
-              / = link_to "Quote", new_topic_post_path(@topic, :quote => post)
               = link_to "Edit", edit_teacher_course_forum_topic_post_path(@course, @forum, @topic, post)
               = link_to "Delete", [:teacher, @course, @forum, @topic, post], :confirm => "Are you sure?", :method => :delete
         %tr
