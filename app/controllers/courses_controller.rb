@@ -7,7 +7,7 @@ class CoursesController < InheritedResources::Base
   end
 
   def index
-    if params[:q]
+    unless params[:q].blank?
       @courses = Course.search(params[:q]).records.records
     else
       @courses = Category.where(id: params[:category]).first.courses if params[:category]
