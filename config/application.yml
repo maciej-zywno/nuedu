@@ -5,6 +5,8 @@ development:
   AWS_BUCKET_NAME: nuedutest2
   AWS_ACCESS_KEY_ID: AKIAIPAQJ5SYHKVCKS5A
   AWS_SECRET_ACCESS_KEY: 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
+  ELASTICSEARCH_URL: 'http://localhost:9200'
+
   
   HOSTNAME: 'localhost:3000'
 production:
