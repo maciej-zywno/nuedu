@@ -1,5 +1,9 @@
 class Course < ActiveRecord::Base
- extend FriendlyId
+  extend FriendlyId
+
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   friendly_id :name, :use => :slugged
 
   resourcify

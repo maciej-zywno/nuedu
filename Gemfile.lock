@@ -27,6 +27,16 @@ GIT
       tinymce-rails (>= 4.0.0)
 
 GIT
+  remote: git://github.com/elasticsearch/elasticsearch-rails.git
+  revision: cdc175f21185692ad9df095f02a323a28f481b7d
+  specs:
+    elasticsearch-model (0.1.0)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.0)
+
+GIT
   remote: git://github.com/josevalim/inherited_resources.git
   revision: e4fb9fc804488532014307190812946d63a480a3
   branch: master
@@ -156,6 +166,14 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    elasticsearch (1.0.1)
+      elasticsearch-api (= 1.0.1)
+      elasticsearch-transport (= 1.0.1)
+    elasticsearch-api (1.0.1)
+      multi_json
+    elasticsearch-transport (1.0.1)
+      faraday
+      multi_json
     erubis (2.7.0)
     excon (0.31.0)
     execjs (2.0.2)
@@ -399,6 +417,8 @@ DEPENDENCIES
   cancan
   comfortable_mexican_sofa!
   devise
+  elasticsearch-model!
+  elasticsearch-rails!
   factory_girl_rails
   figaro
   font-awesome-rails (= 3.2.1)

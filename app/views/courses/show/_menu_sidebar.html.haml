@@ -23,8 +23,9 @@
   %li.list-group-item
     = link_to 'Peer Assesments',''
   
-  %li.list-group-item
-    %h3 COMMUNITY
-  %li.list-group-item
-    = link_to 'Discussion Forums',forum_course_path(course)
+  - if course.forum
+    %li.list-group-item
+      %h3 COMMUNITY
+    %li.list-group-item
+      = link_to 'Discussion Forums',forum_course_path(course)
 

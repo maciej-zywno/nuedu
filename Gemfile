@@ -102,6 +102,9 @@ gem 'comfortable_mexican_sofa', github: 'comfy/comfortable-mexican-sofa', branch
 # gem 'rails_email_preview', :path => '../rails_email_preview'
 # gem 'rails_email_preview', :github => 'wzywno/rails_email_preview', :branch => 'master'
 
+# gem 'elasticsearch',       git: 'git://github.com/elasticsearch/elasticsearch-ruby.git'
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
 gem 'seed_dump'
 

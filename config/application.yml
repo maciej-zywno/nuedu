@@ -21,5 +21,7 @@ production:
   FACEBOOK_SECRET: '3d99a4c3748ca9f0849326286e5d3bb0'
   HOSTNAME: 'nu-test.herokuapp.com'
 
+  ELASTICSEARCH_URL: 'http://ad5115sl:9kydi5emx6o3b93t@cherry-4412941.us-east-1.bonsai.io'
+
 
 

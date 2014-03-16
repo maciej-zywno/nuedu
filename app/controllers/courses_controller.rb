@@ -7,7 +7,11 @@ class CoursesController < InheritedResources::Base
   end
 
   def index
-    @courses = Category.where(id: params[:category]).first.courses if params[:category]
+    if params[:q]
+      @courses = Course.search(params[:q]).records.records
+    else
+      @courses = Category.where(id: params[:category]).first.courses if params[:category]
+    end
   end
 
   def enroll
