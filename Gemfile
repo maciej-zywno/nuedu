@@ -3,8 +3,7 @@ source 'https://rails-assets.org'
 
 ruby '2.1.1'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.4'
 
 # Use SCSS for stylesheets
 # gem 'sass-rails', '~> 4.0.0'
@@ -21,6 +20,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.0'
+gem 'modernizr-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -42,6 +42,7 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -96,11 +97,14 @@ gem "font-awesome-rails", '3.2.1'
 
 gem "friendly_id", '~> 5.0.0'
 
-gem 'comfortable_mexican_sofa', github: 'comfy/comfortable-mexican-sofa', branch: 'master'
+# gem 'comfortable_mexican_sofa', '~> 1.11.2'
+# gem 'comfortable_mexican_sofa', github: 'comfy/comfortable-mexican-sofa', branch: 'master'
+gem 'comfortable_mexican_sofa', github: 'comfy/comfortable-mexican-sofa', :ref => '9c36c6f393e70cb69e3be3d7b59471703ddff221'
 # gem 'refinerycms', :branch => 'rails-4-1'
 
 # gem 'rails_email_preview', :path => '../rails_email_preview'
 # gem 'rails_email_preview', :github => 'wzywno/rails_email_preview', :branch => 'master'
+gem 'rails_email_preview', :github => 'glebm/rails_email_preview', :branch => 'master'
 
 # gem 'elasticsearch',       git: 'git://github.com/elasticsearch/elasticsearch-ruby.git'
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'

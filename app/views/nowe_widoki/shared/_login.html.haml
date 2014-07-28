@@ -1,0 +1,24 @@
+#auth-login-wrapper.auth-login-wrapper
+  .close-login
+  .container
+    .login-form-wrapper.col-lg-4.col-lg-offset-4.col-md-5.col-md-offset-4.col-sm-7.col-sm-offset-3.col-xs-12.col-xs-offset-0
+      .login-by-facebook
+        %a{href: "#"} Połącz z facebook
+      .login-by-twitter
+        %a{href: "#"} Połącz z twitter
+      .login-or
+        %p lub
+      .login-form-content
+        %form{role: "form"}
+          .form-group
+            %label{for: "email-field"} E-mail
+            %input#email-field.form-control{type: "text"}/
+          .form-group
+            %label{for: "password-field"} Hasło
+            %input#password-field.form-control{type: "password"}/
+          .checkbox.login-option
+            %label
+              %input{type: "checkbox"}/
+              Zapamiętaj mnie
+            %a.forgot-password{href: "#"} Zapomniałeś hasła?
+          %input.btn.btn-default.login-form-submit{type: "submit", value: "Zaloguj się"}/

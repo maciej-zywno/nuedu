@@ -1,12 +1,30 @@
-- videos = Video.complete.recent(4)
+- courses = Course.recent(3)
 - categories = Category.roots
-.row
-  .col-md-3
-    =render 'shared/started_courses' if student?
-    =render 'welcome/categories'
-  .col-md-9
-    .jumbotron
-      %h1 Video courses
-      %p.lead Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-      %p
-        = link_to "Check Latest Courses", courses_path, {class: 'btn btn-lg btn-success', role: 'button'}
+
+
+%section.middle-content
+  .container
+    .slogan-wrapper
+      .row
+        .col-lg-10.col-lg-offset-1
+          %p.middle-slogan
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            %strong Duis nulla ante
+            , laoreet vel hendrerit vitae, aliquam eget justo. Aenean adipiscing ligula ut diam tempus
+            %strong auctor.
+    .recommended-courses-wrapper
+      .row
+        .items-box.col-lg-10.col-lg-offset-1.col-xs-offset-0
+        - courses.each do |course|
+          .col-lg-4.col-md-4.col-sm-12
+            = render  'courses/course_tile', course: course
+      .row
+        / %a.show-course.more{href: "#"}
+        = link_to "Zobacz więcej kursów", courses_path, {class: 'show-course more'}
+
+= render partial: 'how_it_works'
+
+/ .row
+/   .col-md-3
+/     =render 'shared/started_courses' if student?
+/     =render 'welcome/categories'

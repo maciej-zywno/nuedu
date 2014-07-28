@@ -3,7 +3,6 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: cms_email_subject(user: @user.username))
+    mail(to: @user.email)#,subject: cms_email_subject(user: @user.username))
   end
 end

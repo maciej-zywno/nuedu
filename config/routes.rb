@@ -1,6 +1,6 @@
 Nuedu::Application.routes.draw do
 
-  # mount RailsEmailPreview::Engine, at: 'emails'
+  mount RailsEmailPreview::Engine, at: 'emails'
   comfy_route :cms_admin, :path => '/cms_admin'
 
 

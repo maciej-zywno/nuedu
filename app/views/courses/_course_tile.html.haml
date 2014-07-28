@@ -1,13 +1,25 @@
-.thumbnail
-  =link_to intro_course_path(course) do 
-    = image_tag course.logo.url(:medium) 
-  .caption
-    %h3=course.name
-    %p
-      -if student?
-        -if enrolled? course
-          = link_to 'Go to class', course, class: 'btn btn-success'
-        -else
-          = link_to 'Enroll', enroll_course_path(course), class: 'btn btn-primary'
-      -else 
-        Sign in to enroll
+/ .thumbnail
+/   =link_to intro_course_path(course) do
+/     = image_tag course.logo.url(:medium)
+/   .caption
+/     %h3=course.name
+/     %p
+/       -if student?
+/         -if enrolled? course
+/           = link_to 'Go to class', course, class: 'btn btn-success'
+/         -else
+/           = link_to 'Enroll', enroll_course_path(course), class: 'btn btn-primary'
+/       -else
+/         Sign in to enroll
+
+.course-item
+  .course-content
+    .course-content-shadow
+    = image_tag course.logo.url(:medium), class: 'img-responsive'
+    / %img.img-responsive{alt: "", src: "img/kurs-2.png"}/
+    .course-name
+      =course.name
+      / Exploring
+  .show-course-btn
+    =link_to 'Zobacz kurs', intro_course_path(course), class: 'show-course'
+    / %a.show-course{href: "#"} Zobacz kurs

@@ -19,7 +19,7 @@ class CoursesController < InheritedResources::Base
       redirect_to @course, notice: 'You are already enrolled!'
     else
       @course.participations.create!(user: current_user)
-      CourseProgress.create!(user: current_user, course: @course)
+      EducationService.start_course(current_user, @course)
       current_user.add_role :participant, @course
       redirect_to @course, notice: 'You have successfully enrolled!'
     end

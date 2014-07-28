@@ -4,6 +4,9 @@ class Course < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  scope :recent, ->(num) { order('created_at DESC').limit(num) }
+
+
   friendly_id :name, :use => :slugged
 
   resourcify

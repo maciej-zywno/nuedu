@@ -1,9 +1,26 @@
 class EducationService
 
+  def self.start_course(user, course)
+    progress = CourseProgress.create!(user: current_user, course: course)
+    progress.next_video = course.steps.first.videos.first
+    progress.save!
+  end
+
   def self.video_watched(video, user)
     course_progress = CourseProgress.where(user:user, course:video.course).first
     @step_progress = StepProgress.find_or_create_by(course_progress_id:course_progress.id, step_id: video.step.id)
     @step_progress.watched_videos << video unless @step_progress.watched_videos.include? video
+
+    course_progress.last_video = video
+    next_video = video.step.videos.where(position: (video.position + 1)).first
+
+    unless next_video
+      next_step = video.course.steps.where(position: (video.step.position + 1)).first
+      next_video  = next_step.videos.first if next_step
+    end
+
+    course_progress.next_video = next_video
+    course_progress.save
 
     if video.exam
       :video_related_exam

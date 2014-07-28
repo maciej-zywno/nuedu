@@ -24,6 +24,11 @@
 //= require omniauth_callbacks
 //= require video
 //= require teacher/video
+//= require main
+//= require uiMorphingButton_fixed
+//= require jquery.cookie
+
+
 
 
 $(document).bind('page:change', function() {

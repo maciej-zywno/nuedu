@@ -1,11 +1,99 @@
-.row
-  .col-md-3
-    =render 'search_box'
-    =render 'courses/index/categories'
-  .col-md-9
-    %h1 Listing courses
-    - @courses.in_groups_of(3, false) do |group| 
-      .row
-        - group.each do |course|
-          .col-sm-6.col-md-4
-            =render 'course_tile', course: course
+- courses = Course.recent(10)
+
+/ .col-md-3
+/   =render 'search_box'
+/   =render 'courses/index/categories'
+
+.container
+  .main-content
+    .row
+      .col-lg-10.col-lg-offset-1.col-md-12.col-sm-12.col-xs-offset-0
+        .left-column
+          .platform-section
+            .content
+              .row
+                .col-xs-12
+                  .sorting-tabs
+                    / Nav tabs
+                    %ul.nav.nav-tabs
+                      %li.sort-by-category
+                        %a{"data-toggle" => "tab", href: "#sort-categories"} Kategorie: 3 wybrano
+                      %li.sort-by-terms
+                        %a{"data-toggle" => "tab", href: "#sort-terms"} Rozpoczęcie: wszystkie
+                      %li.sort-info
+                        Sortuj kursy według kategorii
+                        %br>/
+                        i terminów rozpoczęcia
+                    / Tab panes
+                    .tab-content
+                      #sort-categories.tab-pane
+                        .sort-category-wrapper
+                          %form{role: "form"}
+                            .categories-row
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-5
+                                %input{type: "checkbox"}/
+                                Wszystkie
+                            .categories-row
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-5
+                                %input{type: "checkbox"}/
+                                Wszystkie
+                            .categories-row
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-5
+                                %input{type: "checkbox"}/
+                                Wszystkie
+                            .categories-row
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-5
+                                %input{type: "checkbox"}/
+                                Wszystkie
+                            .categories-row
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-5
+                                %input{type: "checkbox"}/
+                                Wszystkie
+                            .categories-row
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-5
+                                %input{type: "checkbox"}/
+                                Wszystkie
+                            .categories-row
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-5
+                                %input{type: "checkbox"}/
+                                Wszystkie
+                      #sort-terms.tab-pane
+                        .sort-terms-wrapper
+                          %form{role: "form"}
+                            .categories-row
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-6
+                                %input{type: "checkbox"}/
+                                Wszystkie
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-6
+                                %input{type: "checkbox"}/
+                                Nadchodzące
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-6
+                                %input{type: "checkbox"}/
+                                Trwające
+                              %label.col-lg-2.col-md-2.col-sm-3.col-xs-6
+                                %input{type: "checkbox"}/
+                                Najnowsze
+              / Proponowane kursy
+              .other-courses
+                .row
+                  .items-box.col-xs-12.no-padding
+                    - courses.each do |course|
+                      .col-lg-4.col-md-4.col-sm-12
+                        = render  'courses/course_tile', course: course
+                  .col-xs-12
+                    .pagination-wrapper
+                      %ul.pagination
+                        %li
+                          %a{href: "#"} <
+                        %li.active
+                          %a{href: "#"} 1
+                        %li
+                          %a{href: "#"} 2
+                        %li
+                          %a{href: "#"} 3
+                        %li
+                          %a{href: "#"} 4
+                        %li
+                          %a{href: "#"} 5
+                        %li
+                          %a{href: "#"} >

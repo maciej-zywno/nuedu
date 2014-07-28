@@ -1,0 +1,170 @@
+
+/* TELEFON */
+@media (max-width: 767px) {
+    #main-menu {
+        display: none;
+    }
+    .icon-menu {
+        display: block;
+        margin-top: 36px;
+    }
+    .logo-box img {
+        margin: 0 !important;
+    }
+    .logo-box-name {
+        text-align: left;
+    }
+    .login-form-wrapper {
+        padding: 22px 15px;
+        margin-top: 20px;
+    }
+    .close-login {
+        top: 5px;
+        right: 5px;
+        background: url("../assets/img/close-black.png") no-repeat;
+    }
+}
+
+@media (max-width: 500px) {
+    #main-menu {
+        padding-bottom: 0;
+    }
+    #main-menu ul + ul {
+        float: left;
+        clear: both;
+    }
+    #main-menu ul > li > a.login {
+        border: none;
+        padding: 10px 15px;
+    }
+    .avw-desc {
+        clear: both;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .contact-content,
+    .contact-form-wrapper,
+    .register-content,
+    .register-form-wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .is-login-wrapper {
+        float: left;
+        clear: both;
+        margin-left: 15px;
+        margin-top: 8px;
+    }
+    #user-menu {
+        margin-top: 35px;
+    }
+    .add-course-btn a {
+        float: left;
+        clear: both;
+        margin-top: 15px;
+    }
+    .page-404 {
+        font-size: 150px;
+    }
+    .content-404 {
+        margin-top: -30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-content, .contact-form-wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media (max-width: 400px) {
+    .login-by-facebook {
+        background-position: 20px 12px
+    }
+    .login-by-twitter {
+        background-position: 15px 13px;
+    }
+    .forgot-password {
+        float: left;
+        clear: both;
+    }
+}
+@media (max-width: 500px) {
+    .type-courses-tabs .nav-tabs > li {
+        float: left;
+        clear: both;
+    }
+}
+@media (max-width: 650px) {
+    .sort-by-category {
+        margin-right: 0;
+    }
+    .sort-by-terms {
+        clear: both;
+        margin-top: 15px;
+    }
+    .sort-info {
+        margin-top: 12px;
+        clear: both;
+        margin-left: 0;
+    }
+}
+
+/* TABLET */
+
+@media (max-width: 991px) {
+    .course-item {
+        margin-top: 30px;
+    }
+    .items-box {
+        margin-top: 40px;
+    }
+    .hit-item {
+        margin-top: 30px;
+    }
+    .right-column {
+        margin-top: 20px;
+    }
+    .contact-form-wrapper {
+        margin-bottom: 30px;
+    }
+    .contact-form-container {
+        border-right: none;
+    }
+    .register-content {
+        margin-top: 30px;
+    }
+    .register-form-submit {
+        display: block;
+        margin: 35px auto 0 auto;
+    }
+    .register-or {
+        display: none;
+    }
+    .categories-row label {
+        margin-right: 0;
+    }
+    .sort-info {
+        margin-left: 0;
+    }
+    .instructions-school {
+        margin-top: 20px;
+    }
+    .instructions-school-wrapper {
+        padding-left: 15px !important;
+    }
+    .personal-data-wrapper {
+        padding: 0;
+    }
+    .eacc-change-photo-btn {
+        margin-left: 20px;
+    }
+}
+
+/* small monitor */
+
+@media (max-width: 1999px) {
+    .logo-box img {
+        margin: 0 auto;
+    }
+}
