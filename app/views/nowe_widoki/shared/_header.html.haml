@@ -14,8 +14,6 @@
             %ul.nav.nav-pills
               %li
                 = link_to 'Kursy', courses_path
-              %li
-                %a{href: "#"} Uczelnie
               - Cms::Page.roots.published.each do |page|
                 =render '/menu/dynamic', page: page
 

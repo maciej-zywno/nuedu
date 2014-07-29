@@ -1,34 +1,114 @@
-.row
-  .col-md-3
-    INTRODUCTION PAGE
-.row
-  .col-md-8
-    %h2
-      = "#{@course.name}"
-    %p= "#{@course.description}".html_safe
-  .col-md-4
-    %rp
-      -if student?
-        -if enrolled? @course
-          = link_to 'Go to class', @course, class: 'btn btn-success'
-        -else
-          = link_to 'Enroll', enroll_course_path(@course), class: 'btn btn-primary'
-      -else
-        Sing in to entroll
-    %h3 Course Steps
-    #accordion.panel-group
-      -@course.steps.each_with_index do |step, idx|
-        .panel.panel-default
-          .panel-heading
-            %h4.panel-title
-              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse#{idx}"}
-                = step.name
-          .panel-collapse.collapse{id:"collapse#{idx}"}
-            .panel-body
-              %p=step.description.html_safe
-    %h3 Profesors
-    - User.with_role(:moderator, @course).each do |teacher|
-      = render "shared/teacher_box", user: teacher
-.f-player-container
-=render 'courses/intro/reviews', course: @course
+/ .row
+/   .col-md-3
+/     INTRODUCTION PAGE
+/ .row
+/   .col-md-8
+/     %h2
+/       = "#{@course.name}"
+/     %p= "#{@course.description}".html_safe
+/   .col-md-4
+/     %rp
+/       -if student?
+/         -if enrolled? @course
+/           = link_to 'Go to class', @course, class: 'btn btn-success'
+/         -else
+/           = link_to 'Enroll', enroll_course_path(@course), class: 'btn btn-primary'
+/       -else
+/         Sing in to entroll
+/     %h3 Course Steps
+/     #accordion.panel-group
+/       -@course.steps.each_with_index do |step, idx|
+/         .panel.panel-default
+/           .panel-heading
+/             %h4.panel-title
+/               %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse#{idx}"}
+/                 = step.name
+/           .panel-collapse.collapse{id:"collapse#{idx}"}
+/             .panel-body
+/               %p=step.description.html_safe
+/     %h3 Profesors
+/     - User.with_role(:moderator, @course).each do |teacher|
+/       = render "shared/teacher_box", user: teacher
+/ .f-player-container
+/ =render 'courses/intro/reviews', course: @course
+
+
+%section.middle-content
+  .container
+    .main-content
+      .row
+        .col-lg-7.col-lg-offset-1.col-md-8.col-sm-12.col-xs-offset-0
+          .left-column
+            .promoted-course-section.shadow
+              %h2.page-headline Kurs sponsorowany
+              .content
+                %a.promoted-course-logo{href: ""}
+                  = image_tag "img/promoted-course.png", class: 'img-responsive'
+            .info-section.shadow
+              %h2.page-headline Informacje
+              .content
+                = "#{@course.description}".html_safe
+        .col-lg-3.col-md-4.col-sm-12
+          .right-column
+            .row
+              .sign-in-course.col-lg-12
+                -if student?
+                  -if enrolled? @course
+                    = link_to 'Go to class', @course
+                  -else
+                    = link_to 'Zapisz się na kurs', enroll_course_path(@course)
+                -else
+                  Sing in to enroll
+            .row
+              .categories-wrapper.col-lg-12
+                .right-box.shadow Box reklamowy
+            .row
+              .col-lg-12
+                .right-box.shadow.terms-wrapper
+                  .right-box-header Terminy
+                  .right-box-item
+                    %i.fa.fa-calendar.fa-2x.pull-left
+                    %div
+                      od: 10.04.2014r.
+                      %p do: 20.04.2014r.
+                  .right-box-item
+                    %i.fa.fa-clock-o.fa-2x.pull-left
+                    %div
+                      5-7 godzin praca.
+                      %p na tydzień
+                      %p
+            .row
+              .categories-wrapper.col-lg-12
+                .right-box.shadow
+                  .right-box-header Kategoria
+                  .right-box-item
+                    %ul.nav.categories-list
+                      - @course.categories.each do |category|
+                        %li
+                          %a{href: "#"}= "- #{category.name}"
+            .row
+              .col-lg-12
+                .right-box.shadow
+                  .logo-box
+                    .col-lg-6.col-md-12.col-sm-3.col-xs-12.no-padding
+                      %a{href: "#"}
+                        / %img.img-responsive{src: "img/uj.png"}/
+                        = image_tag "img/uj.png", class: 'img-responsive'
+                    .col-lg-6.col-md-12.col-sm-9.col-xs-12.no-padding
+                      .logo-box-name
+                        %a{href: "#"} Uniwersytet Jagieloński
+            .row
+              .categories-wrapper.col-lg-12
+                .right-box.shadow
+                  %span Wtyczki spolecznościowe
+      .content-headline
+        .row
+          .col-lg-10.col-lg-offset-1
+            %p.content-headline-name Inne kursy
+      .other-courses
+        .row
+          .items-box.col-lg-10.col-lg-offset-1.col-xs-offset-0.no-padding
+            - Course.recent(3).each do |course|
+              .col-lg-4.col-md-4.col-sm-12
+                = render  'courses/course_tile', course: course
 
