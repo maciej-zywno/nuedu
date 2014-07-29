@@ -21,12 +21,13 @@ $(document).ready(function () {
             $('.hello').empty();
         }
     });
-    $('.login').on('click', function () {
+    $('.login').on('click', function (event) {
         var is_open = $('.auth-form-wrapper').hasClass('open');
         if (!is_open) {
             $('.auth-login-wrapper').addClass('open');
             fullscreenlogin('.auth-login-wrapper');
         }
+        event.preventDefault();
     });
     $('.close-login').on('click', function () {
         $('.auth-login-wrapper').removeClass('open');

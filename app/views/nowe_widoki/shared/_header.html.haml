@@ -5,25 +5,25 @@
     .top-header
       .row
         .col-lg-2.col-lg-offset-1.col-md-2.col-xs-offset-0
-          %a#logo{href: "#"}
+          = link_to root_path, id: 'logo' do
             = image_tag 'img/logo.svg'
-            / %img{alt: "", src: "/assets/img/logo.svg"}/
         .col-lg-8.col-md-10
           %i.icon-menu.fa.fa-list.fa-2x
         .col-lg-8.col-md-10
           %nav#main-menu
             %ul.nav.nav-pills
               %li
-                %a{href: "#"} Kursy
+                = link_to 'Kursy', courses_path
               %li
                 %a{href: "#"} Uczelnie
               %li
                 %a{href: "#"} O nas
             %ul.nav.nav-pills
-              %li
-                %a{href: "#"} Rejestracja
-              %li
-                %a.login{href: "#"} Logowanie
+              - if user_signed_in?
+                = render partial: '/nowe_widoki/shared/signed_in_menu'
+              - else
+                = render partial: '/nowe_widoki/shared/anonymous_menu'
+
     .slogan-wrapper
       .row
         .col-lg-10.col-lg-offset-1.col-xs-offset-0

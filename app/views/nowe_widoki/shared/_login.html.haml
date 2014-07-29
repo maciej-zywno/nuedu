@@ -9,16 +9,31 @@
       .login-or
         %p lub
       .login-form-content
-        %form{role: "form"}
+        = form_for(User.new, :url => session_path(User), html: { role: 'form'}) do |f|
           .form-group
             %label{for: "email-field"} E-mail
-            %input#email-field.form-control{type: "text"}/
+            / %input#email-field.form-control{type: "text"}/
+            = f.email_field :email, label: false, autofocus: true, autofocus: "",  id: 'email-field', class: 'form-control'
           .form-group
             %label{for: "password-field"} Hasło
-            %input#password-field.form-control{type: "password"}/
+            / %input#password-field.form-control{type: "password"}/
+            = f.password_field :password, label: false, id: 'password-field', class: 'form-control'
           .checkbox.login-option
             %label
               %input{type: "checkbox"}/
               Zapamiętaj mnie
             %a.forgot-password{href: "#"} Zapomniałeś hasła?
           %input.btn.btn-default.login-form-submit{type: "submit", value: "Zaloguj się"}/
+
+
+
+
+/ - if devise_mapping.rememberable?
+/   = f.check_box :remember_me
+/   = f.label :remember_me
+/ = f.submit "Sign in", class: 'btn btn-lg btn-primary btn-block'
+/ = link_to "Forgot your password?", new_password_path(resource_name)
+/ %span OR
+/ - if devise_mapping.omniauthable?
+/   - resource_class.omniauth_providers.each do |provider|
+/     %h3= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)

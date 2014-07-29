@@ -1,0 +1,37 @@
+%li.dropdown
+  = link_to  '','data-target' => "#", id: 'f-current-user-menu', role: 'button', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+    = raw ("#{current_user.username}" + '<b class="caret"></b>')
+  %ul.dropdown-menu{role:'menu', "aria-labelledby" => 'f-current-user-menu'}
+    %li{role:'presentation'}= link_to 'Profile', account_path
+    %li{role:'presentation'}= link_to 'Settings', edit_user_registration_path
+    %li
+      =link_to '' do
+        Messages
+        %span.badge.pull-right
+          3
+    %li.divider{role:'presentation'}
+    - if teacher?
+      %li{role:'presentation'}= link_to "Remove teacher role", remove_role_path(:teacher)
+    - else
+      %li{role:'presentation'}
+        = link_to "Add teacher role", add_role_path(:teacher)
+    - if admin?
+      %li{role:'presentation'}= link_to "Remove admin role", remove_role_path(:admin)
+    - else
+      %li{role:'presentation'}
+        = link_to "Add admin role", add_role_path(:admin)
+    - if cms_admin?
+      %li{role:'presentation'}= link_to "Remove cms admin role", remove_role_path(:cms_admin)
+    - else
+      %li{role:'presentation'}
+        = link_to "Add cms admin role", add_role_path(:cms_admin)
+
+    %li.divider{role:'presentation'}
+    %li{role:'presentation'}
+      = link_to 'Logout', destroy_user_session_path, :method => :delete
+-if admin?
+  %li= link_to 'Admin Area', "/admin"
+-if cms_admin?
+  %li= link_to 'CMS Area', "/cms_admin"
+-if teacher?
+  %li= link_to 'Teacher Area', teacher_account_path
