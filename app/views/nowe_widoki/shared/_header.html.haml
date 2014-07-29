@@ -6,7 +6,8 @@
       .row
         .col-lg-2.col-lg-offset-1.col-md-2.col-xs-offset-0
           %a#logo{href: "#"}
-            %img{alt: "", src: "/assets/img/logo.svg"}/
+            = image_tag 'img/logo.svg'
+            / %img{alt: "", src: "/assets/img/logo.svg"}/
         .col-lg-8.col-md-10
           %i.icon-menu.fa.fa-list.fa-2x
         .col-lg-8.col-md-10
@@ -30,5 +31,6 @@
     .header-course
       .row
         .col-lg-10.col-lg-offset-1.col-xs-offset-0
-          %img.img-responsive{alt: "", src: "/assets/img/sponsorowane.png"}/
+          = image_tag 'img/sponsorowane.png', class: 'img-responsive'
+          / %img.img-responsive{alt: "", src: "/assets/img/sponsorowane.png"}/
           %a.show-hc{href: "#"} Zobacz kurs
