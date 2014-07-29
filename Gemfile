@@ -78,6 +78,8 @@ gem 'rails-assets-holderjs'
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-linkedin'
 gem 'cancan'
 gem 'rolify', :github => 'badaboda/rolify', :branch => 'master'
 

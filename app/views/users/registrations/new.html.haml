@@ -1,13 +1,72 @@
-%h2 Sign up
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  %div
-    = f.input :username
-    = f.input :email, :autofocus => true
-  - if f.object.password_required?
-    %div
-      = f.input :password
-    %div
-      = f.input :password_confirmation
-  %div= f.button :submit
-= render "users/shared/links"
+/ %h2 Sign up
+/ = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+/   = devise_error_messages!
+/   %div
+/     = f.input :username
+/     = f.input :email, :autofocus => true
+/   - if f.object.password_required?
+/     %div
+/       = f.input :password
+/     %div
+/       = f.input :password_confirmation
+/   %div= f.button :submit
+
+%section.middle-content
+  .container
+    .main-content
+      .row
+        .register-description.col-lg-10.col-lg-offset-1.col-md-12.col-sm-12.col-xs-offset-0
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          %strong Duis nulla ante,
+          laoreet vel hendrerit vitae, aliquam eget justo. Aenean adipiscing ligula ut diam tempus
+          %strong auctor.
+      .row
+        .col-lg-10.col-lg-offset-1.col-md-12.col-sm-12.col-xs-offset-0
+          .left-column
+            .info-section.shadow
+              .content
+                .row
+                  %p.register-or
+                    lub
+                  .col-lg-6.col-md-6.contact-form-container
+                    .register-form-wrapper
+                      %form{role: "form"}
+                      =form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: 'form-signin', role: 'form'}) do |f|
+                        = devise_error_messages!
+                        .form-group
+                          %label{for: "name-field"} Imię i Nazwisko
+                          %span.hello
+                          = f.text_field :username, label: false, class: 'form-control', id: "name-field"
+                        .form-group
+                          %label{for: "email-field"} E-mail
+                          = f.email_field :email, label: false, class: 'form-control', id: 'email-field'
+                        .form-group
+                          %label{for: "password-field"} Hasło
+                          = f.password_field :password, label: false, class: 'form-control', id: 'password-field'
+                        .form-group
+                          %label{for: "password-field"} Powtórz Hasło
+                          = f.password_field :password_confirmation, label: false, class: 'form-control'
+                        .checkbox
+                          %label
+                            %input{type: "checkbox"}/
+                            Zapoznałem się z regulaminem portalu nu.edu.pl
+                        = f.submit "Zarejestruj się", class: 'btn btn-default register-form-submit'
+                  .col-lg-6.col-md-6
+                    .register-content
+                      - if devise_mapping.omniauthable?
+                        - resource_class.omniauth_providers.each do |provider|
+                          - if provider.to_s == 'facebook'
+                            .login-by-facebook
+                              = link_to "Połącz z facebook", omniauth_authorize_path(resource_name, provider)
+                          - if provider.to_s == 'twitter'
+                            .login-by-twitter
+                              = link_to "Połącz z twitter", omniauth_authorize_path(resource_name, provider)
+                          - if provider.to_s == 'linked_in'
+                            %br
+                            .login-by-facebook
+                              = link_to "Połącz z linked in", omniauth_authorize_path(resource_name, provider)
+
+                          / = render "users/shared/links"
+
+
+
