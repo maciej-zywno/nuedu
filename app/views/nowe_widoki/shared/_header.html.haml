@@ -16,8 +16,9 @@
                 = link_to 'Kursy', courses_path
               %li
                 %a{href: "#"} Uczelnie
-              %li
-                %a{href: "#"} O nas
+              - Cms::Page.roots.published.each do |page|
+                =render '/menu/dynamic', page: page
+
             %ul.nav.nav-pills
               - if user_signed_in?
                 = render partial: '/nowe_widoki/shared/signed_in_menu'

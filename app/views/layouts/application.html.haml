@@ -12,7 +12,8 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    = render 'nowe_widoki/shared/login'
+    .f-login-partial
+      = render 'nowe_widoki/shared/login'
     #page
       = render 'nowe_widoki/shared/header'
       .container

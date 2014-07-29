@@ -15,9 +15,9 @@
     .recommended-courses-wrapper
       .row
         .items-box.col-lg-10.col-lg-offset-1.col-xs-offset-0
-        - courses.each do |course|
-          .col-lg-4.col-md-4.col-sm-12
-            = render  'courses/course_tile', course: course
+          - courses.each do |course|
+            .col-lg-4.col-md-4.col-sm-12
+              = render  'courses/course_tile', course: course
       .row
         / %a.show-course.more{href: "#"}
         = link_to "Zobacz więcej kursów", courses_path, {class: 'show-course more'}
