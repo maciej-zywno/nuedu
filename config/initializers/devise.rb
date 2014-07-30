@@ -1,4 +1,7 @@
 require "omniauth-facebook"
+require "omniauth-twitter"
+require "omniauth-linked_in"
+
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
