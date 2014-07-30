@@ -1,6 +1,6 @@
 require "omniauth-facebook"
 require "omniauth-twitter"
-require "omniauth-linked_in"
+require "omniauth-linkedin"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 
