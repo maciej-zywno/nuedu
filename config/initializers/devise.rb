@@ -237,7 +237,7 @@ Devise.setup do |config|
   config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_SECRET"],
       {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} #heroku
   config.omniauth :twitter, ENV["TWITTER_API_KEY"], ENV["TWITTER_API_SECRET"]
-  config.omniauth :linked_in, ENV["LINKED_IN_API_KEY"], ENV["LINKED_IN_API_SECRET"]
+  config.omniauth :linkedin, ENV["LINKED_IN_API_KEY"], ENV["LINKED_IN_API_SECRET"]
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

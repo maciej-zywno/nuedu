@@ -2,10 +2,18 @@
   .close-login
   .container
     .login-form-wrapper.col-lg-4.col-lg-offset-4.col-md-5.col-md-offset-4.col-sm-7.col-sm-offset-3.col-xs-12.col-xs-offset-0
-      .login-by-facebook
-        %a{href: "#"} Połącz z facebook
-      .login-by-twitter
-        %a{href: "#"} Połącz z twitter
+      - if devise_mapping.omniauthable?
+        - resource_class.omniauth_providers.each do |provider|
+          - if provider.to_s == 'facebook'
+            .login-by-facebook
+              = link_to "Połącz z facebook", omniauth_authorize_path(resource_name, provider)
+          - if provider.to_s == 'twitter'
+            .login-by-twitter
+              = link_to "Połącz z twitter", omniauth_authorize_path(resource_name, provider)
+          - if provider.to_s == 'linkedin'
+            %br
+            .login-by-facebook
+              = link_to "Połącz z linked in", omniauth_authorize_path(resource_name, provider)
       .login-or
         %p lub
       .login-form-content

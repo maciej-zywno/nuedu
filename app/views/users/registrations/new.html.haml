@@ -61,7 +61,7 @@
                           - if provider.to_s == 'twitter'
                             .login-by-twitter
                               = link_to "Połącz z twitter", omniauth_authorize_path(resource_name, provider)
-                          - if provider.to_s == 'linked_in'
+                          - if provider.to_s == 'linkedin'
                             %br
                             .login-by-facebook
                               = link_to "Połącz z linked in", omniauth_authorize_path(resource_name, provider)
