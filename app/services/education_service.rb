@@ -1,7 +1,7 @@
 class EducationService
 
   def self.start_course(user, course)
-    progress = CourseProgress.create!(user: current_user, course: course)
+    progress = CourseProgress.create!(user: user, course: course)
     progress.next_video = course.steps.first.videos.first
     progress.save!
   end
