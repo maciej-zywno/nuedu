@@ -95,7 +95,7 @@ gem 'rails_admin'
 gem 'ancestry'
 gem 'rails_admin_nestable'
 
-gem "font-awesome-rails", '3.2.1'
+gem "font-awesome-rails"
 
 gem "friendly_id", '~> 5.0.0'
 

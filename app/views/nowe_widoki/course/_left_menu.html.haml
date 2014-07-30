@@ -1,11 +1,12 @@
 #logo.logo
-  %a{href: "index.html"}
-    %img{alt: "nuedu.pl logo", src: "logo.svg"}/
+  = link_to root_path do
+    = image_tag 'course/logo.svg', alt: "nuedu.pl logo"
 .instructor-wrapper
   %span Wykładowca
   .instructor-items
     .iw-instructor-info
-      %img.ii-instructor-avatar{alt: "", src: "avatar.jpg"}/
+      = image_tag 'course/avatar.jpg', class: 'ii-instructor-avatar'
+      / %img.ii-instructor-avatar{alt: "", src: "avatar.jpg"}/
       .ii-instructor-name
         Jonathan
         %br/
@@ -14,7 +15,8 @@
   %span Uczelnia
   .school-items
     .sw-school-info
-      %img.si-school-avarat{alt: "", src: "logo-uj-pnl.png"}/
+      / %img.si-school-avarat{alt: "", src: "logo-uj-pnl.png"}/
+      = image_tag 'course/logo-uj-pnl.png', class: 'si-school-avarat'
       .si-school-name
         Uniwersytet
         %br/
