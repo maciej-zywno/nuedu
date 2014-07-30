@@ -4,10 +4,10 @@
     .login-form-wrapper.col-lg-4.col-lg-offset-4.col-md-5.col-md-offset-4.col-sm-7.col-sm-offset-3.col-xs-12.col-xs-offset-0
       .login-by-facebook
         = link_to "Połącz z facebook", omniauth_authorize_path(User, 'facebook')
+      / .login-by-twitter
+      /   = link_to "Połącz z twitter", omniauth_authorize_path(User, 'twitter')
+      / %br
       .login-by-twitter
-        = link_to "Połącz z twitter", omniauth_authorize_path(User, 'twitter')
-      %br
-      .login-by-facebook
         = link_to "Połącz z linked in", omniauth_authorize_path(User, 'linkedin')
       .login-or
         %p lub

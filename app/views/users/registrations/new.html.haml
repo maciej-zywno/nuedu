@@ -58,12 +58,11 @@
                           - if provider.to_s == 'facebook'
                             .login-by-facebook
                               = link_to "Połącz z facebook", omniauth_authorize_path(resource_name, provider)
-                          - if provider.to_s == 'twitter'
-                            .login-by-twitter
-                              = link_to "Połącz z twitter", omniauth_authorize_path(resource_name, provider)
+                          / - if provider.to_s == 'twitter'
+                          /   .login-by-twitter
+                          /     = link_to "Połącz z twitter", omniauth_authorize_path(resource_name, provider)
                           - if provider.to_s == 'linkedin'
-                            %br
-                            .login-by-facebook
+                            .login-by-twitter
                               = link_to "Połącz z linked in", omniauth_authorize_path(resource_name, provider)
 
                           / = render "users/shared/links"
