@@ -16,10 +16,8 @@
   .course-content
     .course-content-shadow
     = image_tag course.logo.url(:medium), class: 'img-responsive'
-    / %img.img-responsive{alt: "", src: "img/kurs-2.png"}/
     .course-name
       =course.name
       / Exploring
   .show-course-btn
     =link_to 'Zobacz kurs', intro_course_path(course), class: 'show-course'
-    / %a.show-course{href: "#"} Zobacz kurs

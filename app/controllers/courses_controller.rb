@@ -3,6 +3,9 @@ class CoursesController < InheritedResources::Base
 
   before_action :set_course, only: [ :enroll]
   before_action :set_course_progress, only: [:show, :announcements, :forum]
+
+  layout 'course', only: [:show]
+
   def intro
   end
 
