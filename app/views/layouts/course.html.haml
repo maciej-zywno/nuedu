@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %title Nuedu
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "//www.google.com/jsapi", "data-turbolinks-track" => true
+    = javascript_include_tag :modernizr
+    = javascript_include_tag "//ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    #page
+      = render 'nowe_widoki/shared/header'
+      .container
+        - if notice
+          %p.notice.alert.alert-success= notice
+        - if alert
+          %p.alert.alert.alert-danger= alert
+
+      = yield
+
+      = render  'nowe_widoki/shared/footer'
+      .footer
+        %p © Razorbear 2014

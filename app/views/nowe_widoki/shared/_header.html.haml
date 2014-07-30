@@ -10,17 +10,20 @@
         .col-lg-8.col-md-10
           %i.icon-menu.fa.fa-list.fa-2x
         .col-lg-8.col-md-10
-          %nav#main-menu
+
+          %nav#main-menu{class: "#{user_signed_in? ? 'is-login-menu' : ''}"}
             %ul.nav.nav-pills
               %li
                 = link_to 'Kursy', courses_path
               - Cms::Page.roots.published.each do |page|
                 =render '/menu/dynamic', page: page
 
-            %ul.nav.nav-pills
-              - if user_signed_in?
-                = render partial: '/nowe_widoki/shared/signed_in_menu'
-              - else
+            - if user_signed_in?
+              .is-login-wrapper
+                %ul.nav.nav-pills
+                  = render partial: '/nowe_widoki/shared/signed_in_menu'
+            - else
+              %ul.nav.nav-pills
                 = render partial: '/nowe_widoki/shared/anonymous_menu'
 
     .slogan-wrapper
