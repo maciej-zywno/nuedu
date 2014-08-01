@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :courses,  through: :participations
   has_many :course_progresses
 
-  has_attached_file :avatar, :styles => { medium: "300x300>", small: "200x200>", thumb: "128x128>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { medium: "300x300>", small: "200x200>", thumb: "128x128>" }, :default_url => "/assets/avatar-missing.jpeg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def self.from_omniauth(auth)

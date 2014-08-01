@@ -19,6 +19,7 @@
 //= require bootstrap.file-input
 //= require tinymce-jquery
 //= require ../teacher/video
+//= require ../video
 //= require jquery.cookie
 //= require cookies
 //= require main

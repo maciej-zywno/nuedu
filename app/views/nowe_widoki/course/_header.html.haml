@@ -1,10 +1,9 @@
 #content-navbar
-  %h2.navbar-headline Practicing Tolerance in a Religious Society
+  %h2.navbar-headline= course.name
   .user-avatar
 
     %a{href: ""}
-      / %img{alt: "", src: "course/jura-avatar.jpg"}/
-      = image_tag 'course/jura-avatar.jpg'
+      = image_tag current_user.avatar.url(:thumb)
 
   .course-promoted
     %a{href: "#"}

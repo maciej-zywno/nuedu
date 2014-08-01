@@ -1,0 +1,43 @@
+.options-wrapper.multiple-box
+  .options-header
+    %span.options-box-name
+      %span= step.name
+    %span.header-box-arrow.arrow-down
+  .options-box-content.open
+    .courses-wrapper-box
+      .courses-sortable.courses-items.ui-sortable
+        /     -if watched = @step_progress.watched_videos.where(id: video.id).first
+        /       %span.badge
+        /         =link_to 'Replay', play_video_path(video), class: '', remote: true
+        /       -if watched.exam
+        /         -if exam_progress = @step_progress.exam_progresses.where(exam_id: watched.exam.id).first
+        /           Check results
+        /         -else
+        /           =link_to 'Take exam', show_exam_path(watched.exam), class: 'btn btn-warning', remote: true
+
+        - step.videos.each do |video|
+          - step_progress = @course_progress.step_progresses.find_by(step_id: step.id)
+          - watched = step_progress && step_progress.watched_videos.where(id: video.id).first
+          =link_to play_video_path(video), class: '', remote: true do
+            .course-content
+              .course-item
+                = image_tag "http://img.youtube.com/vi/#{video.yt_id}/sddefault.jpg", class: 'img-responsive'
+                .course-name
+                  = video.title
+                = image_tag "course/play.png", class: 'play-icon', alt: "Play course"
+                - if watched
+                  .watched obejrzany
+
+    .courses-download-files
+      .cdf-content
+        .cdf-headline
+          %i.fa.fa-cloud-download.fa-2x
+          %span.pull-right
+            Materiały
+            %br/
+            do pobrania
+      %ul.cdf-list
+        - (step).attachments.each do |attachment|
+          %li
+            =link_to attachment.file_file_name.truncate(70), attachment.url
+
