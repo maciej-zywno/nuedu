@@ -1,0 +1,40 @@
+#logo.logo
+  = link_to root_path do
+    = image_tag 'course/logo.svg', alt: "nuedu.pl logo"
+.school-wrapper
+  %span Uczelnia
+  .school-items
+    .sw-school-info
+      = image_tag 'course/logo-uj-pnl.png', class: 'si-school-avarat'
+      .si-school-name
+        Uniwersytet
+        %br/
+        Jagieloński
+.instructor-wrapper.sylabus
+  %span Wykładowca
+  .instructor-items
+    .iw-instructor-info
+      = image_tag 'course/avatar.jpg', class: 'ii-instructor-avatar'
+      .ii-instructor-name
+        Jonathan
+        %br/
+        Biss
+
+    .instructor-items-sep
+
+    .iw-instructor-info
+      = image_tag 'course/avatar.jpg', class: 'ii-instructor-avatar'
+      .ii-instructor-name
+        Jonathan
+        %br/
+        Biss
+      = image_tag 'course/delete-instructor.png', class: 'delete-instructor'
+
+    .instructor-items-sep
+
+    .iw-instructor-info
+      = image_tag 'course/avatar.jpg', class: 'ii-instructor-avatar'
+      .ii-instructor-name
+        Jonathan
+        %br/
+        Biss

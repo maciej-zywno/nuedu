@@ -27,13 +27,12 @@ Nuedu::Application.routes.draw do
           resources :posts
         end
     end
-
-
     member do
       get 'enroll'
       get 'intro'
       get 'announcements'
       get 'forum'
+      get 'sylabus'
     end
     resources :steps , only: [:index, :show] do
       resources :exams

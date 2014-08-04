@@ -1,5 +1,8 @@
-%ul.nav.nav-pills
-  %li= link_to 'My courses', teacher_courses_path
+- content_for :header do
+  = render 'nowe_widoki/course/header', course: @course
+- content_for :left_menu do
+  = render 'nowe_widoki/teacher/course/left_menu', course: @course
+
 
 %h1 New course
 .row

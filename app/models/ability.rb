@@ -17,6 +17,7 @@ class Ability
       else
         can :read, Course, :id => Course.with_role(:participant, user).pluck(:id)
         can :announcements, Course, :id => Course.with_role(:participant, user).pluck(:id)
+        can :sylabus, Course, :id => Course.with_role(:participant, user).pluck(:id)
         can :forum, Course, :id => Course.with_role(:participant, user).pluck(:id)
         can :read, Course, :id => Course.with_role(:moderator, user).pluck(:id)
 

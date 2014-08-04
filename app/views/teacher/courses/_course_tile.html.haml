@@ -1,8 +1,11 @@
-.thumbnail
-  = image_tag course.logo.url(:medium) 
-  .caption
-    %h3=course.name
-    %p
-      = link_to 'Show', course, class: 'btn btn-primary'
-      = link_to 'Edit', edit_teacher_course_path(course), class: 'btn btn-default'
-      = link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+.course-item
+  .course-content
+    .course-content-shadow
+    = image_tag course.logo.url(:medium), class: 'img-responsive'
+    .course-name
+      =course.name
+  .show-course-btn
+    .row
+      = link_to 'Zobacz', intro_course_path(course), class: 'btn-show profil-pro-btn col-lg-4 col-md-4 col-sm-4 col-xs-4'
+      = link_to 'Edytuj', edit_teacher_course_path(course), class: 'btn-leave profil-pro-btn col-lg-4 col-md-4 col-sm-4 col-xs-4'
+      = link_to 'Usuń', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-leave btn-delete-course col-lg-4 col-md-4 col-sm-4 col-xs-4'

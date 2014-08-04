@@ -6,7 +6,6 @@
   .instructor-items
     .iw-instructor-info
       = image_tag 'course/avatar.jpg', class: 'ii-instructor-avatar'
-      / %img.ii-instructor-avatar{alt: "", src: "avatar.jpg"}/
       .ii-instructor-name
         Jonathan
         %br/
@@ -15,7 +14,6 @@
   %span Uczelnia
   .school-items
     .sw-school-info
-      / %img.si-school-avarat{alt: "", src: "logo-uj-pnl.png"}/
       = image_tag 'course/logo-uj-pnl.png', class: 'si-school-avarat'
       .si-school-name
         Uniwersytet
@@ -40,14 +38,14 @@
   %span O kursie
   %ul#acm-list
     %li
-      %a.m-sylabus-ico{href: "#"}
+      = link_to sylabus_course_path(course), class: 'm-sylabus-ico' do
         %i.fa.fa-align-justify
         Sylabus
     %li
-      %a.m-info-ico{href: "#"}
+      = link_to announcements_course_path(course), class: 'm-info-ico' do
         %i.fa.fa-info-circle
         Informacje od wykładowcy
     %li
-      %a.m-forum-ico{href: "#"}
+      = link_to forum_course_path(course), class: 'm-forum-ico' do
         %i.fa.fa-comment
         Forum

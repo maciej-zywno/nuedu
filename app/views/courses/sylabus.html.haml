@@ -1,0 +1,7 @@
+- content_for :header do
+  = render 'nowe_widoki/course/header', course: @course
+- content_for :left_menu do
+  = render 'nowe_widoki/course/left_menu', course: @course
+
+%h1 Sylabus
+=@course.description.html_safe

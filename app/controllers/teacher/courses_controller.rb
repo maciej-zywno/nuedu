@@ -5,6 +5,9 @@ module Teacher
     skip_load_resource only: [:create]
 
     after_action :add_moderator_role, only: [:create]
+
+    layout 'course', only: [:new, :edit]
+
     # before_action :set_course, only: [:show, :edit, :update, :destroy]
 
     # GET /courses
@@ -75,7 +78,7 @@ module Teacher
     end
 
     def select_categories
-      
+
     end
 
     # DELETE /courses/1

@@ -4,7 +4,7 @@ class CoursesController < InheritedResources::Base
   before_action :set_course, only: [ :enroll]
   before_action :set_course_progress, only: [:show, :announcements, :forum]
 
-  layout 'course', only: [:show]
+  layout 'course', only: [:show, :announcements, :forum, :sylabus]
 
   def intro
   end
@@ -32,6 +32,9 @@ class CoursesController < InheritedResources::Base
   end
 
   def forum
+  end
+
+  def sylabus
   end
 
   private

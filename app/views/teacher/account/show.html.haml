@@ -1,10 +1,34 @@
-%ul.nav.nav-pills
-  %li= link_to 'Create course', new_teacher_course_path
-  %li= link_to 'My courses', teacher_courses_path
-  
-%h1 Your courses
-- @courses.in_groups_of(3, false) do |group| 
-  .row
-    - group.each do |course|
-      .col-sm-6.col-md-4
-        =render 'teacher/courses/course_tile', course: course
+%section.middle-content
+  .container
+    .main-content
+      .row
+        .col-lg-10.col-lg-offset-1.col-md-12.col-sm-12.col-xs-offset-0
+          %ul.nav.nav-pills
+            %li= link_to 'Create course', new_teacher_course_path
+
+          .left-column
+            .profile-section
+              .content
+                .row
+                  .col-xs-12
+                    .type-courses-tabs
+                      %ul.nav.nav-tabs
+                        %li.tabs-name Kursy
+                        %li
+                          %a{"data-toggle" => "tab", href: "#finished"} Zakończone
+                        %li
+                          %a{"data-toggle" => "tab", href: "#next_courses"} Nadchodzące
+                        %li.active
+                          %a{"data-toggle" => "tab", href: "#actual"} Trwające
+                      / Tab panes
+                      .tab-content
+                        #actual.tab-pane.active
+                          .other-courses
+                            .row
+                              .items-box.col-xs-12.no-padding
+                                - @courses.each do |course|
+                                  .col-lg-4.col-md-4.col-sm-6.col-xs-12
+                                    = render 'teacher/courses/course_tile', course: course
+
+                        #finished.tab-pane ...
+                        #next_courses.tab-pane ...

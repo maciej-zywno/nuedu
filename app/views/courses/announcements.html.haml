@@ -1,24 +1,19 @@
-.row
-  .col-md-2
-    =render 'courses/show/menu_sidebar', course: @course
-  .col-md-8
-    %h2
-      = "#{@course.name}"
-    
-    %h3 Announcements
-    - @course.announcements.each do |announcement|
-      .panel.panel-default
-        .panel-heading
-          .panel-title.pull-right= announcement.created_at
-          .panel-title.pull-left
-            = announcement.title
-          .clearfix
-        .panel-body
-          = announcement.content
+- content_for :header do
+  = render 'nowe_widoki/course/header', course: @course
+- content_for :left_menu do
+  = render 'nowe_widoki/course/left_menu', course: @course
 
-  .col-md-2
-    =render 'courses/show/progress_box', course: @course
-    =render 'courses/show/attachments', course: @course
+
+%h3 Announcements
+- @course.announcements.each do |announcement|
+  .panel.panel-default
+    .panel-heading
+      .panel-title.pull-right= announcement.created_at
+      .panel-title.pull-left
+        = announcement.title
+      .clearfix
+    .panel-body
+      = announcement.content
 
 .f-player-container
 .f-exam-container
